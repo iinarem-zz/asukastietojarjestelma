@@ -10,16 +10,16 @@ Käyttäjät: Vuokranantaja (ja asukas, jos resursseja laajentaa)
 
 Yhteiset toiminnot:
 
-Asukkaan tietojen katsominen
-Asukkaan tietojen muokkaaminen
-Asukkaan vuokrasuhteen päättäminen
+- Asukkaan tietojen katsominen
+- Asukkaan tietojen muokkaaminen
+- Asukkaan vuokrasuhteen päättäminen
 
 Vuokranantajan toiminnot:
 
-Asunnon tietojen katsominen
-Asukkaiden lisääminen
-Asukkaan tietojen poistaminen
-Asukkaiden listaus
-Asuntojen listaus
-Vuokranmaksun merkitseminen asukkaalle
-Rästissä olevien maksujen listaus
+- Asunnon tietojen katsominen
+- Asukkaiden lisääminen
+- Asukkaan tietojen poistaminen
+- Asukkaiden listaus
+- Asuntojen listaus
+- Vuokranmaksun merkitseminen asukkaalle
+- Rästissä olevien maksujen listaus
