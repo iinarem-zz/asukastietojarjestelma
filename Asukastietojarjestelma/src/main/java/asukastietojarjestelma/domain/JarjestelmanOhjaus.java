@@ -23,17 +23,18 @@ public class JarjestelmanOhjaus {
     
     public void suorita() {
         // järjestelmän toimintojen hoitaminen...
-        
         while (true) {
-            System.out.println("1 lisaa talon, 2 lisaa asukkaan, 3 tulostaa asunnot, x lopettaa");
+            System.out.println("Komennot:\n 1 lisää asunto\n 2 lisää asukas\n 3 näytä kaikkien asuntojen tiedot\n 4 näytä vapaat asunnot\n x lopeta\n");
             System.out.print("Syötä komento: ");
             String komento = this.lukija.nextLine();
             if (komento.equals("1")) {
-                this.lisaaTalo();
+                this.lisaaAsunto();
             } else if (komento.equals("2")) {
                 this.lisaaAsukas();
             } else if (komento.equals("3")) {
                 this.tulostaAsunnot();
+            } else if (komento.equals("4")) {
+                //this.tulostaVapaatAsunnot();
             } else if (komento.equals("x")) {
                 System.out.println("Kiitos näkemiin!");
                 break;
@@ -43,18 +44,27 @@ public class JarjestelmanOhjaus {
         
     }
     
-    public void lisaaTalo(){
-        System.out.print("Syötä talon nimi: ");
-        String nimi = this.lukija.nextLine();
-        this.talot.put(new Talo(nimi), new ArrayList<Asunto>());
-        // asuntojen generoiminen...
-        
-        System.out.println("Talo luotu");
-        
+    public void lisaaTalo(String osoite){
+        this.talot.put(new Talo(osoite), new ArrayList<Asunto>());
+        System.out.println("Talo luotu järjestelmään, voit lisätä asunnot");
+        return;
     }
     
-    // vai pitäisikö jotenkin olla että muokkaa asunnon tietoja.
     public void lisaaAsunto() {
+        System.out.print("Syötä talon katuosoite: ");
+        String osoite = this.lukija.nextLine();
+        if (this.talot == null || this.talot.containsKey(osoite) == false) {
+            this.lisaaTalo(osoite);
+        }
+        
+        System.out.print("Syötä asunnon rappu ja numero: ");
+        String numero = this.lukija.nextLine();
+        System.out.print("Asunnon huonemuoto: ");
+        String huonemuoto = this.lukija.nextLine();
+        
+        
+        this.talot.get(osoite).add(new Asunto(numero, huonemuoto));
+            
         
     }
     

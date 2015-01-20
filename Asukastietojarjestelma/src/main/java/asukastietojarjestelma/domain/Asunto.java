@@ -1,8 +1,8 @@
 
 package asukastietojarjestelma.domain;
 
-public abstract class Asunto {
-    private String osoite;
+public class Asunto {
+    private String osoite; // osoitteessa pitäisi näkyä myös talonkatu osoite...
     private String huonemuoto; // esim. 2h + k
     private boolean onkoVuokrattu;
     
@@ -11,7 +11,7 @@ public abstract class Asunto {
     public Asunto(String osoite, String huonemuoto) {
         this.osoite = osoite;
         this.huonemuoto = huonemuoto;
-        this.onkoVuokrattu = false;
+        this.onkoVuokrattu = false; // kun ladataan tiedostosta ei ole auttomaattisesti false
     }
     public String getOsoite() {
         return this.osoite;
