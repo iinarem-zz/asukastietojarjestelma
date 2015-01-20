@@ -13,6 +13,10 @@ public class Asukas {
         this.sopimus = null;
     }
     
+    public String getNimi() {
+        return this.nimi;
+    }
+    
     public String toString() {
         return this.nimi;
     }
