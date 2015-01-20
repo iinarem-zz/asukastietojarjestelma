@@ -3,7 +3,7 @@ package asukastietojarjestelma.domain;
 
 public class Vuokrasopimus {
     private Asunto asunto;
-    private Asukas asukas1;
+    private Asukas asukas1; //tartteeko vuokrasopimuksella olla asukas vai asukkaalla vain vuokrasopimus?
     private Asukas asukas2;
     private String alkupvm;
     private String paattymispvm;
