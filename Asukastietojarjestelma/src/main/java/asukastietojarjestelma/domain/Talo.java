@@ -3,7 +3,7 @@ package asukastietojarjestelma.domain;
 
 public class Talo {
     private String nimi;
-    // asunnot, mut missä muodossa tallennettuna list vai map
+    // jotain tietoja????
     
     public Talo(String nimi) {
         this.nimi = nimi;

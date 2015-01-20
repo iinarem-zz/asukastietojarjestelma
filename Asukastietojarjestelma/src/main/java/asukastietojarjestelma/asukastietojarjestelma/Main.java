@@ -5,6 +5,9 @@ import asukastietojarjestelma.domain.JarjestelmanOhjaus;
 
 public class Main {
     
-    JarjestelmanOhjaus ohjaus = new JarjestelmanOhjaus();
+    public static void main(String[] args) {
+        JarjestelmanOhjaus ohjaus = new JarjestelmanOhjaus();
+        ohjaus.suorita();
+    }
     
 }
