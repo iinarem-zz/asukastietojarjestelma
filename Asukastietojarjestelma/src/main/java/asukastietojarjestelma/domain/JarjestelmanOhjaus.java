@@ -34,7 +34,7 @@ public class JarjestelmanOhjaus {
             } else if (komento.equals("3")) {
                 this.tulostaAsunnot();
             } else if (komento.equals("4")) {
-                //this.tulostaVapaatAsunnot();
+                this.tulostaVapaatAsunnot();
             } else if (komento.equals("x")) {
                 System.out.println("Kiitos näkemiin!");
                 break;
@@ -116,8 +116,6 @@ public class JarjestelmanOhjaus {
         Asukas asukas = new Asukas(sukunimi, etunimi, hloTunnus, puh, email);
         
         this.asukkaat.put(hloTunnus, asukas);
-//        System.out.println("");
-//        System.out.println(asukas);
         
         //tarkoittaa samalla vuokrasopimuksen solmimista...mietittävä
         
