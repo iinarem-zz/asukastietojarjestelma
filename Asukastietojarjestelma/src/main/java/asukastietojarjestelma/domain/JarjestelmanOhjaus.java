@@ -8,16 +8,16 @@ import java.util.Map;
 import java.util.Scanner;
 
 public class JarjestelmanOhjaus {
-    private Map<Talo, List<Asunto>> talot;
-    private List<Asukas> asukkaat;
+    private List<Talo> talot;
+    private Map<String, Asukas> asukkaat;
     private Scanner lukija;
     
     public JarjestelmanOhjaus() {
         // loppuvaiheessa talojen ja siten asuntojen tietojen lataaminen jostain...
         // loppuvaiheessa asukkaiden lataaminen jostain...
         
-        this.talot = new HashMap<Talo, List<Asunto>>();
-        this.asukkaat = new ArrayList<Asukas>();
+        this.talot = new ArrayList<Talo>();
+        this.asukkaat = new HashMap<String, Asukas>();
         this.lukija = new Scanner(System.in);
     }
     
@@ -45,34 +45,34 @@ public class JarjestelmanOhjaus {
     }
     
     public void lisaaTalo(String osoite){
-        this.talot.put(new Talo(osoite), new ArrayList<Asunto>());
+        this.talot.add(new Talo(osoite));
         System.out.println("Talo luotu järjestelmään, voit lisätä asunnot");
-        return;
     }
     
     public void lisaaAsunto() {
+        System.out.println("");
         System.out.print("Syötä talon katuosoite: ");
         String osoite = this.lukija.nextLine();
-        if (this.talot == null || this.talot.containsKey(osoite) == false) {
+        // tarvitseeko testata onko talo jo järjestelmässä, jos loppukäkdessä ladataan tiedostosta?
+        if (this.talot == null) {
             this.lisaaTalo(osoite);
         }
-        
+         
         System.out.print("Syötä asunnon rappu ja numero: ");
         String numero = this.lukija.nextLine();
         System.out.print("Asunnon huonemuoto: ");
         String huonemuoto = this.lukija.nextLine();
         
-        
-        this.talot.get(osoite).add(new Asunto(numero, huonemuoto));
-            
+        // tarvitseeko testata onko asunto jo järjestelmässä, jos loppukädessä ladataan tiedostosta?
+        //Asunnon luominen tähän!
         
     }
     
-    //tarvitseeko??
+    //tarvitseeko?
     public void muokkaaAsunnonTietoja() {
         
     }
-    //tarvitseeko??
+    //tarvitseeko?
     public void poistaAsunto() {
         
     }
@@ -87,11 +87,39 @@ public class JarjestelmanOhjaus {
         }
     }
     
+    public void tulostaVapaatAsunnot() {
+        for (Talo t : this.talot) {
+            for (Asunto a : t.getAsunnot()) {
+                if (!a.onkoVuokrattu())
+                    System.out.println(a);
+            }
+        }
+    }
+    
     //ASUKKAASEEN LIITTYVIÄ TOIMINTOJA
     
-    //tarkoittaa samalla vuokrasopimuksen solmimista
     public void lisaaAsukas() {
-        System.out.println("Lisataan asukas");
+        System.out.println("");
+        System.out.print("Syötä henkilötunnus: ");
+        String hloTunnus = this.lukija.nextLine();
+        // toteuta tähän testaus onko jo järjestelmässä
+        
+        System.out.print("Syötä etunimi: ");
+        String etunimi = this.lukija.nextLine();
+        System.out.print("Syötä sukunimi: ");
+        String sukunimi = this.lukija.nextLine();
+        System.out.print("Syötä puhelinnumero: ");
+        String puh = this.lukija.nextLine();
+        System.out.print("Syötä email: ");
+        String email = this.lukija.nextLine();
+        
+        Asukas asukas = new Asukas(sukunimi, etunimi, hloTunnus, puh, email);
+        
+        this.asukkaat.put(hloTunnus, asukas);
+//        System.out.println("");
+//        System.out.println(asukas);
+        
+        //tarkoittaa samalla vuokrasopimuksen solmimista...mietittävä
         
     }
     
@@ -101,9 +129,9 @@ public class JarjestelmanOhjaus {
     }
     
     
-    
-    //poistaa tiedot järjestelmästä kokonaan...vaiko siirtää arkistoon?
     public void poistaAsukas() {
+        //poistaa tiedot järjestelmästä kokonaan...vaiko siirtää arkistoon?
+        //asukashistoria olisi tarpeellinen kyllä
         
     }
     

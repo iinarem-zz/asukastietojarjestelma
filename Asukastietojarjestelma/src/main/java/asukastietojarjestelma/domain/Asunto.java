@@ -2,19 +2,19 @@
 package asukastietojarjestelma.domain;
 
 public class Asunto {
-    private String osoite; // osoitteessa pitäisi näkyä myös talonkatu osoite...
+    private String huonenumero; // osoitteessa pitäisi näkyä myös talonkatu osoite...
     private String huonemuoto; // esim. 2h + k
     private boolean onkoVuokrattu;
     
     //onko Asunnolla tieto entisistä ja nykyisistä asukkaista? lista tehdyistä vuokrasopimuksista!?
     
-    public Asunto(String osoite, String huonemuoto) {
-        this.osoite = osoite;
+    public Asunto(String huonenumero, String huonemuoto) {
+        this.huonenumero = huonenumero;
         this.huonemuoto = huonemuoto;
         this.onkoVuokrattu = false; // kun ladataan tiedostosta ei ole auttomaattisesti false
     }
     public String getOsoite() {
-        return this.osoite;
+        return this.huonenumero;
     }
     
     // vuokraamista pitää miettiä...
@@ -29,7 +29,7 @@ public class Asunto {
     }
     
     public String toString() {
-        return this.osoite;
+        return this.huonenumero + ": " + this.huonemuoto;
         //voisi kertoa myös nykyiset asukkaat?
     }
     
