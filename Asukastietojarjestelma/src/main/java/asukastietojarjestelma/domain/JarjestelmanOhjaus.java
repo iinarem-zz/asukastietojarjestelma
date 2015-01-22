@@ -94,6 +94,9 @@ public class JarjestelmanOhjaus {
                     System.out.println(a);
             }
         }
+        
+        // tähän liittyen pitäisi tehdä sellainen hakutoiminnallisuus, joka hakee tiettynä aikana päättyvät
+        // vuokrasopimukset!
     }
     
     //ASUKKAASEEN LIITTYVIÄ TOIMINTOJA
