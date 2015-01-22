@@ -15,21 +15,9 @@ public class AsuntoTest {
         this.testi = null;
     }
     
-    @BeforeClass
-    public static void setUpClass() {
-    }
-    
-    @AfterClass
-    public static void tearDownClass() {
-    }
-    
     @Before
     public void setUp() {
         this.testi = new Asunto("C 21", "2h + kk");
-    }
-    
-    @After
-    public void tearDown() {
     }
 
     

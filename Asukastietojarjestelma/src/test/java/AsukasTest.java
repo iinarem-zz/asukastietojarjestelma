@@ -14,21 +14,9 @@ public class AsukasTest {
         this.uusi = null;
     }
     
-    @BeforeClass
-    public static void setUpClass() {
-    }
-    
-    @AfterClass
-    public static void tearDownClass() {
-    }
-    
     @Before
     public void setUp() {
-        this.uusi = new Asukas("Testihenkilö", "Iina", "101082", "044-1234567", "testiterhi@helsinki.fi");
-    }
-    
-    @After
-    public void tearDown() {
+        this.uusi = new Asukas("Testihenkilö", "Iina", "101082", "044-1234567", "iina.testi@helsinki.fi");
     }
 
     @Test
