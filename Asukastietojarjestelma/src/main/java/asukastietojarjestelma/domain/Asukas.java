@@ -69,10 +69,10 @@ public class Asukas {
     }
     
     public String toString() {
-        return "nimi: " + this.etunimi + " " + this.sukunimi; 
-//                "\nhenkilötunnus: " + this.hloTunnus + 
-//                "\npuhelinnro: " + this.puhelinnumero + 
-//                "\nemail: " + this.email;
+        return "nimi: " + this.etunimi + " " + this.sukunimi + 
+                "\nhenkilötunnus: " + this.hloTunnus + 
+                "\npuhelinnro: " + this.puhelinnumero + 
+                "\nemail: " + this.email;
         
         //pohdittavaa: tulostaako nykyisen asunnon tiedot? vai erillinen getteri sille.
         //pitäisikö sisällyttää osoite...

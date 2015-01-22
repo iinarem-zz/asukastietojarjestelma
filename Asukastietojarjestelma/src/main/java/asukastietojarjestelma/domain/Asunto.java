@@ -26,6 +26,8 @@ public class Asunto {
         if (this.onkoVuokrattu == false) {
             this.onkoVuokrattu = true;
         }
+        
+        //pitäisikö palauttaa tieto siitä onnistuiko?
     }
     
     public String toString() {

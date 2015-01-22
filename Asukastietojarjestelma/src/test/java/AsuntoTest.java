@@ -31,8 +31,19 @@ public class AsuntoTest {
     
     @Test
     public void asuntoEiOleAluksiVuokrattu() {
-        
         assertEquals(false, this.testi.onkoVuokrattu());
     
+    }
+    
+    @Test
+    public void kunAsuntoVuokrataanSenStatusMuuttuuVuokratuksi() {
+        this.testi.vuokraa();
+        
+        assertEquals(true, this.testi.onkoVuokrattu());
+    }
+    
+    @Test
+    public void josAsuntoOnJoVuokrattuJarjestelmaHuomauttaa() {
+        
     }
 }

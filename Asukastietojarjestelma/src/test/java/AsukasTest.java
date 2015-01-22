@@ -23,7 +23,7 @@ public class AsukasTest {
     public void kostruktoriLuoVuokralaisenOikein() {
         String vastaus = this.uusi.toString();
         
-        assertEquals("nimi: Iina Testihenkilö", vastaus);
+        assertEquals("nimi: Iina Testihenkilö\nhenkilötunnus: 101082\npuhelinnro: 044-1234567\nemail: iina.testi@helsinki.fi", vastaus);
     }
     
     
