@@ -9,20 +9,21 @@ import java.util.Scanner;
 
 public class JarjestelmanOhjaus {
     private List<Talo> talot;
-    private Map<String, Asukas> asukkaat;
-    private Scanner lukija;
+    private Map<String, Asukas> asukkaat; //olisiko parempi luoda oma asukasrekisteriluokkansa
+    private Scanner lukija; 
+    //olisiko luotava oma vuokrasopimusrekisteriluokkansa
     
     public JarjestelmanOhjaus() {
-        // loppuvaiheessa talojen ja siten asuntojen tietojen lataaminen jostain...
-        // loppuvaiheessa asukkaiden lataaminen jostain...
-        
         this.talot = new ArrayList<Talo>();
         this.asukkaat = new HashMap<String, Asukas>();
         this.lukija = new Scanner(System.in);
+        
+        // loppuvaiheessa talot asuntoineen ladataan jostain
+        // loppuvaiheessa asukkaat tietoineen ladataan jostain
     }
     
     public void suorita() {
-        // järjestelmän toimintojen hoitaminen...
+        // Pitäisi ehkä luoda oma komentoluokka (abstrakti) ja jokainen komento omaksi luokakseen.
         while (true) {
             System.out.println("Komennot:\n 1 lisää asunto\n 2 lisää asukas\n 3 näytä kaikkien asuntojen tiedot\n 4 näytä vapaat asunnot\n x lopeta\n");
             System.out.print("Syötä komento: ");
@@ -41,7 +42,6 @@ public class JarjestelmanOhjaus {
             }
             System.out.println();
         }
-        
     }
     
     public void lisaaTalo(String osoite){
@@ -65,7 +65,6 @@ public class JarjestelmanOhjaus {
         
         // tarvitseeko testata onko asunto jo järjestelmässä, jos loppukädessä ladataan tiedostosta?
         //Asunnon luominen tähän!
-        
     }
     
     //tarvitseeko?
@@ -94,7 +93,6 @@ public class JarjestelmanOhjaus {
                     System.out.println(a);
             }
         }
-        
         // tähän liittyen pitäisi tehdä sellainen hakutoiminnallisuus, joka hakee tiettynä aikana päättyvät
         // vuokrasopimukset!
     }
@@ -117,11 +115,9 @@ public class JarjestelmanOhjaus {
         String email = this.lukija.nextLine();
         
         Asukas asukas = new Asukas(sukunimi, etunimi, hloTunnus, puh, email);
-        
         this.asukkaat.put(hloTunnus, asukas);
         
         //tarkoittaa samalla vuokrasopimuksen solmimista...mietittävä
-        
     }
     
     public void muokkaaAsukkaanTietoja() {
@@ -129,11 +125,9 @@ public class JarjestelmanOhjaus {
         // vuokrasopimuksen muuttaminen / päättäminen
     }
     
-    
     public void poistaAsukas() {
         //poistaa tiedot järjestelmästä kokonaan...vaiko siirtää arkistoon?
         //asukashistoria olisi tarpeellinen kyllä
         
-    }
-    
+    }  
 }

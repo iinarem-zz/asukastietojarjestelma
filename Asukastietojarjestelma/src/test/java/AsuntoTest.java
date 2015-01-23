@@ -1,5 +1,6 @@
 
 import asukastietojarjestelma.domain.Asunto;
+import asukastietojarjestelma.domain.Vuokrasopimus;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -37,7 +38,8 @@ public class AsuntoTest {
     
     @Test
     public void kunAsuntoVuokrataanSenStatusMuuttuuVuokratuksi() {
-        this.testi.vuokraa();
+        Vuokrasopimus sopimus = new Vuokrasopimus(this.testi, "1.1.2015", "31.8.2016");
+        this.testi.vuokraa(sopimus);
         
         assertEquals(true, this.testi.onkoVuokrattu());
     }

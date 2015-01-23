@@ -18,7 +18,6 @@ public class Vuokrasopimus {
     }
     
     public String lisaaAsukas(Asukas asukas) {
-        // tsekattava, ettei ole vaaraa tehdä kahdelle EI parille/kaverille sopimusta samaan asuntoon
         if (this.asukas1 == null) {
             this.asukas1 = asukas;
         } else if (this.asukas2 == null) {
@@ -27,8 +26,24 @@ public class Vuokrasopimus {
             return "Asunto on jo vuokrattu.";
         }
         
-        return asukas.getNimi() + " lisättiin asukkaaksi asuntoon " + this.asunto.getOsoite() + "/n asunnon tiedot " + this.asunto.toString();
+        return asukas.getNimi() + " lisättiin asukkaaksi asuntoon " + this.asunto.getOsoite();
+        
+        //tsekattava ettei ole vaaraa tehdä satunnaisille ihmisille sopimusta samaan asuntoon.
+        //järjestelmän pitäisi varmaan kysäistä onko ok.
                 
+    }
+    
+    public String toString() {
+        if (this.asukas2 == null) {
+            return "Vuokrasopimuksen tiedot:\n" +
+                    "Asukas: " + this.asukas1 +
+                    "\nVuokrattu asunto: " + this.asunto +
+                    "\nVuokrasopimuksen voimassaolo: " + this.alkupvm + "-" + this.paattymispvm; 
+        }
+        return "Vuokrasopimuksen tiedot:\n" +
+                "Asukas: " + this.asukas1 + this.asukas2 +
+                "\nVuokrattu asunto: " + this.asunto +
+                "\nVuokrasopimuksen voimassaolo: " + this.alkupvm + "-" + this.paattymispvm; 
     }
     
 }
