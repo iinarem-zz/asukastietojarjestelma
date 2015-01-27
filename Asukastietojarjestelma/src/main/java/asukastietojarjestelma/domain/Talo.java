@@ -15,17 +15,35 @@ public class Talo {
         this.lisatietoja = ""; // esim. talon rakennusvuosi, remontit...
     }
     
-    public void lisaaAsunto(String osoite, String huonemuoto) {
-        // tarvitseeko edes testata onko asunto jo järjestelmässä jos lopussa lataa tiedostosta asunnot.
-        this.asunnot.add(new Asunto(osoite, huonemuoto));
+    // GETTERIT
+    
+    public String getOsoite() {
+        return this.osoite;
     }
     
-    //tarvitaanko?
+    
     public List<Asunto> getAsunnot() {
         return this.asunnot;
     }
     
-    //on ehkä tarpeeton, mutta nyt vertailua varten
+    public int getAsuntojenMaara() {
+        if (this.asunnot.isEmpty()) {
+            return 0;
+        }
+        return this.asunnot.size();
+    }
+    
+    // SETTERIT
+    
+    public void lisaaAsunto(String osoite, String huonemuoto) {
+        this.asunnot.add(new Asunto(osoite, huonemuoto));
+        // tarvitseeko testata onko asunto jo järjestelmässä jos ladataan tiedostosta?
+    }
+    
+    
+    // MUUT
+    
+    //onko tarpeeton
     public boolean equals(Object olio) {
         if (olio == null) {
             return false;
@@ -43,10 +61,6 @@ public class Talo {
 
         return true;
     }
-    
-    public String getOsoite() {
-        return this.osoite;
-    }
 
     
     public String toString() {
@@ -57,7 +71,7 @@ public class Talo {
         String kaikkienAsuntojenTiedot = "";
         
         for (Asunto a : this.asunnot) {
-            kaikkienAsuntojenTiedot += a.toString() + "\n";
+            kaikkienAsuntojenTiedot += a.toString() + "\n\n";
         }
         
         return this.osoite + "\n" + this.lisatietoja +  "\n" + kaikkienAsuntojenTiedot;

@@ -2,6 +2,7 @@
 package asukastietojarjestelma.domain;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Asukas {
@@ -96,6 +97,7 @@ public class Asukas {
         // tähän tarttee lukijan, jotta voi kysyä päättymispäivän
         //this.sopimus.setPaattymispvm(paivamaara); 
         this.vanhatVuokrasopimukset.add(this.sopimus);
+        Collections.sort(vanhatVuokrasopimukset);
         // lukijalta kysytään uusi osoite.
         this.setOsoite(osoite);
     }
@@ -104,6 +106,7 @@ public class Asukas {
     public void paataVuokrasopimus(Vuokrasopimus soppari) {
         //this.sopimus.setPaattymispvm(soppari.getAlkupvm() MITEN SAADAAN EDELTÄVÄ PÄIVÄ?); (automaattisesti sopparin alkua edeltävä pvm)
         this.vanhatVuokrasopimukset.add(this.sopimus);
+        Collections.sort(vanhatVuokrasopimukset);
         this.sopimus = null;
     }
     

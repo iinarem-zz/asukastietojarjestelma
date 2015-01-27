@@ -2,6 +2,7 @@
 package asukastietojarjestelma.domain;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Asunto {
@@ -28,12 +29,12 @@ public class Asunto {
         return this.huonenumero;
     }
     
-    public boolean onkoVuokrattu() {
-        return this.onkoVuokrattu;
-    }
-    
     public double getVuokra() {
         return this.vuokra;
+    }
+    
+    public boolean onkoVuokrattu() {
+        return this.onkoVuokrattu;
     }
     
     //SETTERIT
@@ -47,7 +48,7 @@ public class Asunto {
             this.sopimus = sopimus;
             this.onkoVuokrattu = true;
             this.vuokrasopimukset.add(sopimus);
-            // vuokrasopimusten järjestäminen
+            Collections.sort(vuokrasopimukset);
         }
         
         //pitäisikö palauttaa tieto siitä onnistuiko?
