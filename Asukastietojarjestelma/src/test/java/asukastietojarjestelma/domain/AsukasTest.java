@@ -31,7 +31,7 @@ public class AsukasTest {
     }
     
     @Test
-    public void kunAsukastaVerrataanMuuhunPalauttaaTrue() {
+    public void kunAsukastaVerrataanMuuhunPalauttaaFalse() {
         Asukas toinen = new Asukas("Testihenkilö", "Iina", "101084", "044-1234567", "iina.testi@helsinki.fi");
         
         assertEquals(false, this.uusi.equals(toinen)); 
