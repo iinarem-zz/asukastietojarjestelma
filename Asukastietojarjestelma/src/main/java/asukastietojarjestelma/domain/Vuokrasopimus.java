@@ -1,14 +1,16 @@
 
 package asukastietojarjestelma.domain;
 
-public class Vuokrasopimus {
+import java.util.Date;
+
+public class Vuokrasopimus implements Comparable<Vuokrasopimus> {
     private Asunto asunto;
     private Asukas asukas1; //tartteeko vuokrasopimuksella olla asukas vai asukkaalla vain vuokrasopimus?
     private Asukas asukas2;
-    private String alkupvm;
-    private String paattymispvm;
+    private Date alkupvm;
+    private Date paattymispvm;
     
-    public Vuokrasopimus(Asunto asunto, String alku, String paattyminen) {
+    public Vuokrasopimus(Asunto asunto, Date alku, Date paattyminen) {
         this.asunto = asunto;
         this.asukas1 = null;
         this.asukas2 = null;
@@ -17,7 +19,26 @@ public class Vuokrasopimus {
         
     }
     
+    // GETTERIT
+    
+    public Date getAlkupvm() {
+        return this.alkupvm;
+    }
+    
+    public Date getPaattymispvm() {
+        return this.paattymispvm;
+    }
+    
+    // SETTERIT
+    
+    public void setPaattymispvm(Date paattymispvm) {
+        this.paattymispvm = paattymispvm;
+    }
+    
+    // MUUT TOIMINNOT
+    
     public String lisaaAsukas(Asukas asukas) {
+        //tsekkaa onko asunto single vai couple
         if (this.asukas1 == null) {
             this.asukas1 = asukas;
         } else if (this.asukas2 == null) {
@@ -27,14 +48,7 @@ public class Vuokrasopimus {
         }
         
         return asukas.getNimi() + " lisättiin asukkaaksi asuntoon " + this.asunto.getOsoite();
-        
-        //tsekattava ettei ole vaaraa tehdä satunnaisille ihmisille sopimusta samaan asuntoon.
-        //järjestelmän pitäisi varmaan kysäistä onko ok.
                 
-    }
-    
-    public void setPaattymispaiva(String paattymispaiva) {
-        this.paattymispvm = paattymispaiva;
     }
     
     public String toString() {
@@ -48,6 +62,11 @@ public class Vuokrasopimus {
                 "Asukas: " + this.asukas1 + this.asukas2 +
                 "\nVuokrattu asunto: " + this.asunto +
                 "\nVuokrasopimuksen voimassaolo: " + this.alkupvm + "-" + this.paattymispvm; 
+    }
+
+    @Override
+    public int compareTo(Vuokrasopimus sopimus) {
+        return this.paattymispvm.compareTo(sopimus.paattymispvm);
     }
     
 }

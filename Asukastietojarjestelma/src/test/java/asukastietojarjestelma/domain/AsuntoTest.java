@@ -3,6 +3,7 @@ package asukastietojarjestelma.domain;
 
 import asukastietojarjestelma.domain.Asunto;
 import asukastietojarjestelma.domain.Vuokrasopimus;
+import java.util.Date;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -13,9 +14,13 @@ import static org.junit.Assert.*;
 
 public class AsuntoTest {
     private Asunto testi;
+    private Date alkupvm;
+    private Date loppupvm;
     
     public AsuntoTest() {
         this.testi = null;
+        this.alkupvm = new Date(2014, 10, 1);
+        this.loppupvm = new Date(2015, 3, 31);
     }
     
     @Before
@@ -40,7 +45,7 @@ public class AsuntoTest {
     
     @Test
     public void kunAsuntoVuokrataanSenStatusMuuttuuVuokratuksi() {
-        Vuokrasopimus sopimus = new Vuokrasopimus(this.testi, "1.1.2015", "31.8.2016");
+        Vuokrasopimus sopimus = new Vuokrasopimus(this.testi, this.alkupvm , this.loppupvm);
         this.testi.vuokraa(sopimus);
         
         assertEquals(true, this.testi.onkoVuokrattu());

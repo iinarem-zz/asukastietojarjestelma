@@ -21,7 +21,7 @@ public class Asukas {
         this.hloTunnus = hloTunnus;
         this.puhelinnumero = puh;
         this.email = email;
-        this.osoite = null;
+        this.osoite = "";
         this.lisatietoja = "";
         this.sopimus = null;
         this.vanhatVuokrasopimukset = new ArrayList<Vuokrasopimus>();
@@ -94,7 +94,7 @@ public class Asukas {
     // kun asukas siirtyy Säätiön asunnosta toiseen
     public void paataVuokrasopimus() {
         // tähän tarttee lukijan, jotta voi kysyä päättymispäivän
-        //this.sopimus.setPaattymispaiva(paivamaara); 
+        //this.sopimus.setPaattymispvm(paivamaara); 
         this.vanhatVuokrasopimukset.add(this.sopimus);
         // lukijalta kysytään uusi osoite.
         this.setOsoite(osoite);
@@ -102,7 +102,7 @@ public class Asukas {
     
     // kun asukas muuttaa muualle kuin Säätiön asuntoon
     public void paataVuokrasopimus(Vuokrasopimus soppari) {
-        //this.sopimus.setPaattymispaiva(paivamaara); (automaattisesti sopparin alkua edeltävä pvm)
+        //this.sopimus.setPaattymispvm(soppari.getAlkupvm() MITEN SAADAAN EDELTÄVÄ PÄIVÄ?); (automaattisesti sopparin alkua edeltävä pvm)
         this.vanhatVuokrasopimukset.add(this.sopimus);
         this.sopimus = null;
     }
