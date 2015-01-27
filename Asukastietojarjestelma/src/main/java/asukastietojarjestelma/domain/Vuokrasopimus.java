@@ -5,10 +5,11 @@ import java.util.Date;
 
 public class Vuokrasopimus implements Comparable<Vuokrasopimus> {
     private Asunto asunto;
-    private Asukas asukas1; //tartteeko vuokrasopimuksella olla asukas vai asukkaalla vain vuokrasopimus?
+    private Asukas asukas1;
     private Asukas asukas2;
     private Date alkupvm;
     private Date paattymispvm;
+    // vuokra muuttujaksi!
     
     public Vuokrasopimus(Asunto asunto, Date alku, Date paattyminen) {
         this.asunto = asunto;
@@ -27,6 +28,10 @@ public class Vuokrasopimus implements Comparable<Vuokrasopimus> {
     
     public Date getPaattymispvm() {
         return this.paattymispvm;
+    }
+    
+    public String getVuokrasopimuksenTiedot() {
+        return this.asunto.getOsoite() + ": " + this.alkupvm + " - " + this.paattymispvm;
     }
     
     // SETTERIT
@@ -51,6 +56,11 @@ public class Vuokrasopimus implements Comparable<Vuokrasopimus> {
                 
     }
     
+    @Override
+    public int compareTo(Vuokrasopimus sopimus) {
+        return this.paattymispvm.compareTo(sopimus.paattymispvm);
+    }
+    
     public String toString() {
         if (this.asukas2 == null) {
             return "Vuokrasopimuksen tiedot:\n" +
@@ -62,11 +72,6 @@ public class Vuokrasopimus implements Comparable<Vuokrasopimus> {
                 "Asukas: " + this.asukas1 + this.asukas2 +
                 "\nVuokrattu asunto: " + this.asunto +
                 "\nVuokrasopimuksen voimassaolo: " + this.alkupvm + "-" + this.paattymispvm; 
-    }
-
-    @Override
-    public int compareTo(Vuokrasopimus sopimus) {
-        return this.paattymispvm.compareTo(sopimus.paattymispvm);
     }
     
 }

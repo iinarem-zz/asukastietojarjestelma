@@ -1,13 +1,15 @@
 
 package asukastietojarjestelma.domain;
 
+import java.util.List;
+
 public class Asunto {
-    private String huonenumero; // osoitteessa pitäisi näkyä myös talonkatu osoite...
-    private String huonemuoto; // esim. 2h + k
+    private String huonenumero; // osoitteessa pitäisi näkyä myös talonkatuosoite.
+    private String huonemuoto; // esim. 2h + k avattava enemmän.
+    // asunnon pinta-ala muuttujaksi
     private boolean onkoVuokrattu;
     private Vuokrasopimus sopimus;
-    
-    //lista kaikista tehdyistä vuokrasopimuksista!?
+    private List<Vuokrasopimus> vuokrasopimukset;
     
     public Asunto(String huonenumero, String huonemuoto) {
         this.huonenumero = huonenumero;
@@ -15,6 +17,9 @@ public class Asunto {
         this.onkoVuokrattu = false; // kun ladataan tiedostosta ei ole auttomaattisesti false
         this.sopimus = null;
     }
+    
+    // GETTERIT
+    
     public String getOsoite() {
         return this.huonenumero;
     }
@@ -23,10 +28,13 @@ public class Asunto {
         return this.onkoVuokrattu;
     }
     
+    //SETTERIT
     public void vuokraa(Vuokrasopimus sopimus) {
         if (this.onkoVuokrattu == false) {
             this.sopimus = sopimus;
             this.onkoVuokrattu = true;
+            this.vuokrasopimukset.add(sopimus);
+            // vuokrasopimusten järjestäminen
         }
         
         //pitäisikö palauttaa tieto siitä onnistuiko?
@@ -35,9 +43,11 @@ public class Asunto {
     }
     
     public String toString() {
+        if (this.onkoVuokrattu) {
+            return this.huonenumero + ": " + this.huonemuoto +
+                   "\n" + this.sopimus;
+        }
         return this.huonenumero + ": " + this.huonemuoto;
-        //tulosteeseen pitäisi saada myös talon katuosoite
-        //voisi kertoa myös nykyiset asukkaat?
     }
     
 }

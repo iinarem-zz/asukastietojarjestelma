@@ -150,7 +150,7 @@ public class Asukas {
                 "\nhenkilötunnus: " + this.hloTunnus + 
                 "\npuhelinnro: " + this.puhelinnumero + 
                 "\nemail: " + this.email +
-                "\nvuokrasopimuksen tiedot: " + this.sopimus;
+                "\nvuokrasopimuksen tiedot: " + this.sopimus.getVuokrasopimuksenTiedot();
         
     }
     
