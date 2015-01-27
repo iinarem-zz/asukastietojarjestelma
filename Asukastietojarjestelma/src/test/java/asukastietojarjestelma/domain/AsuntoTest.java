@@ -1,3 +1,5 @@
+package asukastietojarjestelma.domain;
+
 
 import asukastietojarjestelma.domain.Asunto;
 import asukastietojarjestelma.domain.Vuokrasopimus;

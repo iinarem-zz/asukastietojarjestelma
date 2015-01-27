@@ -1,3 +1,5 @@
+package asukastietojarjestelma.domain;
+
 
 import asukastietojarjestelma.domain.Talo;
 import org.junit.After;

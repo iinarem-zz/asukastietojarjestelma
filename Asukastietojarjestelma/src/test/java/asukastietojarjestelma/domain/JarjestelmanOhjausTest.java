@@ -1,3 +1,5 @@
+package asukastietojarjestelma.domain;
+
 
 import asukastietojarjestelma.domain.JarjestelmanOhjaus;
 import org.junit.After;
