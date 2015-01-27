@@ -33,6 +33,10 @@ public class Vuokrasopimus {
                 
     }
     
+    public void setPaattymispaiva(String paattymispaiva) {
+        this.paattymispvm = paattymispaiva;
+    }
+    
     public String toString() {
         if (this.asukas2 == null) {
             return "Vuokrasopimuksen tiedot:\n" +
