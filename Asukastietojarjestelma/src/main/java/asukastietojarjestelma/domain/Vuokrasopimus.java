@@ -9,7 +9,6 @@ public class Vuokrasopimus implements Comparable<Vuokrasopimus> {
     private Asukas asukas2;
     private Date alkupvm;
     private Date paattymispvm;
-    // vuokra muuttujaksi!
     
     public Vuokrasopimus(Asunto asunto, Date alku, Date paattyminen) {
         this.asunto = asunto;
@@ -32,6 +31,10 @@ public class Vuokrasopimus implements Comparable<Vuokrasopimus> {
     
     public String getVuokrasopimuksenTiedot() {
         return this.asunto.getOsoite() + ": " + this.alkupvm + " - " + this.paattymispvm;
+    }
+    
+    public double getVuokra (){
+        return this.asunto.getVuokra();
     }
     
     // SETTERIT
