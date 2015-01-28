@@ -47,17 +47,17 @@ public class TiedostonLukija {
                 } else {
                     String[] sanat = rivi.split(":");
                     
-                    if (sanat[1].equals("htunnus")) {
+                    if (sanat[0].equals("htunnus")) {
                         htunnus = sanat[1];
-                    } else if (sanat[1].equals("enimi")) {
+                    } else if (sanat[0].equals("enimi")) {
                         enimi = sanat[1];
-                    } else if (sanat[1].equals("snimi")) {
+                    } else if (sanat[0].equals("snimi")) {
                         snimi = sanat[1];
-                    } else if (sanat[1].equals("puh")) {
+                    } else if (sanat[0].equals("puh")) {
                         puh = sanat[1];
-                    } else if (sanat[1].equals("email")) {
+                    } else if (sanat[0].equals("email")) {
                         email = sanat[1];
-                    } else if (sanat[1].equals("lisat")) {
+                    } else if (sanat[0].equals("lisat")) {
                         lisat = sanat[1];
                     }
                 }
