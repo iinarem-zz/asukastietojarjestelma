@@ -19,7 +19,6 @@ public class JarjestelmanOhjaus {
         this.tiedostonLukija = tiedostonLukija;
         this.asukkaat = this.tiedostonLukija.lueAsukkaat();
         this.lukija = new Scanner(System.in);
-        
     }
     
     public void suorita() {
@@ -29,14 +28,23 @@ public class JarjestelmanOhjaus {
             System.out.print("Syötä komento: ");
             String komento = this.lukija.nextLine();
             if (komento.equals("1")) {
-                this.lisaaAsunto();
+                System.out.println("");
+//                this.lisaaAsunto();
+                System.out.println("");
             } else if (komento.equals("2")) {
+                System.out.println("");
                 this.lisaaAsukas();
+                System.out.println("");
             } else if (komento.equals("3")) {
+                System.out.println("");
                 this.tulostaAsukkaat();
+                System.out.println("");
             } else if (komento.equals("4")) {
+                System.out.println("");
                 this.tulostaVapaatAsunnot();
+                System.out.println("");
             } else if (komento.equals("x")) {
+                System.out.println("");
                 System.out.println("Kiitos näkemiin!");
                 break;
             }
@@ -49,23 +57,23 @@ public class JarjestelmanOhjaus {
         System.out.println("Talo luotu järjestelmään, voit lisätä asunnot");
     }
     
-    public void lisaaAsunto() {
-        System.out.println("");
-        System.out.print("Syötä talon katuosoite: ");
-        String osoite = this.lukija.nextLine();
-        // tarvitseeko testata onko talo jo järjestelmässä, jos loppukäkdessä ladataan tiedostosta?
-        if (this.talot == null) {
-            this.lisaaTalo(osoite);
-        }
-         
-        System.out.print("Syötä asunnon rappu ja numero: ");
-        String numero = this.lukija.nextLine();
-        System.out.print("Asunnon huonemuoto: ");
-        String huonemuoto = this.lukija.nextLine();
-        
-        // tarvitseeko testata onko asunto jo järjestelmässä, jos loppukädessä ladataan tiedostosta?
-        //Asunnon luominen tähän!
-    }
+//    public void lisaaAsunto() {
+//        System.out.println("");
+//        System.out.print("Syötä talon katuosoite: ");
+//        String osoite = this.lukija.nextLine();
+//        // tarvitseeko testata onko talo jo järjestelmässä, jos loppukäkdessä ladataan tiedostosta?
+//        if (this.talot == null) {
+//            this.lisaaTalo(osoite);
+//        }
+//         
+//        System.out.print("Syötä asunnon rappu ja numero: ");
+//        String numero = this.lukija.nextLine();
+//        System.out.print("Asunnon huonemuoto: ");
+//        String huonemuoto = this.lukija.nextLine();
+//        
+//        // tarvitseeko testata onko asunto jo järjestelmässä, jos loppukädessä ladataan tiedostosta?
+//        //Asunnon luominen tähän!
+//    }
     
     //tarvitseeko?
     public void muokkaaAsunnonTietoja() {
@@ -89,9 +97,9 @@ public class JarjestelmanOhjaus {
                     System.out.println(a);
             }
         }
-        // tähän liittyen pitäisi tehdä sellainen hakutoiminnallisuus, joka hakee tiettynä aikana päättyvät
-        // vuokrasopimukset!
     }
+    
+    // sellainen hakutoiminnallisuus, joka hakee tiettynä aikana päättyvät vuokrasopimukset!
     
     //ASUKKAASEEN LIITTYVIÄ TOIMINTOJA
     

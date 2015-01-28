@@ -1,13 +1,7 @@
-hlotunnus:151085
-etunimi:Iina
-sukunimi:Remonen
-puhelinnumero:044123456
+htunnus:151085
+enimi:Iina
+snimi:Remonen
+puh:044123456
 email:iinarem@gmail.com
-lisat:
+lisat:ei tietoja
 ##
-hlotunnus:220780
-etunimi:Maija
-sukunimi:Mehiläinen
-puhelinnumero:050000000
-email:mmehi@mail.com
-lisat:
