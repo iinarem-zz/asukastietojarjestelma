@@ -10,22 +10,22 @@ import java.util.Scanner;
 public class JarjestelmanOhjaus {
     private List<Talo> talot;
     private Map<String, Asukas> asukkaat; //olisiko parempi luoda oma asukasrekisteriluokkansa
-    private Scanner lukija; 
-    //olisiko luotava oma vuokrasopimusrekisteriluokkansa
+    private List<Vuokrasopimus> vuokrasopimukset;
+    private Scanner lukija;
+    private TiedostonLukija tiedostonLukija;
     
-    public JarjestelmanOhjaus() {
+    public JarjestelmanOhjaus(TiedostonLukija tiedostonLukija) {
         this.talot = new ArrayList<Talo>();
-        this.asukkaat = new HashMap<String, Asukas>();
+        this.tiedostonLukija = tiedostonLukija;
+        this.asukkaat = this.tiedostonLukija.lueAsukkaat();
         this.lukija = new Scanner(System.in);
         
-        // loppuvaiheessa talot asuntoineen ladataan jostain
-        // loppuvaiheessa asukkaat tietoineen ladataan jostain
     }
     
     public void suorita() {
         // Pitäisi ehkä luoda oma komentoluokka (abstrakti) ja jokainen komento omaksi luokakseen.
         while (true) {
-            System.out.println("Komennot:\n 1 lisää asunto\n 2 lisää asukas\n 3 näytä kaikkien asuntojen tiedot\n 4 näytä vapaat asunnot\n x lopeta\n");
+            System.out.println("Komennot:\n 1 lisää asunto\n 2 lisää asukas\n 3 tulosta asukkaat\n 4 näytä vapaat asunnot\n x lopeta\n");
             System.out.print("Syötä komento: ");
             String komento = this.lukija.nextLine();
             if (komento.equals("1")) {
@@ -33,7 +33,7 @@ public class JarjestelmanOhjaus {
             } else if (komento.equals("2")) {
                 this.lisaaAsukas();
             } else if (komento.equals("3")) {
-                this.tulostaAsunnot();
+                this.tulostaAsukkaat();
             } else if (komento.equals("4")) {
                 this.tulostaVapaatAsunnot();
             } else if (komento.equals("x")) {
@@ -69,10 +69,6 @@ public class JarjestelmanOhjaus {
     
     //tarvitseeko?
     public void muokkaaAsunnonTietoja() {
-        
-    }
-    //tarvitseeko?
-    public void poistaAsunto() {
         
     }
     
@@ -118,6 +114,10 @@ public class JarjestelmanOhjaus {
         this.asukkaat.put(hloTunnus, asukas);
         
         //tarkoittaa samalla vuokrasopimuksen solmimista...mietittävä
+    }
+    
+    public void tulostaAsukkaat() {
+        System.out.print(this.asukkaat);
     }
     
     public void muokkaaAsukkaanTietoja() {
