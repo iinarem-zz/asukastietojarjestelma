@@ -16,11 +16,9 @@ public class Talo {
     }
     
     // GETTERIT
-    
     public String getOsoite() {
         return this.osoite;
     }
-    
     
     public List<Asunto> getAsunnot() {
         return this.asunnot;
@@ -34,16 +32,14 @@ public class Talo {
     }
     
     // SETTERIT
-    
-    public void lisaaAsunto(String osoite, String huonemuoto) {
-        this.asunnot.add(new Asunto(osoite, huonemuoto));
-        // tarvitseeko testata onko asunto jo järjestelmässä jos ladataan tiedostosta?
+    public void lisaaAsunto(String osoite, int huonemaara, double pA) {
+        this.asunnot.add(new Asunto(osoite, huonemaara, pA));
     }
     
     
     // MUUT
     
-    //onko tarpeeton
+    //onko tarpeeton?
     public boolean equals(Object olio) {
         if (olio == null) {
             return false;
@@ -62,7 +58,7 @@ public class Talo {
         return true;
     }
 
-    
+    @Override
     public String toString() {
         if (this.asunnot.isEmpty()) {
             return this.osoite + " talossa ei ole vuokrattavia asuntoja \nTalon tiedot: " + this.lisatietoja;

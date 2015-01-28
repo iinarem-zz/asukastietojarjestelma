@@ -6,25 +6,25 @@ import java.util.Collections;
 import java.util.List;
 
 public class Asunto {
-    private String huonenumero; // osoitteessa pitäisi näkyä myös talonkatuosoite.
-    private String huonemuoto; // esim. 2h + k avattava enemmän.
-    // asunnon pinta-ala muuttujaksi
+    private String huonenumero;
+    private int huonemaara;
+    private double pA;
     private double vuokra;
     private boolean onkoVuokrattu;
     private Vuokrasopimus sopimus;
     private List<Vuokrasopimus> vuokrasopimukset;
     
-    public Asunto(String huonenumero, String huonemuoto) {
+    public Asunto(String huonenumero, int huonemaara, double pA) {
         this.huonenumero = huonenumero;
-        this.huonemuoto = huonemuoto;
-        this.vuokra = 0; //vuokra on ladattava jostain
+        this.huonemaara = huonemaara;
+        this.pA = pA;
+        this.vuokra = 0;
         this.onkoVuokrattu = false; // kun ladataan tiedostosta ei ole auttomaattisesti false
         this.sopimus = null;
         this.vuokrasopimukset = new ArrayList<Vuokrasopimus>();
     }
     
     // GETTERIT
-    
     public String getOsoite() {
         return this.huonenumero;
     }
@@ -37,8 +37,11 @@ public class Asunto {
         return this.onkoVuokrattu;
     }
     
-    //SETTERIT
+    public int getHuonemaara() {
+        return this.huonemaara;
+    }
     
+    //SETTERIT
     public void setVuokra(double vuokra) {
         this.vuokra = vuokra;
     }
@@ -56,12 +59,13 @@ public class Asunto {
         //jos silti halutaan vuokrata, pitäisi edellinen vuokrasopimus päättää ensin.
     }
     
+    @Override
     public String toString() {
         if (this.onkoVuokrattu) {
-            return this.huonenumero + ": " + this.huonemuoto +
+            return this.huonenumero + ": " + this.huonemaara + "h " + this.pA + "m2" +
                    "\n" + this.sopimus;
         }
-        return this.huonenumero + ": " + this.huonemuoto;
+        return this.huonenumero + ": " + this.huonemaara + "h " + this.pA + "m2";
     }
     
 }

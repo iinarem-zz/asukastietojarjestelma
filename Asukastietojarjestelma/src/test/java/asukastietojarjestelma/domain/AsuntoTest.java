@@ -22,7 +22,7 @@ public class AsuntoTest {
     
     @Before
     public void setUp() {
-        this.testi = new Asunto("C 21", "2h + kk");
+        this.testi = new Asunto("C 21", 2, 10);
     }
 
     
@@ -30,7 +30,7 @@ public class AsuntoTest {
     public void konstruktoriLuoAsunnonOikein() {
         String vastaus = this.testi.toString();
         
-        assertEquals("C 21: 2h + kk", vastaus);
+        assertEquals("C 21: 2h 10.0m2", vastaus);
     }
     
     @Test
@@ -40,7 +40,12 @@ public class AsuntoTest {
     
     @Test
     public void kunAsuntoVuokrataanSenStatusMuuttuuVuokratuksi() {
-        Vuokrasopimus sopimus = new Vuokrasopimus(this.testi, this.alkupvm , this.loppupvm);
+        Vuokrasopimus sopimus = null;
+        if (this.testi.getHuonemaara() < 2) {
+            sopimus = new VuokrasopimusSingle(this.testi, this.alkupvm, this.loppupvm);
+        } else {
+            sopimus = new VuokrasopimusCouple(this.testi, this.alkupvm, this.loppupvm);
+        }
         this.testi.vuokraa(sopimus);
         
         assertEquals(true, this.testi.onkoVuokrattu());
