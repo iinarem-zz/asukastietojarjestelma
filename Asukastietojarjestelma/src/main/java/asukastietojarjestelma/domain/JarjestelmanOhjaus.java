@@ -8,28 +8,31 @@ import java.util.Map;
 import java.util.Scanner;
 
 public class JarjestelmanOhjaus {
-    private List<Talo> talot;
-    private Map<String, Asukas> asukkaat; //olisiko parempi luoda oma asukasrekisteriluokkansa
+    //private List<Talo> talot; onko onko Talo-luokka sittenkin tarpeeton?
+    private Map<String, Asukas> asukkaat;
+    private Map<String, ArrayList<Asunto>> asunnot;
     private List<Vuokrasopimus> vuokrasopimukset;
     private Scanner lukija;
     private TiedostonLukija tiedostonLukija;
     
     public JarjestelmanOhjaus(TiedostonLukija tiedostonLukija) {
-        this.talot = new ArrayList<Talo>();
+        //this.talot = new ArrayList<Talo>(); tarpeeton?
         this.tiedostonLukija = tiedostonLukija;
-        this.asukkaat = this.tiedostonLukija.lueAsukkaat();
         this.lukija = new Scanner(System.in);
+        
+        this.asukkaat = this.tiedostonLukija.lueAsukkaat();
+        this.asunnot = this.tiedostonLukija.lueAsunnot();
     }
     
     public void suorita() {
-        // Pitäisi ehkä luoda oma komentoluokka (abstrakti) ja jokainen komento omaksi luokakseen.
+        // Abstarkti komentoluokka ja jokainen komento omaksi sen toteuttavaksi luokaksi?
         while (true) {
             System.out.println("Komennot:\n 1 lisää asunto\n 2 lisää asukas\n 3 tulosta asukkaat\n 4 näytä vapaat asunnot\n x lopeta\n");
             System.out.print("Syötä komento: ");
             String komento = this.lukija.nextLine();
             if (komento.equals("1")) {
                 System.out.println("");
-//                this.lisaaAsunto();
+                //this.lisaaAsunto();
                 System.out.println("");
             } else if (komento.equals("2")) {
                 System.out.println("");
@@ -41,7 +44,7 @@ public class JarjestelmanOhjaus {
                 System.out.println("");
             } else if (komento.equals("4")) {
                 System.out.println("");
-                this.tulostaVapaatAsunnot();
+                //this.tulostaVapaatAsunnot();
                 System.out.println("");
             } else if (komento.equals("x")) {
                 System.out.println("");
@@ -52,54 +55,29 @@ public class JarjestelmanOhjaus {
         }
     }
     
-    public void lisaaTalo(String osoite){
-        this.talot.add(new Talo(osoite));
-        System.out.println("Talo luotu järjestelmään, voit lisätä asunnot");
-    }
+    //HAKUTOIMINNALLISUUKSIA
     
-//    public void lisaaAsunto() {
-//        System.out.println("");
-//        System.out.print("Syötä talon katuosoite: ");
-//        String osoite = this.lukija.nextLine();
-//        // tarvitseeko testata onko talo jo järjestelmässä, jos loppukäkdessä ladataan tiedostosta?
-//        if (this.talot == null) {
-//            this.lisaaTalo(osoite);
-//        }
-//         
-//        System.out.print("Syötä asunnon rappu ja numero: ");
-//        String numero = this.lukija.nextLine();
-//        System.out.print("Asunnon huonemuoto: ");
-//        String huonemuoto = this.lukija.nextLine();
-//        
-//        // tarvitseeko testata onko asunto jo järjestelmässä, jos loppukädessä ladataan tiedostosta?
-//        //Asunnon luominen tähän!
-//    }
-    
-    //tarvitseeko?
-    public void muokkaaAsunnonTietoja() {
-        
-    }
+        // sellainen hakutoiminnallisuus, joka hakee tiettynä aikana päättyvät vuokrasopimukset!
+        // asukkaiden hakeminen
+        // asuntojen hakeminen
     
     // TIETOJEN TULOSTAMISEEN LIITTYVIÄ TOIMINTOJA
+//    public void tulostaAsunnot() {
+//        if (this.talot == null) {
+//            System.out.println("Säätiö ei omista asuntoja!");
+//        } else {
+//            System.out.print(this.talot);
+//        }
+//    }
     
-    public void tulostaAsunnot() {
-        if (this.talot == null) {
-            System.out.println("Säätiö ei omista asuntoja!");
-        } else {
-            System.out.print(this.talot);
-        }
-    }
-    
-    public void tulostaVapaatAsunnot() {
-        for (Talo t : this.talot) {
-            for (Asunto a : t.getAsunnot()) {
-                if (!a.onkoVuokrattu())
-                    System.out.println(a);
-            }
-        }
-    }
-    
-    // sellainen hakutoiminnallisuus, joka hakee tiettynä aikana päättyvät vuokrasopimukset!
+//    public void tulostaVapaatAsunnot() {
+//        for (Talo t : this.talot) {
+//            for (Asunto a : t.getAsunnot()) {
+//                if (!a.onkoVuokrattu())
+//                    System.out.println(a);
+//            }
+//        }
+//    }
     
     //ASUKKAASEEN LIITTYVIÄ TOIMINTOJA
     
@@ -107,7 +85,8 @@ public class JarjestelmanOhjaus {
         System.out.println("");
         System.out.print("Syötä henkilötunnus: ");
         String hloTunnus = this.lukija.nextLine();
-        // toteuta tähän testaus onko jo järjestelmässä
+        
+        // testaus onko jo järjestelmässä
         
         System.out.print("Syötä etunimi: ");
         String etunimi = this.lukija.nextLine();
@@ -134,8 +113,12 @@ public class JarjestelmanOhjaus {
     }
     
     public void poistaAsukas() {
-        //poistaa tiedot järjestelmästä kokonaan...vaiko siirtää arkistoon?
-        //asukashistoria olisi tarpeellinen kyllä
-        
+        //siirtää arkistoon?
     }  
+    
+    // ASUNTOIHIN LIITTYVIÄ TOIMINTOJA
+    public void muokkaaAsunnonTietoja() {
+        
+    }
+    
 }

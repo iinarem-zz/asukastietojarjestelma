@@ -38,25 +38,6 @@ public class Talo {
     
     
     // MUUT
-    
-    //onko tarpeeton?
-    public boolean equals(Object olio) {
-        if (olio == null) {
-            return false;
-        }
-
-        if (getClass() != olio.getClass()) {
-            return false;
-        }
-
-        Talo verrattava = (Talo) olio;
-
-        if (this.osoite == null || !this.osoite.equals(verrattava.getOsoite())) {
-            return false;
-        }
-
-        return true;
-    }
 
     @Override
     public String toString() {

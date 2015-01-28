@@ -16,9 +16,9 @@ public class TiedostonLukija {
         this.tiedostonLukija = null;
     }
     
-    public ArrayList<Asunto> lueAsunnot() {
+    public HashMap<String, ArrayList<Asunto>> lueAsunnot() {
         File asunnot = new File("asunnot.txt");
-        ArrayList<Asunto> asuntoLista = new ArrayList<Asunto>();
+        HashMap<String, ArrayList<Asunto>> asuntoLista = new HashMap<String, ArrayList<Asunto>>();
         
         
         return asuntoLista;
