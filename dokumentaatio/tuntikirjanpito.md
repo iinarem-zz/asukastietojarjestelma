@@ -31,3 +31,26 @@ Käytetty aika: 3,5h
 
 Työt: Asukas, Asunto ja Talo-luokkien tuunaamista. Testiluokkien perustamista ja ekoja testejä. Pitin ja Coberturan kanssa säätämistä. Pit-raportti GitHubiin. Coberturassa joku ongelma, jatkoselvittelyä vaativa.
 
+## 23.1.15
+
+Käytetty aika: 1,5h
+
+Työt: Deadlinea varten viimeisiä tarkistuksia.
+
+## 27.1.15
+
+Käytetty aika: 5 - 6 h
+
+Työt: Pääasiassa sen pohtimista minkälainen "tietokanta" järjestelmän pohjaksi tulisi rakentaa. Yksittäisten luokkien säätämistä. Tiedoston lukemisen pohtiminen --> haastavaa ja aikaa vievää.
+Muutamien testien tekeminen. Aihe on niin laaja ja tietokantaosaamista ei ole, joten koodi ei ole juuri edistynyt, kun hahmottaminen vie aikaa. 
+
+## 28.1.15
+
+Käytetty aika: 2h
+
+Työt: Asukkaiden lataaminen tiedostosta. Sen virittelyä. Asuntojen ja Vuokrasopimusten lataamislogiikan hahmottelua.
+
+## 29.1.15
+
+Käytetty aika: Asuntojen lataaminen tiedostosta, sekä Vuokrasopimusten lataamisen suunnittelu. Luokkakaavion piirtäminen ja raportit. Testejä vähän koka keskeinen tiedostosta lataaminen ei vielä toimi, ja toteutus ei ole vielä selvä. Testaaminen vaikeaa.
+
