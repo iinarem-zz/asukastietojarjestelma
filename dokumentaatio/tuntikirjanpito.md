@@ -52,5 +52,8 @@ Työt: Asukkaiden lataaminen tiedostosta. Sen virittelyä. Asuntojen ja Vuokraso
 
 ## 29.1.15
 
-Käytetty aika: Asuntojen lataaminen tiedostosta, sekä Vuokrasopimusten lataamisen suunnittelu. Luokkakaavion piirtäminen ja raportit. Testejä vähän koka keskeinen tiedostosta lataaminen ei vielä toimi, ja toteutus ei ole vielä selvä. Testaaminen vaikeaa.
+Käytetty aika: 2 - 3h 
+Työt: Graafisen käyttöliittymän hahmottelu paperille.  Asuntojen lataaminen tiedostosta, sekä Vuokrasopimusten lataamisen suunnittelu. Luokkakaavion piirtäminen ja raportit. Testejä vähän koka keskeinen tiedostosta lataaminen ei vielä toimi, ja toteutus ei ole vielä selvä. Testaaminen vaikeaa.
+Luokkakaavio.
 
+Suunnitelmia: Latauslogiikan valmiiksi saaminen, testien kirjoittaminen (pitääkö getterit ja setterit?), TiedostonKirjoittaja-luokka.
