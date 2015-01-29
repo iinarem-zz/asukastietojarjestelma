@@ -65,7 +65,6 @@ public class JarjestelmanOhjaus {
         //siirtää arkistoon?
     }
     
-    
     //ASUNNON TIEDOT
     
     //yksittäisen asunnon hakeminen
