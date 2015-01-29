@@ -21,15 +21,55 @@ public class TiedostonLukijaTest {
         this.lukija = new TiedostonLukija();
     }
     
+    //Vuokralaisten lukeminen
     @Test
-    public void konstruktoriLuoLuokanOikein() {
-        
+    public void lukijaLukeeVuokralaisTiedostonJokaOnTyhjaPlauttaaTyhjanMapin() {
+//        HashMap asukkaat = this.lukija.lueAsukkaat(); pitää muuttaa metodi sellaiseksi että saa tiedoston
+//        assertEquals(0, asukkaat.size());
     }
     
     @Test
-    public void lukijaLukeeVuokralaisTiedostonJaLuoOikeanMaaranAsukkaita() {
-        HashMap asukkaat = this.lukija.lueAsukkaat();
-        assertEquals(1, asukkaat.size());
+    public void lukijaLukeeVuokralaisTiedostonJaTiedostossaYksiVuokralainenMapissaYksiVuokralainen() {
+//        HashMap asukkaat = this.lukija.lueAsukkaat(); pitää muuttaa metodi sellaiseksi että saa tiedoston
+//        assertEquals(1, asukkaat.size());
     }
     
+    @Test
+    public void lukijaLukeeVuokralaisTiedostonJaTiedostossaViisiVuokralaistaMapissaViisiVuokralaista() {
+//        HashMap asukkaat = this.lukija.lueAsukkaat(); pitää muuttaa metodi sellaiseksi että saa tiedoston
+//        assertEquals(5, asukkaat.size());
+    }
+    
+    //Asuntojen lukeminen
+    @Test
+    public void lukijaLukeeAsuntoTiedostonJokaOnTyhjaPalauttaaTyhjanMapin() {
+//        HashMap asukkaat = this.lukija.lueAsukkaat(); pitää muuttaa metodi sellaiseksi että saa tiedoston
+//        assertEquals(0, asukkaat.size());
+    }
+    
+    @Test
+    public void lukijaLukeeAsuntoTiedostonJaTiedostossaYksiAsuntoMapissaYksiAsunto() {
+//        metodi muutettava sellaiseksi, että saa muuttujana tiedoston
+    }
+    
+    @Test
+    public void lukijaLukeeAsuntoTiedostonJaTiedostossaKaksiSamanTalonAsuntoaMapissaYksiAvainjaKaksiAsuntoa() {
+//        metodi muutettava sellaiseksi, että saa muuttujana tiedoston
+    }
+    
+    @Test
+    public void lukijaLukeeAsuntoTiedostonJaTiedostossaKaksiEriTalonAsuntoaMapissaKaksiAvaintajaKaksiAsuntoa() {
+//        metodi muutettava sellaiseksi, että saa muuttujana tiedoston
+    }
+    
+    //Vuokrasopimusten lukeminen
+//    @Test
+//    public void lukijaLukeeSopimustiedoston() {
+//        metodi muutettava sellaiseksi, että saa muuttujana tiedoston
+//    }
+    
+//    @Test
+//    public void () {
+//        metodi muutettava sellaiseksi, että saa muuttujana tiedoston
+//    }
 }

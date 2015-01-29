@@ -26,7 +26,7 @@ public class JarjestelmanOhjaus {
     public void suorita() {
         // Abstarkti komentoluokka ja jokainen komento omaksi sen toteuttavaksi luokaksi?
         while (true) {
-            System.out.println("Komennot:\n 1 tulosta asunnot\n 2 lisää asukas\n 3 tulosta asukkaat\n 4 näytä vapaat asunnot\n x lopeta\n");
+            System.out.println("Komennot:\n 1 tulosta asunnot\n 2 tulosta asukkaat\n 3 lisaa asukkaat\n 4 näytä vapaat asunnot\n x lopeta\n");
             System.out.print("Syötä komento: ");
             String komento = this.lukija.nextLine();
             if (komento.equals("1")) {
@@ -35,11 +35,11 @@ public class JarjestelmanOhjaus {
                 System.out.println("");
             } else if (komento.equals("2")) {
                 System.out.println("");
-                this.lisaaAsukas();
+                this.tulostaAsukkaat();
                 System.out.println("");
             } else if (komento.equals("3")) {
                 System.out.println("");
-                this.tulostaAsukkaat();
+                //this.lisaaAsukas();
                 System.out.println("");
             } else if (komento.equals("4")) {
                 System.out.println("");

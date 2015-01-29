@@ -115,6 +115,20 @@ public class TiedostonLukija {
     public ArrayList<Vuokrasopimus> lueVuokrasopimukset(Map<String,Asukas> asukkaat, Map<String,ArrayList<Asunto>> asunnot) {
         File sopimukset = new File("sopimukset.txt");
         ArrayList<Vuokrasopimus> soppariLista = new ArrayList<Vuokrasopimus>();
+        int huonemaara = 0;
+        String talo = "";
+        String asuntonumero = "";
+        int alkudd = 0;
+        int alkumm = 0;
+        int alkuY = 0;
+        int loppudd = 0;
+        int loppumm = 0;
+        int loppuY = 0;
+        String asukkaan1Hlotunnus = "";
+        String asukkaan2Hlotunnus = "";
+        
+        //vuokrasopimukset voivat olla joko single tai couple, asunnon huonemäärästä riippuen
+        //tähän lukeminen ja luominen
         
         return soppariLista;
         

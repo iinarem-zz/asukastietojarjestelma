@@ -31,6 +31,14 @@ public class Asunto {
         return this.talo + " " + this.asuntonro;
     }
     
+    public String getTalo() {
+        return this.talo;
+    }
+    
+    public String getAsuntonro() {
+        return this.asuntonro;
+    }
+    
     public double getVuokra() {
         return this.vuokra;
     }
@@ -63,7 +71,7 @@ public class Asunto {
     
     // MUUT
     
-    //järjestäminen
+    //tähän metodi järjestäminen osoitteen mukaan aakkosissa
     
     @Override
     public String toString() {
