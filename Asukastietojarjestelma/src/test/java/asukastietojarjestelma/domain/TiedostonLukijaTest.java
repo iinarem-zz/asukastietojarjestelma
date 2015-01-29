@@ -27,13 +27,9 @@ public class TiedostonLukijaTest {
     }
     
     @Test
-    public void lukijaLukeeVuokralaisTiedostonJaLuoAsukkaanKunAsukkaitaYksi() {
+    public void lukijaLukeeVuokralaisTiedostonJaLuoOikeanMaaranAsukkaita() {
         HashMap asukkaat = this.lukija.lueAsukkaat();
         assertEquals(1, asukkaat.size());
     }
     
-    @Test
-    public void lukijaLukeeVuokralaisTiedostonJaLuoAsukkaatKunAsukkaitaKaksi() {
-        //pitäisikin varmaan lähettää ne tiedostot, jotta voisi testailla eri kokoisia.
-    }
 }

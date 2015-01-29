@@ -32,9 +32,6 @@ public class Talo {
     }
     
     // SETTERIT
-    public void lisaaAsunto(String osoite, int huonemaara, double pA) {
-        this.asunnot.add(new Asunto(osoite, huonemaara, pA));
-    }
     
     
     // MUUT

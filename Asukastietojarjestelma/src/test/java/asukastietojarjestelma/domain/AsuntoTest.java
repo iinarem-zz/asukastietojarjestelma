@@ -22,7 +22,7 @@ public class AsuntoTest {
     
     @Before
     public void setUp() {
-        this.testi = new Asunto("C 21", 2, 10);
+        this.testi = new Asunto("AKT 4", "C 21", 2, 10);
     }
 
     
@@ -30,7 +30,7 @@ public class AsuntoTest {
     public void konstruktoriLuoAsunnonOikein() {
         String vastaus = this.testi.toString();
         
-        assertEquals("C 21: 2h 10.0m2", vastaus);
+        assertEquals("AKT 4 C 21: 2h 10.0m2", vastaus);
     }
     
     @Test

@@ -6,7 +6,8 @@ import java.util.Collections;
 import java.util.List;
 
 public class Asunto {
-    private String huonenumero;
+    private String talo;
+    private String asuntonro;
     private int huonemaara;
     private double pA;
     private double vuokra;
@@ -14,8 +15,9 @@ public class Asunto {
     private Vuokrasopimus sopimus;
     private List<Vuokrasopimus> vuokrasopimukset;
     
-    public Asunto(String huonenumero, int huonemaara, double pA) {
-        this.huonenumero = huonenumero;
+    public Asunto(String talo, String asuntonro, int huonemaara, double pA) {
+        this.talo = talo;
+        this.asuntonro = asuntonro;
         this.huonemaara = huonemaara;
         this.pA = pA;
         this.vuokra = 0;
@@ -26,7 +28,7 @@ public class Asunto {
     
     // GETTERIT
     public String getOsoite() {
-        return this.huonenumero;
+        return this.talo + " " + this.asuntonro;
     }
     
     public double getVuokra() {
@@ -59,13 +61,17 @@ public class Asunto {
         //jos silti halutaan vuokrata, pitäisi edellinen vuokrasopimus päättää ensin.
     }
     
+    // MUUT
+    
+    //järjestäminen
+    
     @Override
     public String toString() {
         if (this.onkoVuokrattu) {
-            return this.huonenumero + ": " + this.huonemaara + "h " + this.pA + "m2" +
+            return this.talo + " " + this.asuntonro + ": " + this.huonemaara + "h " + this.pA + "m2" +
                    "\n" + this.sopimus;
         }
-        return this.huonenumero + ": " + this.huonemaara + "h " + this.pA + "m2";
+        return this.talo + " " + this.asuntonro + ": " + this.huonemaara + "h " + this.pA + "m2";
     }
     
 }
