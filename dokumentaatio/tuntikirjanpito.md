@@ -55,10 +55,16 @@ Työt: Asukkaiden lataaminen tiedostosta. Sen virittelyä. Asuntojen ja Vuokraso
 Käytetty aika: 2 - 3h 
 
 Työt:
--  Graafisen käyttöliittymän hahmottelu paperille. 
--  Asuntojen lataaminen tiedostosta, sekä vuokrasopimusten lataamisen suunnittelu.
--  Luokkakaavion piirtäminen ja pit-raportti.
--  Testejä vähän koska ohjelman toiminnan kannalta keskeinen tiedostosta lataaminen ei vielä toimi, ja toteutus ei ole vielä selvä. Testaaminen vaikeaa. Testataanko getterit ja setterit, sit tulis testejä :)
+*  Graafisen käyttöliittymän hahmottelu paperille. 
+*  Asuntojen lataaminen tiedostosta, sekä vuokrasopimusten lataamisen suunnittelu.
+*  Luokkakaavion piirtäminen ja pit-raportti.
+*  Testejä vähän koska ohjelman toiminnan kannalta keskeinen tiedostosta lataaminen ei vielä toimi, ja toteutus ei ole vielä selvä. Testaaminen vaikeaa. Testataanko getterit ja setterit, sit tulis testejä :)
 Luokkakaavio.
 
 Suunnitelmia: Latauslogiikan valmiiksi saaminen (metodien parametreiksi File, helpottaa testaamista), testien kirjoittaminen (pitääkö getterit ja setterit?), TiedostonKirjoittaja-luokka.
+
+##1.2.15
+
+Käytetty aika: 2h
+
+Työt: Kasperin koodikatselmointi, tutkiminen ja palautus.
