@@ -79,6 +79,10 @@ public class TiedostonLukija {
                 String rivi = this.tiedostonLukija.nextLine();
                 
                 if (rivi.equals("##")) {
+                    if (snimi.equals("")) {
+                        break;
+                    }
+                    
                     Asukas uusi = new Asukas(snimi, enimi, htunnus, puh, email);
                     asukasLista.put(htunnus, uusi);
                 } else {
