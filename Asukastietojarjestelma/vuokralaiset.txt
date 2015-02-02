@@ -3,5 +3,4 @@ enimi:Iina
 snimi:Remonen
 puh:044123456
 email:iinarem@gmail.com
-lisat:ei tietoja
 ##

@@ -1,6 +1,7 @@
 
 package asukastietojarjestelma.domain;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -14,12 +15,11 @@ public class JarjestelmanOhjaus {
     private Scanner lukija;
     private TiedostonLukija tiedostonLukija;
     
-    public JarjestelmanOhjaus(TiedostonLukija tiedostonLukija) {
+    public JarjestelmanOhjaus(TiedostonLukija tiedostonLukija, File vuokralaiset, File asunnot) {
         this.tiedostonLukija = tiedostonLukija;
         this.lukija = new Scanner(System.in);
-        
-        this.asukkaat = this.tiedostonLukija.lueAsukkaat();
-        this.asunnot = this.tiedostonLukija.lueAsunnot();
+        this.asukkaat = this.tiedostonLukija.lueAsukkaat(vuokralaiset);
+        this.asunnot = this.tiedostonLukija.lueAsunnot(asunnot);
         this.vuokrasopimukset = this.tiedostonLukija.lueVuokrasopimukset(this.asukkaat, this.asunnot);
     }
     
@@ -43,7 +43,7 @@ public class JarjestelmanOhjaus {
                 System.out.println("");
             } else if (komento.equals("4")) {
                 System.out.println("");
-                //this.tulostaVapaatAsunnot();
+                this.tulostaVapaatAsunnot();
                 System.out.println("");
             } else if (komento.equals("x")) {
                 System.out.println("");
@@ -108,6 +108,16 @@ public class JarjestelmanOhjaus {
     
     public void tulostaAsukkaat() {
         System.out.print(this.asukkaat);
+    }
+    
+    public void tulostaVapaatAsunnot() {
+        
+        for (String avain : this.asunnot.keySet()) {
+            for (Asunto a : this.asunnot.get(avain)) {
+                System.out.println(a);
+                System.out.println("");
+            }
+        }
     }
     
     //public void tulostaVuokrasopimukset() {

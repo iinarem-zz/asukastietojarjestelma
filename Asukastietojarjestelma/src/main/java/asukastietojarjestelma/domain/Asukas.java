@@ -13,7 +13,6 @@ public class Asukas {
     private String email;
     private String osoite;
     private Vuokrasopimus sopimus;
-    private String lisatietoja;
     private List<Vuokrasopimus> vanhatVuokrasopimukset;
     
     public Asukas(String sukunimi, String etunimi, String hloTunnus, String puh, String email) {
@@ -23,7 +22,6 @@ public class Asukas {
         this.puhelinnumero = puh;
         this.email = email;
         this.osoite = "";
-        this.lisatietoja = "";
         this.sopimus = null;
         this.vanhatVuokrasopimukset = new ArrayList<Vuokrasopimus>();
     }
@@ -63,15 +61,6 @@ public class Asukas {
         
     }
     
-    public void setLisatiedot(String lisatiedot) {
-        System.out.println("Nykyiset lisätiedot:");
-        System.out.println(this.lisatietoja);
-        
-        this.lisatietoja += lisatiedot;
-        //pitäis varmaan muokkaaminen kehittää... ei voi olla näin suoraviivaista
-        
-    }
-    
     public void setEmail(String email) {
         this.email = email;
         
@@ -84,7 +73,7 @@ public class Asukas {
     
     public void setVuokrasopimus(Vuokrasopimus soppari) {
         if (this.sopimus != null) {
-            this.paataVuokrasopimus(soppari);
+            this.paataVuokrasopimus();
         }
         this.sopimus = soppari;
         
@@ -101,14 +90,14 @@ public class Asukas {
         // lukijalta kysytään uusi osoite.
         this.setOsoite(osoite);
     }
-    
-    // kun asukas muuttaa muualle kuin Säätiön asuntoon
-    public void paataVuokrasopimus(Vuokrasopimus soppari) {
-        //this.sopimus.setPaattymispvm(soppari.getAlkupvm() MITEN SAADAAN EDELTÄVÄ PÄIVÄ?); (automaattisesti sopparin alkua edeltävä pvm)
-        this.vanhatVuokrasopimukset.add(this.sopimus);
-        Collections.sort(vanhatVuokrasopimukset);
-        this.sopimus = null;
-    }
+//    
+//    // kun asukas muuttaa muualle kuin Säätiön asuntoon
+//    public void paataVuokrasopimus(Vuokrasopimus soppari) {
+//        //this.sopimus.setPaattymispvm(soppari.getAlkupvm() MITEN SAADAAN EDELTÄVÄ PÄIVÄ?); (automaattisesti sopparin alkua edeltävä pvm)
+//        this.vanhatVuokrasopimukset.add(this.sopimus);
+//        Collections.sort(vanhatVuokrasopimukset);
+//        this.sopimus = null;
+//    }
     
    @Override
     public int hashCode() {

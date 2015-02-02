@@ -17,8 +17,7 @@ public class TiedostonLukija {
         this.tiedostonLukija = null;
     }
     
-    public HashMap<String, ArrayList<Asunto>> lueAsunnot() {
-        File asunnot = new File("asunnot.txt");
+    public HashMap<String, ArrayList<Asunto>> lueAsunnot(File asunnot) {
         HashMap<String, ArrayList<Asunto>> asuntoLista = new HashMap<String, ArrayList<Asunto>>();
         String talo = "";
         String asuntonro = "";
@@ -59,23 +58,21 @@ public class TiedostonLukija {
                     }
                 }
             }
-        } catch (FileNotFoundException ex) {
-            System.out.println("Tiedostoa ei voitu lukea!");
+        } catch (Exception e) {
+            System.out.println("Tiedostoa ei voitu lukea! Virhe: " + e.getMessage());
         }
         this.tiedostonLukija.close();
         return asuntoLista;
         
     }
     
-    public HashMap<String,Asukas> lueAsukkaat() {
-        File asukkaat = new File("vuokralaiset.txt");
+    public HashMap<String,Asukas> lueAsukkaat(File asukkaat) {
         HashMap<String,Asukas> asukasLista = new HashMap<String,Asukas>();
         String htunnus = "";
         String enimi = "";
         String snimi = "";
         String puh = "";
         String email = "";
-        String lisat = "";
         try {
             this.tiedostonLukija = new Scanner(asukkaat);
             while (this.tiedostonLukija.hasNextLine()) {
@@ -83,9 +80,7 @@ public class TiedostonLukija {
                 
                 if (rivi.equals("##")) {
                     Asukas uusi = new Asukas(snimi, enimi, htunnus, puh, email);
-                    uusi.setLisatiedot(lisat);
                     asukasLista.put(htunnus, uusi);
-                    continue;
                 } else {
                     String[] sanat = rivi.split(":");
                     
@@ -99,13 +94,11 @@ public class TiedostonLukija {
                         puh = sanat[1];
                     } else if (sanat[0].equals("email")) {
                         email = sanat[1];
-                    } else if (sanat[0].equals("lisat")) {
-                        lisat = sanat[1];
                     }
                 }
             }
-        } catch (FileNotFoundException ex) {
-            System.out.println("Tiedostoa ei voitu lukea!");
+        } catch (Exception e) {
+            System.out.println("Tiedostoa ei voitu lukea! Virhe: " + e.getMessage());
         }
         this.tiedostonLukija.close();
         return asukasLista;
