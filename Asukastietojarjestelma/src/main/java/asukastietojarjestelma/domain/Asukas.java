@@ -29,7 +29,7 @@ public class Asukas {
     // GETTERIT
     
     public String getNimi() {
-        return this.etunimi + this.sukunimi;
+        return this.etunimi + " " + this.sukunimi;
     }
     
     public String getHlotunnus () {

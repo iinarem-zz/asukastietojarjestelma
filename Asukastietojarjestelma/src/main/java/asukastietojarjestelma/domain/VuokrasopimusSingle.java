@@ -19,8 +19,8 @@ public class VuokrasopimusSingle extends Vuokrasopimus {
     @Override
     public String toString() {
         return "Vuokrasopimuksen tiedot:\n" +
-                "Asukas: " + this.asukas +
-                "\nVuokrattu asunto: " + super.asunto +
+                "Vuokrattu asunto: " + super.asunto.getOsoite() +
+                "\nAsukas: " + this.asukas.getNimi() +
                 "\nVuokrasopimuksen voimassaolo: " + super.alkupvm + "-" + super.paattymispvm; 
         }
 

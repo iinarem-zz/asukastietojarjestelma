@@ -100,13 +100,18 @@ public class TiedostonLukijaTest {
     }
     
     //Vuokrasopimusten lukeminen
-//    @Test
-//    public void lukijaLukeeSopimustiedoston() {
-//        metodi muutettava sellaiseksi, että saa muuttujana tiedoston
-//    }
+    @Test
+    public void lukijaLukeeSopimustiedostonLuoSopimuksiaNollaKunSopimuksiaNolla() {
+        
+    }
     
-//    @Test
-//    public void () {
-//        metodi muutettava sellaiseksi, että saa muuttujana tiedoston
-//    }
+    @Test
+    public void lukijaLukeeSopimustiedostonLuoSopimuksiaYhdenKunSopimuksiaYksi() {
+        
+    }
+    
+    @Test
+    public void lukijaLukeeSopimustiedostonLuoSopimuksiaKaksiKunSopimuksiaKaksi() {
+        
+    }
 }

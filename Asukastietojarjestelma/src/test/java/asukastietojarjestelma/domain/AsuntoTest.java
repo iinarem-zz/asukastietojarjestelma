@@ -11,18 +11,15 @@ import static org.junit.Assert.*;
 
 public class AsuntoTest {
     private Asunto testi;
-    private String alkupvm;
-    private String loppupvm;
     
     public AsuntoTest() {
         this.testi = null;
-        this.alkupvm = "01.10.2014";
-        this.loppupvm = "31.03.2015";
     }
     
     @Before
     public void setUp() {
         this.testi = new Asunto("AKT 4", "C 21", 2, 10);
+        this.testi.setVuokra(300);
     }
 
     
@@ -42,9 +39,9 @@ public class AsuntoTest {
     public void kunAsuntoVuokrataanSenStatusMuuttuuVuokratuksi() {
         Vuokrasopimus sopimus = null;
         if (this.testi.getHuonemaara() < 2) {
-            sopimus = new VuokrasopimusSingle(this.testi, this.alkupvm, this.loppupvm);
+            sopimus = new VuokrasopimusSingle(this.testi, "01.01.2014", "31.12.2016");
         } else {
-            sopimus = new VuokrasopimusCouple(this.testi, this.alkupvm, this.loppupvm);
+            sopimus = new VuokrasopimusCouple(this.testi, "01.01.2014", "31.12.2016");
         }
         this.testi.vuokraa(sopimus);
         
@@ -52,7 +49,12 @@ public class AsuntoTest {
     }
     
     @Test
-    public void josAsuntoOnJoVuokrattuJarjestelmaHuomauttaa() {
+    public void josAsuntoVuokrataanAsetetaanVuokrasopimus() {
+        
+    }
+    
+    @Test
+    public void josAsuntoOnJoVuokrattuSitaEiVoiVuokrata() {
         
     }
 }

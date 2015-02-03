@@ -28,9 +28,9 @@ public class VuokrasopimusCouple extends Vuokrasopimus{
     public String toString() {
         
         return "Vuokrasopimuksen tiedot:\n" +
-                "Asukas: " + this.asukas1 + this.asukas2 +
-                "\nVuokrattu asunto: " + this.asunto +
-                "\nVuokrasopimuksen voimassaolo: " + this.alkupvm + "-" + this.paattymispvm; 
+                "Vuokrattu asunto: " + super.asunto.getOsoite() +
+                "\nAsukas: " + this.asukas1.getNimi() + " ja " +  this.asukas2.getNimi() +
+                "\nVuokrasopimuksen voimassaolo: " + super.alkupvm + "-" + super.paattymispvm;
     }
     
 }

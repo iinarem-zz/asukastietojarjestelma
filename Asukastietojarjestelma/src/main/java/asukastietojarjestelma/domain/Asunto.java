@@ -75,9 +75,11 @@ public class Asunto {
     public String toString() {
         if (this.onkoVuokrattu) {
             return this.talo + " " + this.asuntonro + ": " + this.huonemaara + "h " + this.pA + "m2" +
+                   "\nvuokra: " + this.vuokra +" euroa" +
                    "\n" + this.sopimus;
         }
-        return this.talo + " " + this.asuntonro + ": " + this.huonemaara + "h " + this.pA + "m2";
+        return this.talo + " " + this.asuntonro + ": " + this.huonemaara + "h " + this.pA + "m2" +
+                "\nvuokra: " + this.vuokra +" euroa";
     }
     
 }
