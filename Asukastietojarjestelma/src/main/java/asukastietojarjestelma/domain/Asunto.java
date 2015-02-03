@@ -10,7 +10,7 @@ public class Asunto {
     private String asuntonro;
     private int huonemaara;
     private double pA;
-    private double vuokra;
+    private int vuokra;
     private boolean onkoVuokrattu;
     private Vuokrasopimus sopimus;
     private List<Vuokrasopimus> vuokrasopimukset;
@@ -47,24 +47,38 @@ public class Asunto {
         return this.onkoVuokrattu;
     }
     
+    public Vuokrasopimus getVuokrasopimus() {
+        return this.sopimus;
+    }
+    
     public int getHuonemaara() {
         return this.huonemaara;
     }
     
     //SETTERIT
-    public void setVuokra(double vuokra) {
+    public void setVuokra(int vuokra) {
         this.vuokra = vuokra;
     }
     
-    public void vuokraa(Vuokrasopimus sopimus) {
+    public String vuokraa(Vuokrasopimus sopimus) {
         if (this.onkoVuokrattu == false) {
             this.sopimus = sopimus;
             this.onkoVuokrattu = true;
-            //this.vuokrasopimukset.add(sopimus);
+            this.vuokrasopimukset.add(sopimus);
             //Collections.sort(vuokrasopimukset);
+            return "Vuokraus onnistui!";
+        } else {
+            return "Asunto on jo vuokrattu! Päätä edellinen vuokrasopimus.";
+        } 
+    }
+    
+    public void paataVuokrasopimus() {
+        if (this.onkoVuokrattu) {
+            this.sopimus = null;
+            this.onkoVuokrattu = false;
+        } else {
+            System.out.println("Asuntoa ei ole vuokrattu, vuokrasopimusta ei voida päättää.");
         }
-        
-        //pitäisi huomauttaa jos asunnossa on jo voimassaoleva sopimus. 
     }
     
     // MUUT
@@ -78,8 +92,8 @@ public class Asunto {
                    "\nvuokra: " + this.vuokra +" euroa" +
                    "\n" + this.sopimus;
         }
-        return this.talo + " " + this.asuntonro + ": " + this.huonemaara + "h " + this.pA + "m2" +
-                "\nvuokra: " + this.vuokra +" euroa";
+        return this.talo + " " + this.asuntonro + ": " + this.huonemaara + "h " + this.pA + "m2, " +
+                "vuokra: " + this.vuokra +" euroa";
     }
     
 }

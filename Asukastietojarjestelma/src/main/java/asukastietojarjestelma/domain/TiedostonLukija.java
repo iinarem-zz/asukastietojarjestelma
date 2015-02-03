@@ -22,7 +22,7 @@ public class TiedostonLukija {
         String asuntonro = "";
         int huonemaara = 0;
         double pA = 0;
-        double vuokra = 0;
+        int vuokra = 0;
         
         try {
             this.tiedostonLukija = new Scanner(asunnot);
@@ -58,7 +58,7 @@ public class TiedostonLukija {
                     } else if (sanat[0].equals("pA")) {
                         pA = Double.parseDouble(sanat[1]);
                     } else if (sanat[0].equals("vuokra")) {
-                        vuokra = Double.parseDouble(sanat[1]);
+                        vuokra = Integer.parseInt(sanat[1]);
                     }
                 }
             }
@@ -130,12 +130,11 @@ public class TiedostonLukija {
                     if (asunto == null) {
                         break;
                     } else if (asunto.getHuonemaara() > 1) {
-                        VuokrasopimusCouple uusi = new VuokrasopimusCouple(asunto, alkupvm, loppupvm);
-                        uusi.lisaaAsukkaat(asukas1, asukas2);
+                        VuokrasopimusCouple uusi = new VuokrasopimusCouple(asunto, alkupvm, loppupvm, asukas1, asukas2);
+           
                         soppariLista.add(uusi);
                     } else {
-                        VuokrasopimusSingle uusi = new VuokrasopimusSingle(asunto, alkupvm, loppupvm);
-                        uusi.lisaaAsukas(asukas1);
+                        VuokrasopimusSingle uusi = new VuokrasopimusSingle(asunto, alkupvm, loppupvm, asukas1);
                         soppariLista.add(uusi);
                     }
                     

@@ -26,7 +26,7 @@ public class JarjestelmanOhjaus {
     public void suorita() {
         // Abstarkti komentoluokka ja jokainen komento omaksi sen toteuttavaksi luokaksi?
         while (true) {
-            System.out.println("Komennot:\n 1 tulosta asunnot\n 2 tulosta asukkaat\n 3 tulosta sopimukset\n 4 näytä vapaat asunnot\n x lopeta\n");
+            System.out.println("Komennot:\n 1 tulosta asunnot\n 2 tulosta asukkaat\n 3 tulosta sopimukset\n 4 näytä vapaat asunnot\n 5 näytä asukkaan tiedot\n\n x lopeta\n");
             System.out.print("Syötä komento: ");
             String komento = this.lukija.nextLine();
             if (komento.equals("1")) {
@@ -45,6 +45,9 @@ public class JarjestelmanOhjaus {
                 System.out.println("");
                 this.tulostaVapaatAsunnot();
                 System.out.println("");
+            } else if (komento.equals("5")) {
+                System.out.println("");
+                this.asukkaanTiedot();   
             } else if (komento.equals("x")) {
                 System.out.println("");
                 System.out.println("Kiitos näkemiin!");
@@ -56,50 +59,126 @@ public class JarjestelmanOhjaus {
     
     //ASUKKAAN TIEDOT
     
-    //yksittäisen asukkaan hakeminen
-    //asukkaan tietojen muokkaaminen (nimi, osoite)
-    //asukkaan vuokrasopimusten tarkasteleminen
-    //sopimuksen päättäminen
+    public void asukkaanTiedot() {
+        //virheellisten syötteiden käsittely!
+        System.out.print("Syötä henkilötunnus: ");
+        String hlotunnus = this.lukija.nextLine();
+        
+        if (this.asukkaat.containsKey(hlotunnus)) {
+            System.out.println("");
+            System.out.println(this.asukkaat.get(hlotunnus));
+            System.out.println("");
+            System.out.print("Haluatko muokata asukkaan tietoja (y/n): ");
+            String vastaus = this.lukija.nextLine();
+
+            if (vastaus.equals("y")) {
+                asukkaanTietojenMuokkaaminen(this.asukkaat.get(hlotunnus));
+            }
+        } else {
+            System.out.println("Järjestelmässä ei ole etsittyä asukasta.");
+        }
+        
+    }
+    
+    public void asukkaanTietojenMuokkaaminen(Asukas a) {
+        //virheellisten syötteiden käsittely!
+        System.out.println("");
+        while(true) {
+            System.out.println("Mitä muokataan?\n a. Nimi\n b. puhelinnumero\n c. e-mail\n d. vuokrasopimuksen päättäminen");
+            String muutetaan = this.lukija.nextLine();
+
+            if (muutetaan.equals("a")) {
+                System.out.print("Etunimi: ");
+                String enimi = this.lukija.nextLine();
+                System.out.print("Sukunimi: ");
+                String snimi = this.lukija.nextLine();
+                a.setNimi(enimi, snimi);
+            } else if (muutetaan.equals("b")) {
+                System.out.print("Uusi puhelinnumero: ");
+                String puh = this.lukija.nextLine();
+                a.setPuhelinnumero(puh);
+            } else if (muutetaan.equals("c")) {
+                System.out.print("Uusi e-mail: ");
+                String email = this.lukija.nextLine();
+                a.setEmail(email);
+            } else if (muutetaan.equals("d")) {
+                vuokrasopimuksenPaattaminen(a.getNykyinenVuokrasopimus());
+                System.out.print("Haluatko syöttää uuden osoitteen (y/n): ");
+                String vastaus = this.lukija.nextLine();
+                if (vastaus.equals("y")) {
+                    System.out.print("Uusi osoite: ");
+                    String osoite = this.lukija.nextLine();
+                    a.setOsoite(osoite);
+                }
+            }
+        }
+    }
     
     public void poistaAsukas() {
         //siirtää arkistoon?
     }
     
     //ASUNNON TIEDOT
+    public void asunnonTiedot() {
+        //virheellisten syötteiden käsittely!
+        System.out.println("");
+        System.out.print("Syötä talon katuosoite: ");
+        String talo = this.lukija.nextLine();
+        
+        if (this.asunnot.containsKey(talo)) {
+            System.out.print("Syötä asunnon rappu ja numero: ");
+            String asunnonNumero = this.lukija.nextLine();
+            for (Asunto a : this.asunnot.get(talo)) {
+                if (a.getAsuntonro().equals(asunnonNumero)){
+                    System.out.println(a);
+                    break;
+                }
+            }
+            System.out.println("talossa ei ole vastaavaa asuntoa.");
+        } else {
+            System.out.println("Järjestelmässä ei ole haettua taloa.");
+        }
+    }
     
-    //yksittäisen asunnon hakeminen
-    //asunnon voimassa-olevat tiedot
     //asunnon aiemmat sopimukset
     
-    //UUDEN SOPIMUKSEN SOLMIMISEEN LIITTYVÄT
-    
+    //VUOKRASOPIMUKSEN SOLMIMISEEN LIITTYVÄT
     public void lisaaAsukas() {
         System.out.println("");
         System.out.print("Syötä henkilötunnus: ");
         String hloTunnus = this.lukija.nextLine();
         
-        // testaus onko jo järjestelmässä
+        if (this.asukkaat.containsKey(hloTunnus)) {
+            System.out.println("Asukas on jo järjestelmässä");
+            
+        } else {
+            System.out.print("Syötä etunimi: ");
+            String etunimi = this.lukija.nextLine();
+            System.out.print("Syötä sukunimi: ");
+            String sukunimi = this.lukija.nextLine();
+            System.out.print("Syötä puhelinnumero: ");
+            String puh = this.lukija.nextLine();
+            System.out.print("Syötä email: ");
+            String email = this.lukija.nextLine();
         
-        System.out.print("Syötä etunimi: ");
-        String etunimi = this.lukija.nextLine();
-        System.out.print("Syötä sukunimi: ");
-        String sukunimi = this.lukija.nextLine();
-        System.out.print("Syötä puhelinnumero: ");
-        String puh = this.lukija.nextLine();
-        System.out.print("Syötä email: ");
-        String email = this.lukija.nextLine();
+            Asukas asukas = new Asukas(sukunimi, etunimi, hloTunnus, puh, email);
+            this.asukkaat.put(hloTunnus, asukas);
+            //uusiVuokrasopimus();
+        }
         
-        Asukas asukas = new Asukas(sukunimi, etunimi, hloTunnus, puh, email);
-        this.asukkaat.put(hloTunnus, asukas);
-        
-        //vuokrasopimuksen luominen
     }
     
-    //HAKUTOIMINNALLISUUKSIA
+    public void uusiVuokrasopimus() {
+        
+    }
     
-        // asukkaiden hakeminen
-        // asuntojen hakeminen
-    
+    public void vuokrasopimuksenPaattaminen(Vuokrasopimus sopimus){
+        System.out.println("");
+        System.out.print("Syötä paattymispäivä (dd.mm.yyyy): ");
+        String paattymispvm = this.lukija.nextLine();
+        sopimus.setPaattymispvm(paattymispvm);
+        
+    }
     
     // RAPORTIT
     public void tulostaAsunnot() {
@@ -125,12 +204,8 @@ public class JarjestelmanOhjaus {
         }
     }
     
-    //public void tulostaVuokrasopimukset() {
-    //        System.out.println(this.vuokrasopimukset);
-    //}
+    // tiettynä aikana vapautuvat asunnot!
     
-    // tiettynä aikana päättyvät vuokrasopimukset!
-    // vapaat asunnot
     
     
     

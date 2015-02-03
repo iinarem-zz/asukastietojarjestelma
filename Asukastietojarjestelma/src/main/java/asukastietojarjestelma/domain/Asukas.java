@@ -13,7 +13,7 @@ public class Asukas {
     private String email;
     private String osoite;
     private Vuokrasopimus sopimus;
-    private List<Vuokrasopimus> vanhatVuokrasopimukset;
+    private List<Vuokrasopimus> vuokrasopimukset;
     
     public Asukas(String sukunimi, String etunimi, String hloTunnus, String puh, String email) {
         this.sukunimi = sukunimi;
@@ -23,7 +23,7 @@ public class Asukas {
         this.email = email;
         this.osoite = "";
         this.sopimus = null;
-        this.vanhatVuokrasopimukset = new ArrayList<Vuokrasopimus>();
+        this.vuokrasopimukset = new ArrayList<Vuokrasopimus>();
     }
     
     // GETTERIT
@@ -58,44 +58,31 @@ public class Asukas {
     public void setPuhelinnumero(String puh) {
         this.puhelinnumero = puh;
         // voiko olla useita numeroita?
-        
     }
     
     public void setEmail(String email) {
         this.email = email;
-        
     }
     
     public void setOsoite(String osoite) {
-        //käytetäänkö muuten kuin asukkaan poismuuttaessa? Muuten osoite sopparilta?
+        //käytetäänkö vain asukkaan poismuuttaessa?
         this.osoite = osoite;
     }
     
-    public void setVuokrasopimus(Vuokrasopimus soppari) {
+    public boolean setVuokrasopimus(Vuokrasopimus soppari) {
         if (this.sopimus == null) {
             this.sopimus = soppari;
+            this.vuokrasopimukset.add(soppari);
+            return true;
         }
+        return false;
     }
     
     // MUUT TOIMINNALLISUUDET
-    
-    // kun asukas siirtyy Säätiön asunnosta toiseen
     public void paataVuokrasopimus() {
-        // tähän tarttee lukijan, jotta voi kysyä päättymispäivän
-        //this.sopimus.setPaattymispvm(paivamaara); 
-        this.vanhatVuokrasopimukset.add(this.sopimus);
-        Collections.sort(vanhatVuokrasopimukset);
-        // lukijalta kysytään uusi osoite.
-        this.setOsoite(osoite);
+        this.sopimus = null;
+        //Collections.sort(vuokrasopimukset);
     }
-//    
-//    // kun asukas muuttaa muualle kuin Säätiön asuntoon
-//    public void paataVuokrasopimus(Vuokrasopimus soppari) {
-//        //this.sopimus.setPaattymispvm(soppari.getAlkupvm() MITEN SAADAAN EDELTÄVÄ PÄIVÄ?); (automaattisesti sopparin alkua edeltävä pvm)
-//        this.vanhatVuokrasopimukset.add(this.sopimus);
-//        Collections.sort(vanhatVuokrasopimukset);
-//        this.sopimus = null;
-//    }
     
    @Override
     public int hashCode() {
