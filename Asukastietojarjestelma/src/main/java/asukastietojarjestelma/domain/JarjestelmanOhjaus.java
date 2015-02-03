@@ -15,18 +15,18 @@ public class JarjestelmanOhjaus {
     private Scanner lukija;
     private TiedostonLukija tiedostonLukija;
     
-    public JarjestelmanOhjaus(TiedostonLukija tiedostonLukija, File vuokralaiset, File asunnot) {
+    public JarjestelmanOhjaus(TiedostonLukija tiedostonLukija, File vuokralaiset, File asunnot, File sopimukset) {
         this.tiedostonLukija = tiedostonLukija;
         this.lukija = new Scanner(System.in);
         this.asukkaat = this.tiedostonLukija.lueAsukkaat(vuokralaiset);
         this.asunnot = this.tiedostonLukija.lueAsunnot(asunnot);
-        this.vuokrasopimukset = this.tiedostonLukija.lueVuokrasopimukset(this.asukkaat, this.asunnot);
+        this.vuokrasopimukset = this.tiedostonLukija.lueVuokrasopimukset(this.asukkaat, this.asunnot, sopimukset);
     }
     
     public void suorita() {
         // Abstarkti komentoluokka ja jokainen komento omaksi sen toteuttavaksi luokaksi?
         while (true) {
-            System.out.println("Komennot:\n 1 tulosta asunnot\n 2 tulosta asukkaat\n 3 lisaa asukkaat\n 4 näytä vapaat asunnot\n x lopeta\n");
+            System.out.println("Komennot:\n 1 tulosta asunnot\n 2 tulosta asukkaat\n 3 tulosta sopimukset\n 4 näytä vapaat asunnot\n x lopeta\n");
             System.out.print("Syötä komento: ");
             String komento = this.lukija.nextLine();
             if (komento.equals("1")) {
@@ -39,7 +39,7 @@ public class JarjestelmanOhjaus {
                 System.out.println("");
             } else if (komento.equals("3")) {
                 System.out.println("");
-                //this.lisaaAsukas();
+                this.tulostaSopimukset();
                 System.out.println("");
             } else if (komento.equals("4")) {
                 System.out.println("");
@@ -110,12 +110,17 @@ public class JarjestelmanOhjaus {
         System.out.print(this.asukkaat);
     }
     
+    public void tulostaSopimukset() {
+        System.out.print(this.vuokrasopimukset);
+    }
+    
     public void tulostaVapaatAsunnot() {
-        
         for (String avain : this.asunnot.keySet()) {
             for (Asunto a : this.asunnot.get(avain)) {
-                System.out.println(a);
-                System.out.println("");
+                if (!a.onkoVuokrattu()) {
+                    System.out.println(a);
+                    System.out.println("");
+                }
             }
         }
     }

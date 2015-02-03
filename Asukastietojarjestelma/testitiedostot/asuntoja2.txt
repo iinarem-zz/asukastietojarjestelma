@@ -1,0 +1,12 @@
+talo:AKT 4
+asuntonro:C 1
+huonemaara:1
+pA:10.5
+vuokra:200
+##
+talo:AKT 4
+asuntonro:C 2
+huonemaara:2
+pA:20
+vuokra:200
+##

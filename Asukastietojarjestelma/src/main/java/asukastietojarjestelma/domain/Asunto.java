@@ -21,7 +21,7 @@ public class Asunto {
         this.huonemaara = huonemaara;
         this.pA = pA;
         this.vuokra = 0;
-        this.onkoVuokrattu = false; // kun ladataan tiedostosta ei ole auttomaattisesti false
+        this.onkoVuokrattu = false;
         this.sopimus = null;
         this.vuokrasopimukset = new ArrayList<Vuokrasopimus>();
     }
@@ -60,13 +60,11 @@ public class Asunto {
         if (this.onkoVuokrattu == false) {
             this.sopimus = sopimus;
             this.onkoVuokrattu = true;
-            this.vuokrasopimukset.add(sopimus);
-            Collections.sort(vuokrasopimukset);
+            //this.vuokrasopimukset.add(sopimus);
+            //Collections.sort(vuokrasopimukset);
         }
         
-        //pitäisikö palauttaa tieto siitä onnistuiko?
         //pitäisi huomauttaa jos asunnossa on jo voimassaoleva sopimus. 
-        //jos silti halutaan vuokrata, pitäisi edellinen vuokrasopimus päättää ensin.
     }
     
     // MUUT

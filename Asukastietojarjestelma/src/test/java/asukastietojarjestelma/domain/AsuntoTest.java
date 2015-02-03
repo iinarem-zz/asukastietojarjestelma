@@ -11,13 +11,13 @@ import static org.junit.Assert.*;
 
 public class AsuntoTest {
     private Asunto testi;
-    private Date alkupvm;
-    private Date loppupvm;
+    private String alkupvm;
+    private String loppupvm;
     
     public AsuntoTest() {
         this.testi = null;
-        this.alkupvm = new Date(2014, 10, 1);
-        this.loppupvm = new Date(2015, 3, 31);
+        this.alkupvm = "01.10.2014";
+        this.loppupvm = "31.03.2015";
     }
     
     @Before

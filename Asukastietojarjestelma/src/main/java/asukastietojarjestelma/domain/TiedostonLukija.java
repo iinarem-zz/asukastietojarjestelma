@@ -2,7 +2,6 @@
 package asukastietojarjestelma.domain;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -31,8 +30,13 @@ public class TiedostonLukija {
                 String rivi = this.tiedostonLukija.nextLine();
                 
                 if (rivi.equals("##")) {
+                    if (talo.equals("")) {
+                        break;
+                    }
+                    
                     Asunto uusi = new Asunto(talo, asuntonro, huonemaara, pA);
                     uusi.setVuokra(vuokra);
+                    
                     if (asuntoLista.containsKey(talo)) {
                         asuntoLista.get(talo).add(uusi);
                         //järjestä asunnot aakkosjärjestykseen osoitteen mukaan
@@ -109,23 +113,72 @@ public class TiedostonLukija {
         
     }
     
-    public ArrayList<Vuokrasopimus> lueVuokrasopimukset(Map<String,Asukas> asukkaat, Map<String,ArrayList<Asunto>> asunnot) {
-        File sopimukset = new File("sopimukset.txt");
+    public ArrayList<Vuokrasopimus> lueVuokrasopimukset(Map<String,Asukas> asukkaat, Map<String,ArrayList<Asunto>> asunnot, File sopimukset) {
         ArrayList<Vuokrasopimus> soppariLista = new ArrayList<Vuokrasopimus>();
-        int huonemaara = 0;
-        String talo = "";
-        String asuntonumero = "";
-        int alkudd = 0;
-        int alkumm = 0;
-        int alkuY = 0;
-        int loppudd = 0;
-        int loppumm = 0;
-        int loppuY = 0;
-        String asukkaan1Hlotunnus = "";
-        String asukkaan2Hlotunnus = "";
+        Asunto asunto = null;
+        String alkupvm = "";
+        String loppupvm = "";
+        Asukas asukas1 = null;
+        Asukas asukas2 = null;
         
-        //vuokrasopimukset voivat olla joko single tai couple, asunnon huonemäärästä riippuen
-        //tähän lukeminen ja luominen
+        try {
+            this.tiedostonLukija = new Scanner(sopimukset);
+            while (this.tiedostonLukija.hasNextLine()) {
+                String rivi = this.tiedostonLukija.nextLine();
+                
+                if (rivi.equals("##")) {
+                    if (asunto == null) {
+                        break;
+                    } else if (asunto.getHuonemaara() > 1) {
+                        VuokrasopimusCouple uusi = new VuokrasopimusCouple(asunto, alkupvm, loppupvm);
+                        uusi.lisaaAsukkaat(asukas1, asukas2);
+                        soppariLista.add(uusi);
+                    } else {
+                        VuokrasopimusSingle uusi = new VuokrasopimusSingle(asunto, alkupvm, loppupvm);
+                        uusi.lisaaAsukas(asukas1);
+                        soppariLista.add(uusi);
+                    }
+                    
+                } else {
+                    String[] sanat = rivi.split(":");
+                    
+                    if (sanat[0].equals("asunto")) {
+                        try {
+                            for (Asunto a : asunnot.get(sanat[1])) {
+                                if (a.getAsuntonro().equals(sanat[2])) {
+                                    asunto = a;
+                                }
+                           } 
+                        } catch (Exception e) {
+                            System.out.println("Virheellinen asuntotieto! Virhe: " + e.getMessage());
+                            break;
+                        }
+                        
+                    } else if (sanat[0].equals("alkupvm")) {
+                        alkupvm = sanat[1] + "." + sanat[2] + "." + sanat[3];
+                    } else if (sanat[0].equals("loppupvm")) {
+                        loppupvm = sanat[1] + "." + sanat[2] + "." + sanat[3];
+                    } else if (sanat[0].equals("asukas1")) {
+                        try {
+                            asukas1 = asukkaat.get(sanat[1]);
+                        } catch (Exception e) {
+                            System.out.println("Virheellinen asukastieto! Virhe: " + e.getMessage());
+                            break;
+                        }
+                    } else if (sanat[0].equals("asukas2") && !sanat[1].equals("none")) {
+                        try {
+                            asukas2 = asukkaat.get(sanat[1]);
+                        } catch (Exception e) {
+                            System.out.println("Virheellinen asukastieto! Virhe: " + e.getMessage());
+                            break;
+                        }
+                    }
+                }
+            }
+        } catch (Exception e) {
+            System.out.println("Tiedostoa ei voitu lukea! Virhe: " + e.getMessage());
+        }
+        this.tiedostonLukija.close();
         
         return soppariLista;
         

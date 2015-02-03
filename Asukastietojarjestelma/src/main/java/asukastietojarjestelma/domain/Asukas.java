@@ -72,11 +72,9 @@ public class Asukas {
     }
     
     public void setVuokrasopimus(Vuokrasopimus soppari) {
-        if (this.sopimus != null) {
-            this.paataVuokrasopimus();
+        if (this.sopimus == null) {
+            this.sopimus = soppari;
         }
-        this.sopimus = soppari;
-        
     }
     
     // MUUT TOIMINNALLISUUDET

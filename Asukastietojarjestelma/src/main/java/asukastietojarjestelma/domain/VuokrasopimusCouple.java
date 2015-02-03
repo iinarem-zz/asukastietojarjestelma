@@ -1,22 +1,26 @@
 
 package asukastietojarjestelma.domain;
 
-import java.util.Date;
-
 public class VuokrasopimusCouple extends Vuokrasopimus{
     private Asukas asukas1;
     private Asukas asukas2;
     
-    public VuokrasopimusCouple(Asunto asunto, Date alku, Date paattyminen) {
+    public VuokrasopimusCouple(Asunto asunto, String alku, String paattyminen) {
         super(asunto, alku, paattyminen);
         this.asukas1 = null;
         this.asukas2 = null;
     }
 
     //SETTERIT
-    public void lisaaAsukas(Asukas a, Asukas b) {
+    public void lisaaAsukkaat(Asukas a, Asukas b) {
         this.asukas1 = a;
         this.asukas2 = b;
+        this.asukas1.setVuokrasopimus(this);
+        
+        if (this.asukas2 != null) {
+            this.asukas2.setVuokrasopimus(this);
+        }
+        
     }
     
     //MUUT

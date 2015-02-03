@@ -1,25 +1,24 @@
 
 package asukastietojarjestelma.domain;
 
-import java.util.Date;
-
 public abstract class Vuokrasopimus implements Comparable<Vuokrasopimus> {
     protected Asunto asunto;
-    protected Date alkupvm;
-    protected Date paattymispvm;
+    protected String alkupvm;
+    protected String paattymispvm;
     
-    public Vuokrasopimus(Asunto asunto, Date alku, Date paattyminen) {
+    public Vuokrasopimus(Asunto asunto, String alku, String paattyminen) {
         this.asunto = asunto;
         this.alkupvm = alku;
         this.paattymispvm = paattyminen;
+        this.asunto.vuokraa(this);
     }
     
     // GETTERIT
-    public Date getAlkupvm() {
+    public String getAlkupvm() {
         return this.alkupvm;
     }
     
-    public Date getPaattymispvm() {
+    public String getPaattymispvm() {
         return this.paattymispvm;
     }
     
@@ -32,14 +31,14 @@ public abstract class Vuokrasopimus implements Comparable<Vuokrasopimus> {
     }
     
     // SETTERIT
-    public void setPaattymispvm(Date paattymispvm) {
+    public void setPaattymispvm(String paattymispvm) {
         this.paattymispvm = paattymispvm;
     }
     
     // MUUT TOIMINNOT
     @Override
     public int compareTo(Vuokrasopimus sopimus) {
-        return this.paattymispvm.compareTo(sopimus.paattymispvm);
+        return this.paattymispvm.compareTo(sopimus.paattymispvm); //korjattava!
     }
-    
+//    
 }

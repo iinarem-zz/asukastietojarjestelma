@@ -5,3 +5,10 @@ loppupvm:31:12:2016
 asukas1:151085
 asukas2:none
 ##
+huonemaara:1
+asunto:AKT 4:C 2
+alkupvm:01:02:2015
+loppupvm:31:01:2017
+asukas1:110380
+asukas2:none
+##

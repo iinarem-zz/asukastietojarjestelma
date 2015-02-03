@@ -12,7 +12,8 @@ public class Main {
 //        TiedostonTallentaja tallentaja = new TiedostonTallentaja();
         File vuokralaiset = new File("vuokralaiset.txt");
         File asunnot = new File("asunnot.txt");
-        JarjestelmanOhjaus ohjaus = new JarjestelmanOhjaus(lukija, vuokralaiset, asunnot);
+        File sopimukset = new File("sopimukset.txt");
+        JarjestelmanOhjaus ohjaus = new JarjestelmanOhjaus(lukija, vuokralaiset, asunnot, sopimukset);
         ohjaus.suorita();
     }
     
