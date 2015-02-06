@@ -68,3 +68,27 @@ Suunnitelmia: Latauslogiikan valmiiksi saaminen (metodien parametreiksi File, he
 Käytetty aika: 2h
 
 Työt: Kasperin koodikatselmointi, tutkiminen ja palautus.
+
+##2.2.15
+
+Käytetty aika: 2-3h
+
+Työt: TiedostonLukijan metodien muokkaaminen siten että ottavat parametrinään vastaan Filen
+
+##3.2.15
+
+Käytetty aika: 5h
+
+Työt: Vuokrasopimusten luominen ja tekstikäyttöliittymän toiminnallisuuksien rakentaminen (ohjausluokka)
+
+##4.2.15
+
+Käytetty aika: 1,5h
+
+Työt: Gui Builderin ihmetteleminen.
+
+##5.-6.2.15
+
+Käytetty aika: 1h
+
+Työt: Java docin ihmetteleminen...
