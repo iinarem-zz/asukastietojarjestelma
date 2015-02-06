@@ -84,7 +84,7 @@ public class JarjestelmanOhjaus {
         //virheellisten syötteiden käsittely!
         System.out.println("");
         while(true) {
-            System.out.println("Mitä muokataan?\n a. Nimi\n b. puhelinnumero\n c. e-mail\n d. vuokrasopimuksen päättäminen");
+            System.out.println("Mitä muokataan?\n a. Nimi\n b. puhelinnumero\n c. e-mail\n d. vuokrasopimuksen päättäminen\n x. poistu");
             String muutetaan = this.lukija.nextLine();
 
             if (muutetaan.equals("a")) {
@@ -110,6 +110,8 @@ public class JarjestelmanOhjaus {
                     String osoite = this.lukija.nextLine();
                     a.setOsoite(osoite);
                 }
+            } else if (muutetaan.equals("x")) {
+                break;
             }
         }
     }
@@ -176,6 +178,7 @@ public class JarjestelmanOhjaus {
         System.out.println("");
         System.out.print("Syötä paattymispäivä (dd.mm.yyyy): ");
         String paattymispvm = this.lukija.nextLine();
+        // vertaile ettei ole ennen alkamispäivämäärää!
         sopimus.setPaattymispvm(paattymispvm);
         
     }
