@@ -14,6 +14,7 @@ public class JarjestelmanOhjaus {
     private List<Vuokrasopimus> vuokrasopimukset;
     private Scanner lukija;
     private TiedostonLukija tiedostonLukija;
+    private TiedostonKirjoittaja tiedostonKirjoittaja;
     
     public JarjestelmanOhjaus(TiedostonLukija tiedostonLukija, File vuokralaiset, File asunnot, File sopimukset) {
         this.tiedostonLukija = tiedostonLukija;
@@ -21,6 +22,7 @@ public class JarjestelmanOhjaus {
         this.asukkaat = this.tiedostonLukija.lueAsukkaat(vuokralaiset);
         this.asunnot = this.tiedostonLukija.lueAsunnot(asunnot);
         this.vuokrasopimukset = this.tiedostonLukija.lueVuokrasopimukset(this.asukkaat, this.asunnot, sopimukset);
+        this.tiedostonKirjoittaja = new TiedostonKirjoittaja();
     }
     
     public void suorita() {
