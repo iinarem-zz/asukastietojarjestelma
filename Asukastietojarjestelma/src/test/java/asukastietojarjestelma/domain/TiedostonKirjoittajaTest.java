@@ -42,22 +42,44 @@ public class TiedostonKirjoittajaTest {
         kampat.add(u);
         this.asunnot.put("AKT 4", kampat);
         this.kirjoittaja.tallennaAsunnot("testitiedostot/kirjoitusTestasunnot.txt", this.asunnot);
-        assertEquals(1, this.lukija.lueAsunnot(tiedosto).size());
+        assertEquals(1, this.lukija.lueAsunnot(tiedosto).keySet().size());
+        assertEquals(1, this.lukija.lueAsunnot(tiedosto).get("AKT 4").size());
         
     }
     
     @Test
-    public void kunMapissaKaksiAsuntoKirjoittaaTiedostoonKaksi() throws IOException {
+    public void kunMapissaKaksiSamanTalonAsuntoaKirjoittaaTiedostoonKaksi() throws IOException {
         File tiedosto = new File("testitiedostot/kirjoitusTestasunnot.txt");
         Asunto a = new Asunto("AKT 4", "C 1 a", 1, 10.5);
+        a.setVuokra(200);
         Asunto b = new Asunto("AKT 4", "C 1 b", 1, 10.5);
+        b.setVuokra(350);
         ArrayList<Asunto> kampat = new ArrayList<Asunto>();
         kampat.add(a);
         kampat.add(b);
         this.asunnot.put("AKT 4", kampat);
         this.kirjoittaja.tallennaAsunnot("testitiedostot/kirjoitusTestasunnot.txt", this.asunnot);
-        assertEquals(2, this.lukija.lueAsunnot(tiedosto).size());
-        
+        assertEquals(1, this.lukija.lueAsunnot(tiedosto).keySet().size());
+        assertEquals(2, this.lukija.lueAsunnot(tiedosto).get("AKT 4").size()); 
+    }
+    
+    @Test
+    public void kunMapissaKaksiEriTalonAsuntoaKirjoittaaTiedostoonKaksi() throws IOException {
+        File tiedosto = new File("testitiedostot/kirjoitusTestasunnot.txt");
+        Asunto a = new Asunto("AKT 4", "C 1 a", 1, 10.5);
+        a.setVuokra(200);
+        ArrayList<Asunto> kampat1 = new ArrayList<Asunto>();
+        kampat1.add(a);
+        Asunto b = new Asunto("RLT 5", "A 1", 1, 10.5);
+        b.setVuokra(350);
+        ArrayList<Asunto> kampat2 = new ArrayList<Asunto>();
+        kampat2.add(b);
+        this.asunnot.put("AKT 4", kampat1);
+        this.asunnot.put("RLT 5", kampat2);
+        this.kirjoittaja.tallennaAsunnot("testitiedostot/kirjoitusTestasunnot.txt", this.asunnot);
+        assertEquals(2, this.lukija.lueAsunnot(tiedosto).keySet().size());
+        assertEquals(1, this.lukija.lueAsunnot(tiedosto).get("AKT 4").size()); 
+        assertEquals(1, this.lukija.lueAsunnot(tiedosto).get("RLT 5").size()); 
     }
     
     //asukkaat

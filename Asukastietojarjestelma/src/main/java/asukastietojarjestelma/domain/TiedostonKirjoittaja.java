@@ -24,7 +24,7 @@ public class TiedostonKirjoittaja {
                 kirjoittaja.write("huonemaara:" + a.getHuonemaara() + "\n");
                 kirjoittaja.write("pA:" + a.getpA() + "\n");
                 kirjoittaja.write("vuokra:" + a.getVuokra() + "\n");
-                kirjoittaja.write("##");
+                kirjoittaja.write("##\n");
             }
         }
         this.kirjoittaja.close();
@@ -40,7 +40,7 @@ public class TiedostonKirjoittaja {
             kirjoittaja.write("snimi:" + a.getSukunimi() + "\n");
             kirjoittaja.write("puh:" + a.getPuh() + "\n");
             kirjoittaja.write("email:" + a.getEmail() + "\n");
-            kirjoittaja.write("##");
+            kirjoittaja.write("##\n");
         }
         this.kirjoittaja.close();
     }
@@ -62,7 +62,7 @@ public class TiedostonKirjoittaja {
                 kirjoittaja.write("asukas1:" + muunnos.getAsukas().getHlotunnus() + "\n");
                 kirjoittaja.write("asukas2:none\n");
             }
-            kirjoittaja.write("##");
+            kirjoittaja.write("##\n");
         }
         this.kirjoittaja.close();
     }

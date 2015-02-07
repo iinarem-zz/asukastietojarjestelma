@@ -39,7 +39,7 @@ public class Asunto {
         return this.asuntonro;
     }
     
-    public double getVuokra() {
+    public int getVuokra() {
         return this.vuokra;
     }
     
