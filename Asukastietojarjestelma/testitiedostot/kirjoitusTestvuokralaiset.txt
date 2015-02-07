@@ -1,1 +1,12 @@
- 
+htunnus:123456-
+enimi:Taneli
+snimi:Testaaja
+puh:000-00000
+email:taneli.testaaja@helsinki.fi
+##
+htunnus:987456-
+enimi:Maija
+snimi:Mallikas
+puh:000-00000
+email:maija.mallikas@helsinki.fi
+##

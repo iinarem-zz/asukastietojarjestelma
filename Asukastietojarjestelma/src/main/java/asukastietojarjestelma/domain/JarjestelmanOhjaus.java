@@ -2,6 +2,7 @@
 package asukastietojarjestelma.domain;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -9,6 +10,9 @@ import java.util.Map;
 import java.util.Scanner;
 
 public class JarjestelmanOhjaus {
+    private String asukasTiedosto;
+    private String asuntoTiedosto;
+    private String sopimusTiedosto;
     private Map<String, Asukas> asukkaat;
     private Map<String, ArrayList<Asunto>> asunnot;
     private List<Vuokrasopimus> vuokrasopimukset;
@@ -16,12 +20,15 @@ public class JarjestelmanOhjaus {
     private TiedostonLukija tiedostonLukija;
     private TiedostonKirjoittaja tiedostonKirjoittaja;
     
-    public JarjestelmanOhjaus(TiedostonLukija tiedostonLukija, File vuokralaiset, File asunnot, File sopimukset) {
+    public JarjestelmanOhjaus(TiedostonLukija tiedostonLukija) {
         this.tiedostonLukija = tiedostonLukija;
         this.lukija = new Scanner(System.in);
-        this.asukkaat = this.tiedostonLukija.lueAsukkaat(vuokralaiset);
-        this.asunnot = this.tiedostonLukija.lueAsunnot(asunnot);
-        this.vuokrasopimukset = this.tiedostonLukija.lueVuokrasopimukset(this.asukkaat, this.asunnot, sopimukset);
+        this.asukasTiedosto = "vuokralaiset.txt";
+        this.asuntoTiedosto = "asunnot.txt";
+        this.sopimusTiedosto = "sopimukset.txt";
+        this.asukkaat = this.tiedostonLukija.lueAsukkaat(this.asukasTiedosto);
+        this.asunnot = this.tiedostonLukija.lueAsunnot(this.asuntoTiedosto);
+        this.vuokrasopimukset = this.tiedostonLukija.lueVuokrasopimukset(this.asukkaat, this.asunnot, this.sopimusTiedosto);
         this.tiedostonKirjoittaja = new TiedostonKirjoittaja();
     }
     
@@ -51,6 +58,7 @@ public class JarjestelmanOhjaus {
                 System.out.println("");
                 this.asukkaanTiedot();   
             } else if (komento.equals("x")) {
+                
                 System.out.println("");
                 System.out.println("Kiitos näkemiin!");
                 break;
@@ -211,7 +219,10 @@ public class JarjestelmanOhjaus {
     
     // tiettynä aikana vapautuvat asunnot!
     
-    
-    
-    
+    //LOPETTAMINEN JA TALLENTAMINEN
+    public void tallennaTiedot() throws IOException{
+        this.tiedostonKirjoittaja.tallennaAsunnot(asuntoTiedosto, asunnot);
+//        this.tiedostonKirjoittaja.tallennaAsukkaat(asuntoTiedosto, asukkaat);
+//        this.tiedostonKirjoittaja.tallennaVuokrasopimukset(sopimusTiedosto, vuokrasopimukset);
+    }
 }

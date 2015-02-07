@@ -16,7 +16,8 @@ public class TiedostonLukija {
         this.tiedostonLukija = null;
     }
     
-    public HashMap<String, ArrayList<Asunto>> lueAsunnot(File asunnot) {
+    public HashMap<String, ArrayList<Asunto>> lueAsunnot(String tiedostonnimi) {
+        File asunnot = new File(tiedostonnimi);
         HashMap<String, ArrayList<Asunto>> asuntoLista = new HashMap<String, ArrayList<Asunto>>();
         String talo = "";
         String asuntonro = "";
@@ -70,7 +71,8 @@ public class TiedostonLukija {
         
     }
     
-    public HashMap<String,Asukas> lueAsukkaat(File asukkaat) {
+    public HashMap<String,Asukas> lueAsukkaat(String tiedostonnimi) {
+        File asukkaat = new File(tiedostonnimi);
         HashMap<String,Asukas> asukasLista = new HashMap<String,Asukas>();
         String htunnus = "";
         String enimi = "";
@@ -113,7 +115,8 @@ public class TiedostonLukija {
         
     }
     
-    public ArrayList<Vuokrasopimus> lueVuokrasopimukset(Map<String,Asukas> asukkaat, Map<String,ArrayList<Asunto>> asunnot, File sopimukset) {
+    public ArrayList<Vuokrasopimus> lueVuokrasopimukset(Map<String,Asukas> asukkaat, Map<String,ArrayList<Asunto>> asunnot, String tiedostonnimi) {
+        File sopimukset = new File(tiedostonnimi);
         ArrayList<Vuokrasopimus> soppariLista = new ArrayList<Vuokrasopimus>();
         Asunto asunto = null;
         String alkupvm = "";

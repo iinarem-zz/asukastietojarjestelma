@@ -12,28 +12,28 @@ import static org.junit.Assert.*;
 
 public class TiedostonLukijaTest {
     private TiedostonLukija lukija;
-    private File nollaAsukasta;
-    private File yksiAsukas;
-    private File kaksiAsukasta;
-    private File asuntojaNolla;
-    private File asuntojaYksi;
-    private File asuntojaKaksi;
-    private File asuntojaKaksiEriTalo;
-    private File sopimuksiaNolla;
-    private File sopimuksiaYksi;
-    private File sopimuksiaKaksi;
+    private String nollaAsukasta;
+    private String yksiAsukas;
+    private String kaksiAsukasta;
+    private String asuntojaNolla;
+    private String asuntojaYksi;
+    private String asuntojaKaksi;
+    private String asuntojaKaksiEriTalo;
+    private String sopimuksiaNolla;
+    private String sopimuksiaYksi;
+    private String sopimuksiaKaksi;
     
     public TiedostonLukijaTest() {
-        this.nollaAsukasta = new File("testitiedostot/vuokralaisia0.txt");
-        this.yksiAsukas = new File("testitiedostot/vuokralaisia1.txt");
-        this.kaksiAsukasta = new File("testitiedostot/vuokralaisia2.txt");
-        this.asuntojaNolla = new File("testitiedostot/asuntoja0.txt");
-        this.asuntojaYksi = new File("testitiedostot/asuntoja1.txt");
-        this.asuntojaKaksi = new File("testitiedostot/asuntoja2.txt");
-        this.asuntojaKaksiEriTalo = new File("testitiedostot/asuntoja2EriTalo.txt");
-        this.sopimuksiaNolla = new File("testitiedostot/sopimuksia0.txt");
-        this.sopimuksiaYksi = new File("testitiedostot/sopimuksia1.txt");
-        this.sopimuksiaKaksi = new File("testitiedostot/sopimuksia2.txt");
+        this.nollaAsukasta = "testitiedostot/vuokralaisia0.txt";
+        this.yksiAsukas = "testitiedostot/vuokralaisia1.txt";
+        this.kaksiAsukasta = "testitiedostot/vuokralaisia2.txt";
+        this.asuntojaNolla = "testitiedostot/asuntoja0.txt";
+        this.asuntojaYksi = "testitiedostot/asuntoja1.txt";
+        this.asuntojaKaksi = "testitiedostot/asuntoja2.txt";
+        this.asuntojaKaksiEriTalo = "testitiedostot/asuntoja2EriTalo.txt";
+        this.sopimuksiaNolla = "testitiedostot/sopimuksia0.txt";
+        this.sopimuksiaYksi = "testitiedostot/sopimuksia1.txt";
+        this.sopimuksiaKaksi = "testitiedostot/sopimuksia2.txt";
     }
     
     @Before

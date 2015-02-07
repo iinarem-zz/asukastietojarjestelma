@@ -16,7 +16,10 @@ public class TiedostonKirjoittaja {
     
     public void tallennaAsunnot(String tiedosto, Map<String, ArrayList<Asunto>> asunnot) throws IOException {
         this.kirjoittaja = new FileWriter(tiedosto);
-        for (String avain : asunnot.keySet()) {
+        if (asunnot.isEmpty()){
+            kirjoittaja.write("##\n");
+        } else {
+            for (String avain : asunnot.keySet()) {
             ArrayList<Asunto> kampat = asunnot.get(avain);
             for (Asunto a : kampat) {
                 kirjoittaja.write("talo:" + a.getTalo() + "\n");
@@ -26,6 +29,7 @@ public class TiedostonKirjoittaja {
                 kirjoittaja.write("vuokra:" + a.getVuokra() + "\n");
                 kirjoittaja.write("##\n");
             }
+            }
         }
         this.kirjoittaja.close();
         
@@ -33,7 +37,10 @@ public class TiedostonKirjoittaja {
     
     public void tallennaAsukkaat(String tiedosto, Map<String, Asukas> asukkaat) throws IOException {
         this.kirjoittaja = new FileWriter(tiedosto);
-        for (String avain : asukkaat.keySet()) {
+        if (asukkaat.isEmpty()) {
+            kirjoittaja.write("##\n");
+        } else {
+            for (String avain : asukkaat.keySet()) {
             Asukas a = asukkaat.get(avain);
             kirjoittaja.write("htunnus:" + a.getHlotunnus() + "\n");
             kirjoittaja.write("enimi:" + a.getEtunimi() + "\n");
@@ -41,13 +48,17 @@ public class TiedostonKirjoittaja {
             kirjoittaja.write("puh:" + a.getPuh() + "\n");
             kirjoittaja.write("email:" + a.getEmail() + "\n");
             kirjoittaja.write("##\n");
+            }
         }
         this.kirjoittaja.close();
     }
     
     public void tallennaVuokrasopimukset(String tiedosto, List<Vuokrasopimus> sopimukset) throws IOException {
         this.kirjoittaja = new FileWriter(tiedosto);
-        for (Vuokrasopimus sopimus : sopimukset) {
+        if (sopimukset.isEmpty()) {
+            kirjoittaja.write("##\n");
+        } else {
+            for (Vuokrasopimus sopimus : sopimukset) {
             kirjoittaja.write("huonamaara:" + sopimus.getAsunto().getHuonemaara() + "\n");
             kirjoittaja.write("asunto:" + sopimus.getAsunto().getTalo() + ":" + sopimus.getAsunto().getAsuntonro() + "\n");
             kirjoittaja.write("alkupvm:" + sopimus.getAlkupvm() + "\n");
@@ -63,7 +74,9 @@ public class TiedostonKirjoittaja {
                 kirjoittaja.write("asukas2:none\n");
             }
             kirjoittaja.write("##\n");
+            }
         }
+        
         this.kirjoittaja.close();
     }
     
