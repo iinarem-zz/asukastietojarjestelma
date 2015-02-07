@@ -31,7 +31,7 @@ public class TiedostonKirjoittajaTest {
     
     //asunnot
     @Test
-    public void kunMapTyhjäTiedostoTyhjä() throws IOException {
+    public void kunMapTyhjäTiedostoTyhja() throws IOException {
         String tiedosto = "testitiedostot/kirjoitusTestasunnot.txt";
         this.kirjoittaja.tallennaAsunnot("testitiedostot/kirjoitusTestasunnot.txt", this.asunnot);
         assertEquals(true, this.lukija.lueAsunnot(tiedosto).isEmpty());
@@ -41,11 +41,7 @@ public class TiedostonKirjoittajaTest {
     @Test
     public void kunMapissaYksiAsuntoKirjoittaaTiedostoonYhden() throws IOException {
         String tiedosto = "testitiedostot/kirjoitusTestasunnot.txt";
-        Asunto u = new Asunto("AKT 4", "C 1 a", 1, 10.5);
-        ArrayList<Asunto> kampat = new ArrayList<Asunto>();
-        kampat.add(u);
-        this.asunnot.put("AKT 4", kampat);
-        this.kirjoittaja.tallennaAsunnot("testitiedostot/kirjoitusTestasunnot.txt", this.asunnot);
+        this.kirjoittaja.tallennaAsunnot("testitiedostot/kirjoitusTestasunnot.txt", luoMapJossaYksiAsunto());
         assertEquals(1, this.lukija.lueAsunnot(tiedosto).keySet().size());
         assertEquals(1, this.lukija.lueAsunnot(tiedosto).get("AKT 4").size()); 
     }
@@ -53,15 +49,7 @@ public class TiedostonKirjoittajaTest {
     @Test
     public void kunMapissaKaksiSamanTalonAsuntoaKirjoittaaTiedostoonKaksi() throws IOException {
         String tiedosto = "testitiedostot/kirjoitusTestasunnot.txt";
-        Asunto a = new Asunto("AKT 4", "C 1 a", 1, 10.5);
-        a.setVuokra(200);
-        Asunto b = new Asunto("AKT 4", "C 1 b", 1, 10.5);
-        b.setVuokra(350);
-        ArrayList<Asunto> kampat = new ArrayList<Asunto>();
-        kampat.add(a);
-        kampat.add(b);
-        this.asunnot.put("AKT 4", kampat);
-        this.kirjoittaja.tallennaAsunnot("testitiedostot/kirjoitusTestasunnot.txt", this.asunnot);
+        this.kirjoittaja.tallennaAsunnot("testitiedostot/kirjoitusTestasunnot.txt", luoMapJossaKaksiSamanTalonAsuntoa());
         assertEquals(1, this.lukija.lueAsunnot(tiedosto).keySet().size());
         assertEquals(2, this.lukija.lueAsunnot(tiedosto).get("AKT 4").size()); 
     }
@@ -69,17 +57,7 @@ public class TiedostonKirjoittajaTest {
     @Test
     public void kunMapissaKaksiEriTalonAsuntoaKirjoittaaTiedostoonKaksi() throws IOException {
         String tiedosto = "testitiedostot/kirjoitusTestasunnot.txt";
-        Asunto a = new Asunto("AKT 4", "C 1 a", 1, 10.5);
-        a.setVuokra(200);
-        ArrayList<Asunto> kampat1 = new ArrayList<Asunto>();
-        kampat1.add(a);
-        Asunto b = new Asunto("RLT 5", "A 1", 1, 10.5);
-        b.setVuokra(350);
-        ArrayList<Asunto> kampat2 = new ArrayList<Asunto>();
-        kampat2.add(b);
-        this.asunnot.put("AKT 4", kampat1);
-        this.asunnot.put("RLT 5", kampat2);
-        this.kirjoittaja.tallennaAsunnot("testitiedostot/kirjoitusTestasunnot.txt", this.asunnot);
+        this.kirjoittaja.tallennaAsunnot("testitiedostot/kirjoitusTestasunnot.txt", luoMapJossaKaksiEriTalonAsuntoa());
         assertEquals(2, this.lukija.lueAsunnot(tiedosto).keySet().size());
         assertEquals(1, this.lukija.lueAsunnot(tiedosto).get("AKT 4").size()); 
         assertEquals(1, this.lukija.lueAsunnot(tiedosto).get("RLT 5").size()); 
@@ -96,23 +74,61 @@ public class TiedostonKirjoittajaTest {
     @Test
     public void kunMapissaYksiAsukasKirjoittaaTiedostoonYhden() throws IOException {
         String tiedosto = "testitiedostot/kirjoitusTestvuokralaiset.txt";
-        Asukas a = new Asukas("Testaaja", "Taneli", "123456-", "000-00000", "taneli.testaaja@helsinki.fi");
-        this.asukkaat.put("123456-", a);
-        this.kirjoittaja.tallennaAsukkaat(tiedosto, asukkaat);
+        this.kirjoittaja.tallennaAsukkaat(tiedosto, luoMapJossaYksiAsukas());
         assertEquals(1, this.lukija.lueAsukkaat(tiedosto).keySet().size());
     }
     
     @Test
-    public void kunMapissaKaksiAsukastaKirjoittaaTiedostoonYhden() throws IOException {
+    public void kunMapissaKaksiAsukastaKirjoittaaTiedostoonKaksi() throws IOException {
         String tiedosto = "testitiedostot/kirjoitusTestvuokralaiset.txt";
-        Asukas a = new Asukas("Testaaja", "Taneli", "123456-", "000-00000", "taneli.testaaja@helsinki.fi");
-        this.asukkaat.put("123456-", a);
-        Asukas b = new Asukas("Mallikas", "Maija", "987456-", "000-00000", "maija.mallikas@helsinki.fi");
-        this.asukkaat.put("987456-", b);
-        this.kirjoittaja.tallennaAsukkaat(tiedosto, asukkaat);
+        this.kirjoittaja.tallennaAsukkaat(tiedosto, luoMapJossaKaksiAsukasta());
         assertEquals(2, this.lukija.lueAsukkaat(tiedosto).keySet().size());
     }
     
     
     //vuokrasopimukset
+    @Test
+    public void kunListassaNollaVuokrasopimustaTiedostossaEiSopimuksia() throws IOException {
+        String tiedosto = "testitiedostot/kirjoitusTestsopimukset.txt";
+        this.kirjoittaja.tallennaVuokrasopimukset(tiedosto, vuokrasopimukset);
+        assertEquals(true, this.lukija.lueVuokrasopimukset(asukkaat, asunnot, tiedosto).isEmpty());
+    }
+    
+    @Test
+    public void kunListassaYksiVuokrasopimusTiedostossaYksiSopimus() throws IOException {
+        String tiedosto = "testitiedostot/kirjoitusTestsopimukset.txt";
+        this.kirjoittaja.tallennaVuokrasopimukset(tiedosto, luoListaJossaYksiVuokrasopimus());
+        assertEquals(1, this.lukija.lueVuokrasopimukset(luoMapJossaYksiAsukas(), luoMapJossaYksiAsunto(), tiedosto).size());
+    }
+    
+    // apumetodeja
+    public Map<String, Asukas> luoMapJossaYksiAsukas() {
+        this.asukkaat = this.lukija.lueAsukkaat("testitiedostot/vuokralaisia1.txt");
+        return this.asukkaat;
+    }
+    
+    public Map<String, Asukas> luoMapJossaKaksiAsukasta() {
+        this.asukkaat = this.lukija.lueAsukkaat("testitiedostot/vuokralaisia2.txt");
+        return this.asukkaat;
+    }
+    
+    public List<Vuokrasopimus> luoListaJossaYksiVuokrasopimus() {
+        this.vuokrasopimukset = this.lukija.lueVuokrasopimukset(luoMapJossaYksiAsukas(), luoMapJossaYksiAsunto(), "testitiedostot/sopimuksia1.txt");
+        return this.vuokrasopimukset;
+    }
+    
+    public Map<String, ArrayList<Asunto>> luoMapJossaYksiAsunto() {
+        this.asunnot = this.lukija.lueAsunnot("testitiedostot/asuntoja1.txt");
+        return this.asunnot;
+    }
+    
+    public Map<String, ArrayList<Asunto>> luoMapJossaKaksiSamanTalonAsuntoa(){
+        this.asunnot = this.lukija.lueAsunnot("testitiedostot/asuntoja2.txt");
+        return this.asunnot;
+    }
+    
+    public Map<String, ArrayList<Asunto>> luoMapJossaKaksiEriTalonAsuntoa(){
+        this.asunnot = this.lukija.lueAsunnot("testitiedostot/asuntoja2EriTalo.txt");
+        return this.asunnot;
+    }
 }

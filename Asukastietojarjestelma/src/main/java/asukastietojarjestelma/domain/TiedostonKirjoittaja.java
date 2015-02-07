@@ -59,10 +59,11 @@ public class TiedostonKirjoittaja {
             kirjoittaja.write("##\n");
         } else {
             for (Vuokrasopimus sopimus : sopimukset) {
-            kirjoittaja.write("huonamaara:" + sopimus.getAsunto().getHuonemaara() + "\n");
+            kirjoittaja.write("huonemaara:" + sopimus.getAsunto().getHuonemaara() + "\n");
             kirjoittaja.write("asunto:" + sopimus.getAsunto().getTalo() + ":" + sopimus.getAsunto().getAsuntonro() + "\n");
-            kirjoittaja.write("alkupvm:" + sopimus.getAlkupvm() + "\n");
-            kirjoittaja.write("loppupvm:" + sopimus.getPaattymispvm() + "\n");
+            
+            kirjoittaja.write("alkupvm:" + korvaaPisteet(sopimus.getAlkupvm()) + "\n");
+            kirjoittaja.write("loppupvm:" + korvaaPisteet(sopimus.getPaattymispvm()) + "\n");
             
             if (sopimus.getAsunto().getHuonemaara() > 1) {
                 VuokrasopimusCouple muunnos = (VuokrasopimusCouple) sopimus;
@@ -80,4 +81,10 @@ public class TiedostonKirjoittaja {
         this.kirjoittaja.close();
     }
     
+    public String korvaaPisteet(String pvm) {
+        String[] luvut = pvm.split(".");
+        String uusi = luvut[0] + ":" + luvut[1] + ":" + luvut[2];
+        return uusi;
+        
+    }
 }

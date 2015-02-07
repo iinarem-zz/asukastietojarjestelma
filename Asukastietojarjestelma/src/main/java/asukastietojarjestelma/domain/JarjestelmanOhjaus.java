@@ -222,7 +222,7 @@ public class JarjestelmanOhjaus {
     //LOPETTAMINEN JA TALLENTAMINEN
     public void tallennaTiedot() throws IOException{
         this.tiedostonKirjoittaja.tallennaAsunnot(asuntoTiedosto, asunnot);
-//        this.tiedostonKirjoittaja.tallennaAsukkaat(asuntoTiedosto, asukkaat);
-//        this.tiedostonKirjoittaja.tallennaVuokrasopimukset(sopimusTiedosto, vuokrasopimukset);
+        this.tiedostonKirjoittaja.tallennaAsukkaat(asuntoTiedosto, asukkaat);
+        this.tiedostonKirjoittaja.tallennaVuokrasopimukset(sopimusTiedosto, vuokrasopimukset);
     }
 }
