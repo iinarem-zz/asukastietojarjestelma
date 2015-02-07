@@ -32,6 +32,10 @@ public abstract class Vuokrasopimus implements Comparable<Vuokrasopimus> {
         return this.asunto.getVuokra();
     }
     
+    public Asunto getAsunto() {
+        return this.asunto;
+    }
+    
     // SETTERIT
     public void setPaattymispvm(String paattymispvm) {
         this.paattymispvm = paattymispvm;

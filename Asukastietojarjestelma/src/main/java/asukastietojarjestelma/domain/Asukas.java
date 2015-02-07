@@ -32,6 +32,22 @@ public class Asukas {
         return this.etunimi + " " + this.sukunimi;
     }
     
+    public String getEtunimi() {
+        return this.etunimi;
+    }
+    
+    public String getSukunimi() {
+        return this.sukunimi;
+    }
+    
+    public String getPuh() {
+        return this.puhelinnumero;
+    }
+    
+    public String getEmail() {
+        return this.email;
+    }
+    
     public String getHlotunnus () {
         return this.hloTunnus;
     }

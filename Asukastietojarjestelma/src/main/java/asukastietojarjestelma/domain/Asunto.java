@@ -55,6 +55,10 @@ public class Asunto {
         return this.huonemaara;
     }
     
+    public double getpA() {
+        return this.pA;
+    }
+    
     //SETTERIT
     public void setVuokra(int vuokra) {
         this.vuokra = vuokra;

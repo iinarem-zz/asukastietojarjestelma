@@ -12,6 +12,15 @@ public class VuokrasopimusCouple extends Vuokrasopimus{
         this.asukas1.setVuokrasopimus(this);
         this.asukas2.setVuokrasopimus(this);
     }
+    
+    //GETTERIT
+    public Asukas getAsukas1() {
+        return this.asukas1;
+    }
+    
+    public Asukas getAsukas2() {
+        return this.asukas2;
+    }
 
     //SETTERIT
     public void lisaaAsukkaat(Asukas a, Asukas b) {

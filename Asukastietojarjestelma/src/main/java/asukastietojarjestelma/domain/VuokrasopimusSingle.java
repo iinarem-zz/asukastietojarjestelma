@@ -9,6 +9,10 @@ public class VuokrasopimusSingle extends Vuokrasopimus {
         this.asukas = asukas;
         this.asukas.setVuokrasopimus(this);
     }
+    //GETTERIT
+    public Asukas getAsukas() {
+        return this.asukas;
+    }
 
     //SETTERIT
     public void lisaaAsukas(Asukas asukas) {
