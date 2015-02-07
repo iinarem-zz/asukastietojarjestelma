@@ -44,65 +44,62 @@ public class TiedostonLukijaTest {
     //Vuokralaisten lukeminen
     @Test
     public void lukijaLukeeVuokralaisTiedostonJokaOnTyhjaPalauttaaTyhjanMapin() {
-        HashMap asukkaat = this.lukija.lueAsukkaat(this.nollaAsukasta);
+        HashMap<String, Asukas> asukkaat = this.lukija.lueAsukkaat(this.nollaAsukasta);
         assertEquals(true, asukkaat.isEmpty());
     }
     
     @Test
     public void lukijaLukeeVuokralaisTiedostonJaTiedostossaYksiVuokralainenMapissaYksiVuokralainen() {
-        HashMap asukkaat = this.lukija.lueAsukkaat(this.yksiAsukas);
+        HashMap<String, Asukas> asukkaat = this.lukija.lueAsukkaat(this.yksiAsukas);
         assertEquals(1, asukkaat.size());
     }
     
     @Test
     public void lukijaLukeeVuokralaisTiedostonJaTiedostossaKaksiVuokralaistaMapissaKaksiVuokralaista() {
-        HashMap asukkaat = this.lukija.lueAsukkaat(this.kaksiAsukasta);
+        HashMap<String, Asukas> asukkaat = this.lukija.lueAsukkaat(this.kaksiAsukasta);
         assertEquals(2, asukkaat.size());
     }
     
     //Asuntojen lukeminen
     @Test
     public void lukijaLukeeAsuntoTiedostonJokaOnTyhjaPalauttaaTyhjanMapin() {
-        HashMap asunnot = this.lukija.lueAsunnot(this.asuntojaNolla);
-        assertEquals(0, asunnot.size());
+        HashMap<String, ArrayList<Asunto>> asunnot = this.lukija.lueAsunnot(this.asuntojaNolla);
+        assertEquals(0, asunnot.keySet().size());
     }
     
     @Test
     public void lukijaLukeeAsuntoTiedostonJaTiedostossaYksiAsuntoMapissaYksiAsunto() {
-        HashMap asunnot = this.lukija.lueAsunnot(this.asuntojaYksi);
-        assertEquals(1, asunnot.size());
+        HashMap<String, ArrayList<Asunto>> asunnot = this.lukija.lueAsunnot(this.asuntojaYksi);
+        assertEquals(1, asunnot.keySet().size());
+        for (String a : asunnot.keySet()) {
+            ArrayList<Asunto> asuntolista = asunnot.get(a);
+            assertEquals(1, asuntolista.size());
+        }
     }
     
     @Test
     public void lukijaLukeeAsuntoTiedostonJaTiedostossaKaksiSamanTalonAsuntoaMapissaYksiAvainjaKaksiAsuntoa() {
-        HashMap asunnot = this.lukija.lueAsunnot(this.asuntojaKaksi);
-        String a = "";
-        for (Object avain : asunnot.keySet()) {
-            a = (String) avain;
+        HashMap<String, ArrayList<Asunto>> asunnot = this.lukija.lueAsunnot(this.asuntojaKaksi);
+        assertEquals(1, asunnot.keySet().size());
+        for (String a : asunnot.keySet()) {
+            ArrayList<Asunto> asuntolista = asunnot.get(a);
+            assertEquals(2, asuntolista.size());
         }
-        ArrayList<Asunto> asuntolista = (ArrayList<Asunto>) asunnot.get(a);
-        assertEquals(2, asuntolista.size());
-        assertEquals(1, asunnot.size());
     }
     
     @Test
     public void lukijaLukeeAsuntoTiedostonJaTiedostossaKaksiEriTalonAsuntoaMapissaKaksiAvaintajaKaksiAsuntoa() {
-        HashMap asunnot = this.lukija.lueAsunnot(this.asuntojaKaksiEriTalo);
-        String a = "";
-        for (Object avain : asunnot.keySet()) {
-            a = (String) avain;
-            ArrayList<Asunto> asuntolista = (ArrayList<Asunto>) asunnot.get(a);
+        HashMap<String, ArrayList<Asunto>> asunnot = this.lukija.lueAsunnot(this.asuntojaKaksiEriTalo);
+        assertEquals(2, asunnot.keySet().size());
+        for (String a : asunnot.keySet()) {
+            ArrayList<Asunto> asuntolista = asunnot.get(a);
             assertEquals(1, asuntolista.size());
         }
-        
-        assertEquals(2, asunnot.size());
-        
     }
     
     //Vuokrasopimusten lukeminen
     @Test
     public void lukijaLukeeSopimustiedostonLuoSopimuksiaNollaKunSopimuksiaNolla() {
-        
     }
     
     @Test

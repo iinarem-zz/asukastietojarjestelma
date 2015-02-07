@@ -131,7 +131,6 @@ public class TiedostonLukija {
                         break;
                     } else if (asunto.getHuonemaara() > 1) {
                         VuokrasopimusCouple uusi = new VuokrasopimusCouple(asunto, alkupvm, loppupvm, asukas1, asukas2);
-           
                         soppariLista.add(uusi);
                     } else {
                         VuokrasopimusSingle uusi = new VuokrasopimusSingle(asunto, alkupvm, loppupvm, asukas1);

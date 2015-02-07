@@ -5,6 +5,8 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class TiedostonKirjoittaja {
     private FileWriter kirjoittaja;
@@ -12,7 +14,7 @@ public class TiedostonKirjoittaja {
     public TiedostonKirjoittaja() {
     }
     
-    public void tallennaAsunnot(String tiedosto, HashMap<String, ArrayList<Asunto>> asunnot) throws IOException {
+    public void tallennaAsunnot(String tiedosto, Map<String, ArrayList<Asunto>> asunnot) throws IOException {
         this.kirjoittaja = new FileWriter(tiedosto);
         for (String avain : asunnot.keySet()) {
             ArrayList<Asunto> kampat = asunnot.get(avain);
@@ -29,7 +31,7 @@ public class TiedostonKirjoittaja {
         
     }
     
-    public void tallennaAsukkaat(String tiedosto, HashMap<String, Asukas> asukkaat) throws IOException {
+    public void tallennaAsukkaat(String tiedosto, Map<String, Asukas> asukkaat) throws IOException {
         this.kirjoittaja = new FileWriter(tiedosto);
         for (String avain : asukkaat.keySet()) {
             Asukas a = asukkaat.get(avain);
@@ -43,7 +45,7 @@ public class TiedostonKirjoittaja {
         this.kirjoittaja.close();
     }
     
-    public void tallennaVuokrasopimukset(String tiedosto, ArrayList<Vuokrasopimus> sopimukset) throws IOException {
+    public void tallennaVuokrasopimukset(String tiedosto, List<Vuokrasopimus> sopimukset) throws IOException {
         this.kirjoittaja = new FileWriter(tiedosto);
         for (Vuokrasopimus sopimus : sopimukset) {
             kirjoittaja.write("huonamaara:" + sopimus.getAsunto().getHuonemaara() + "\n");
