@@ -1,10 +1,4 @@
-talo:RLT 5
-asuntonro:A 1
-huonemaara:1
-pA:10.5
-vuokra:350
-##
-talo:AKT 4
+talo:null
 asuntonro:C 1
 huonemaara:1
 pA:10.5

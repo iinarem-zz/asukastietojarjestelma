@@ -1,12 +1,6 @@
-htunnus:110380
-enimi:Teemu
-snimi:Testihenkilö
-puh:044123456
-email:holynpolya@helsinki.fi
-##
 htunnus:151085
 enimi:Iina
 snimi:Remonen
 puh:044123456
-email:iinarem@gmail.com
+email:null
 ##
