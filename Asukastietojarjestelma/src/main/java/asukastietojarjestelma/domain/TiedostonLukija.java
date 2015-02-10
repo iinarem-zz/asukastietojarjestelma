@@ -79,6 +79,7 @@ public class TiedostonLukija {
         String snimi = "";
         String puh = "";
         String email = "";
+        
         try {
             this.tiedostonLukija = new Scanner(asukkaat);
             while (this.tiedostonLukija.hasNextLine()) {
@@ -132,7 +133,7 @@ public class TiedostonLukija {
                 if (rivi.equals("##")) {
                     if (asunto == null) {
                         break;
-                    } else if (asunto.getHuonemaara() > 1) {
+                    } else if (asunto.getHuonemaara() > 1 && asukas2 != null) {
                         VuokrasopimusCouple uusi = new VuokrasopimusCouple(asunto, alkupvm, loppupvm, asukas1, asukas2);
                         soppariLista.add(uusi);
                     } else {

@@ -82,7 +82,7 @@ public class TiedostonKirjoittaja {
     }
     
     public String korvaaPisteet(String pvm) {
-        String[] luvut = pvm.split(".");
+        String[] luvut = pvm.split("\\.");
         String uusi = luvut[0] + ":" + luvut[1] + ":" + luvut[2];
         return uusi;
         

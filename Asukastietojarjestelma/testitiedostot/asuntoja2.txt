@@ -6,7 +6,7 @@ vuokra:200
 ##
 talo:AKT 4
 asuntonro:C 2
-huonemaara:2
+huonemaara:1
 pA:20
 vuokra:200
 ##

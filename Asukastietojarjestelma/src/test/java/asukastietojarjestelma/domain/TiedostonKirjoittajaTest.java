@@ -101,6 +101,13 @@ public class TiedostonKirjoittajaTest {
         assertEquals(1, this.lukija.lueVuokrasopimukset(luoMapJossaYksiAsukas(), luoMapJossaYksiAsunto(), tiedosto).size());
     }
     
+    @Test
+    public void kunListassaKaksiVuokrasopimustaTiedostossaKaksiSopimusta() throws IOException {
+        String tiedosto = "testitiedostot/kirjoitusTestsopimukset.txt";
+        this.kirjoittaja.tallennaVuokrasopimukset(tiedosto, luoListaJossaKaksiVuokrasopimusta());
+        assertEquals(2, this.lukija.lueVuokrasopimukset(luoMapJossaKaksiAsukasta(), luoMapJossaKaksiSamanTalonAsuntoa(), tiedosto).size());
+    }
+    
     // apumetodeja
     public Map<String, Asukas> luoMapJossaYksiAsukas() {
         this.asukkaat = this.lukija.lueAsukkaat("testitiedostot/vuokralaisia1.txt");
@@ -113,7 +120,12 @@ public class TiedostonKirjoittajaTest {
     }
     
     public List<Vuokrasopimus> luoListaJossaYksiVuokrasopimus() {
-        this.vuokrasopimukset = this.lukija.lueVuokrasopimukset(luoMapJossaYksiAsukas(), luoMapJossaYksiAsunto(), "testitiedostot/sopimuksia1.txt");
+        this.vuokrasopimukset = this.lukija.lueVuokrasopimukset(luoMapJossaKaksiAsukasta(), luoMapJossaYksiAsunto(), "testitiedostot/sopimuksia1.txt");
+        return this.vuokrasopimukset;
+    }
+    
+    public List<Vuokrasopimus> luoListaJossaKaksiVuokrasopimusta() {
+        this.vuokrasopimukset = this.lukija.lueVuokrasopimukset(luoMapJossaKaksiAsukasta(), luoMapJossaKaksiSamanTalonAsuntoa(), "testitiedostot/sopimuksia2.txt");
         return this.vuokrasopimukset;
     }
     
