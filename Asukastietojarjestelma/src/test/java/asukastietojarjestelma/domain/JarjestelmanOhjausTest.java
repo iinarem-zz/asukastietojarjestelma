@@ -15,8 +15,11 @@ public class JarjestelmanOhjausTest {
     
     @Before
     public void setUp() {
+        this.ohjaus = new JarjestelmanOhjaus();
     }
     
     @Test
-    public void hello() {}
+    public void palauttaaKayttajanVastauksenEsitettyynKysymykseen() {
+        // näitä en osaa testata, koska vaatii käyttäjän syötteitä!
+    }
 }

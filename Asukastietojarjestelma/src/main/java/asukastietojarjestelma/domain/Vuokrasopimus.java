@@ -2,8 +2,11 @@
 package asukastietojarjestelma.domain;
 
 import java.util.Objects;
-
+/**
+ * Luokka on abstrakti yläluokka, joka sisältää osan Vuokrasopimusten toiminnallisuuksista
+ */
 public abstract class Vuokrasopimus implements Comparable<Vuokrasopimus> {
+    /* ... */
     protected Asunto asunto;
     protected String alkupvm;
     protected String paattymispvm;
@@ -38,29 +41,16 @@ public abstract class Vuokrasopimus implements Comparable<Vuokrasopimus> {
     
     // SETTERIT
     public void setPaattymispvm(String paattymispvm) {
+        //vertaile, ettei päättymispäivä ole ennen alkamispäivää!
         this.paattymispvm = paattymispvm;
         this.asunto.paataVuokrasopimus();
     }
     
     // MUUT TOIMINNOT
-//    @Override
-//    public boolean equals(Object olio) {
-//        if (olio == null) {
-//            return false;
-//        }
-//
-//        if (getClass() != olio.getClass()) {
-//            return false;
-//        }
-//
-//        Vuokrasopimus verrattava = (Vuokrasopimus) olio;
-//
-//        if (this.asunto == null || !this.getVuokrasopimuksenTiedot().equals(verrattava.getVuokrasopimuksenTiedot())) {
-//            return false;
-//        }
-//
-//        return true;
-//    }
+    
+    public String tiedotIlmanAsuntoa() {
+        return "Vuokrasopimuksen voimassaolo: " + this.alkupvm + " - " + this.paattymispvm;
+    }
 
     @Override
     public int hashCode() {

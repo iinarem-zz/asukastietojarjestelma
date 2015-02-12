@@ -8,9 +8,7 @@ import java.io.File;
 public class Main {
     
     public static void main(String[] args) {
-        TiedostonLukija lukija = new TiedostonLukija();
-//        TiedostonTallentaja tallentaja = new TiedostonTallentaja();
-        JarjestelmanOhjaus ohjaus = new JarjestelmanOhjaus(lukija);
+        JarjestelmanOhjaus ohjaus = new JarjestelmanOhjaus();
         ohjaus.suorita();
     }
     

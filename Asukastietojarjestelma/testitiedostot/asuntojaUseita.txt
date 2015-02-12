@@ -1,0 +1,37 @@
+Last login: Tue Feb 10 14:43:49 on ttys000
+iina-air-3:~ iina$ cd Asukastietojarjestelma
+iina-air-3:Asukastietojarjestelma iina$ ls
+Asukastietojarjestelma	README.md		dokumentaatio
+iina-air-3:Asukastietojarjestelma iina$ cd asukastietojarjestelma
+iina-air-3:asukastietojarjestelma iina$ ls
+asunnot.txt		pit			target
+checkstyle.xml		pom.xml			testitiedostot
+cobertura		sopimukset.txt		vuokralaiset.txt
+nbactions.xml		src
+iina-air-3:asukastietojarjestelma iina$ cd testitiedostot
+iina-air-3:testitiedostot iina$ ls
+asuntoja0.txt			sopimuksia0.txt
+asuntoja1.txt			sopimuksia1.txt
+asuntoja2.txt			sopimuksia2.txt
+asuntoja2EriTalo.txt		vuokralaisia0.txt
+kirjoitusTestasunnot.txt	vuokralaisia1.txt
+kirjoitusTestsopimukset.txt	vuokralaisia2.txt
+kirjoitusTestvuokralaiset.txt
+iina-air-3:testitiedostot iina$ nano asuntoja2.txt
+talo:AKT 4
+asuntonro:C 1
+huonemaara:1
+pA:10.5
+vuokra:200
+##
+talo:AKT 4
+asuntonro:C 2
+huonemaara:1
+pA:20
+vuokra:200
+##
+talo:AKT 4
+asuntonro:C 3
+huonemaara:2
+pA:40
+vuokra:450

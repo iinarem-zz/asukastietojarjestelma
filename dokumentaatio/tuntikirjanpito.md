@@ -92,3 +92,27 @@ Työt: Gui Builderin ihmetteleminen.
 Käytetty aika: 1h
 
 Työt: Java docin ihmetteleminen...
+
+##9.2.15
+
+Käytetty aika: 2-3h
+
+Työt: Testien kirjoittamista
+
+##10.9.15
+
+Käytetty aika: 2-3h
+
+Työt: Testien kirjoittamista, PIT-raportin toimimattomuuden kiroamista
+
+##11.9.15
+
+Käytetty aika: 2 h
+
+Työt: Metodien pilkkominen pienempiin osiin. Testejä. Ohjausluokkaa. Apin kirjoittaminen
+
+##12.9.15
+
+Käytetty aika: 2h
+
+Työt: Apin kirjoittaminen. Ohjeusluokka

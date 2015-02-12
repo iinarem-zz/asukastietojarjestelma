@@ -1,4 +1,3 @@
-
 package asukastietojarjestelma.domain;
 
 import java.io.File;
@@ -9,7 +8,13 @@ import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 
+/**
+ * Luokka ohjaa asukastietojärjestelmää ja sisältää metodikutsut, joilla muita
+ * luokka käskytetään
+ */
 public class JarjestelmanOhjaus {
+    /* ... */
+
     private String asukasTiedosto;
     private String asuntoTiedosto;
     private String sopimusTiedosto;
@@ -19,9 +24,9 @@ public class JarjestelmanOhjaus {
     private Scanner lukija;
     private TiedostonLukija tiedostonLukija;
     private TiedostonKirjoittaja tiedostonKirjoittaja;
-    
-    public JarjestelmanOhjaus(TiedostonLukija tiedostonLukija) {
-        this.tiedostonLukija = tiedostonLukija;
+
+    public JarjestelmanOhjaus() {
+        this.tiedostonLukija = new TiedostonLukija();
         this.lukija = new Scanner(System.in);
         this.asukasTiedosto = "vuokralaiset.txt";
         this.asuntoTiedosto = "asunnot.txt";
@@ -31,34 +36,25 @@ public class JarjestelmanOhjaus {
         this.vuokrasopimukset = this.tiedostonLukija.lueVuokrasopimukset(this.asukkaat, this.asunnot, this.sopimusTiedosto);
         this.tiedostonKirjoittaja = new TiedostonKirjoittaja();
     }
-    
+
+    /**
+     * Metodi käynnistää asukastietojärjestelmän
+     *
+     * @see
+     * asukastietojarjestelma.domain.JarjestelmanOhjaus#ohjelmanKomentojenTulostus()
+     * @see
+     * asukastietojarjestelma.domain.JarjestelmanOhjaus#toimintojenOhjaus(java.lang.String)
+     *
+     */
     public void suorita() {
-        // Abstarkti komentoluokka ja jokainen komento omaksi sen toteuttavaksi luokaksi?
         while (true) {
-            System.out.println("Komennot:\n 1 tulosta asunnot\n 2 tulosta asukkaat\n 3 tulosta sopimukset\n 4 näytä vapaat asunnot\n 5 näytä asukkaan tiedot\n\n x lopeta\n");
-            System.out.print("Syötä komento: ");
-            String komento = this.lukija.nextLine();
-            if (komento.equals("1")) {
-                System.out.println("");
-                this.tulostaAsunnot();
-                System.out.println("");
-            } else if (komento.equals("2")) {
-                System.out.println("");
-                this.tulostaAsukkaat();
-                System.out.println("");
-            } else if (komento.equals("3")) {
-                System.out.println("");
-                this.tulostaSopimukset();
-                System.out.println("");
-            } else if (komento.equals("4")) {
-                System.out.println("");
-                this.tulostaVapaatAsunnot();
-                System.out.println("");
-            } else if (komento.equals("5")) {
-                System.out.println("");
-                this.asukkaanTiedot();   
-            } else if (komento.equals("x")) {
-                
+            ohjelmanKomentojenTulostus();
+            String komento = kysymystenEsittaja("Syötä komento: ");
+            System.out.println("");
+            toimintojenOhjaus(komento);
+            System.out.println("");
+
+            if (komento.equals("x")) {
                 System.out.println("");
                 System.out.println("Kiitos näkemiin!");
                 break;
@@ -66,146 +62,354 @@ public class JarjestelmanOhjaus {
             System.out.println();
         }
     }
-    
+
+    /**
+     * Apumetodi tulostaa asukastietojärjestelmän tekstikäyttöliittymän
+     * peruskomennot
+     *
+     * @see asukastietojarjestelma.domain.JarjestelmanOhjaus#suorita()
+     *
+     */
+    private void ohjelmanKomentojenTulostus() {
+        System.out.println("Komennot:\n 1 tulosta asunnot\n 2 tulosta asukkaat\n 3 tulosta sopimukset\n 4 näytä vapaat asunnot\n 5 näytä asukkaan tiedot\n\n x lopeta\n");
+    }
+
+    /**
+     * Apumetodi ohjaa asukastietojärjestelmää tekstikäyttöliittymän
+     * peruskomennoilla
+     *
+     * @see asukastietojarjestelma.domain.JarjestelmanOhjaus#suorita()
+     *
+     */
+    private void toimintojenOhjaus(String komento) {
+        if (komento.equals("1")) {
+            this.tulostaAsunnot();
+        } else if (komento.equals("2")) {
+            this.tulostaAsukkaat();
+        } else if (komento.equals("3")) {
+            this.tulostaSopimukset();
+        } else if (komento.equals("4")) {
+            this.tulostaVapaatAsunnot();
+        } else if (komento.equals("5")) {
+            this.asukkaanTiedot();
+        }
+    }
+
     //ASUKKAAN TIEDOT
-    
+    /**
+     * Metodi joka etsii yksittäisen asukaan tiedot
+     *
+     * @see
+     * asukastietojarjestelma.domain.JarjestelmanOhjaus#haluatkoMuokataTietoja()
+     *
+     */
     public void asukkaanTiedot() {
         //virheellisten syötteiden käsittely!
-        System.out.print("Syötä henkilötunnus: ");
-        String hlotunnus = this.lukija.nextLine();
-        
+        String hlotunnus = kysymystenEsittaja("Syötä henkilötunnus: ");
+
         if (this.asukkaat.containsKey(hlotunnus)) {
             System.out.println("");
             System.out.println(this.asukkaat.get(hlotunnus));
             System.out.println("");
-            System.out.print("Haluatko muokata asukkaan tietoja (y/n): ");
-            String vastaus = this.lukija.nextLine();
-
-            if (vastaus.equals("y")) {
+            if (haluatkoMuokataTietoja()) {
                 asukkaanTietojenMuokkaaminen(this.asukkaat.get(hlotunnus));
             }
         } else {
             System.out.println("Järjestelmässä ei ole etsittyä asukasta.");
         }
-        
+
     }
-    
+
+    /**
+     * Apumetodi joka kysyy haluaako käyttäjä muokata asukkaan tietoja
+     *
+     * @see
+     * asukastietojarjestelma.domain.JarjestelmanOhjaus#asunnonTietojenHakeminen()
+     *
+     * @return tiedon siitä halutaanko tietoja muokata vai ei.
+     */
+    private boolean haluatkoMuokataTietoja() {
+        String vastaus = kysymystenEsittaja("Haluatko muokata asukkaan tietoja (y/n): ");
+
+        if (vastaus.equals("y")) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    /**
+     * Apumetodi joka palauttaa käyttäjän vastauksen parametrina annettuun
+     * kysymykseen
+     *
+     * @param kysymys Esitettävä kysymys
+     *
+     * @return Käyttäjän vastauksen kysymykseen.
+     */
+    public String kysymystenEsittaja(String kysymys) {
+        System.out.print(kysymys);
+        String vastaus = this.lukija.nextLine();
+
+        return vastaus;
+    }
+
+    /**
+     * Metodi jonka avulla muokataan asukkaan tietoja
+     *
+     * @param a Asukas, jonka tietoja muokataan
+     *
+     * @see
+     * asukastietojarjestelma.domain.JarjestelmanOhjaus#muokkausValikonTulostus()
+     * @see
+     * asukastietojarjestelma.domain.JarjestelmanOhjaus#nimenMuokkaus(asukastietojarjestelma.domain.Asukas)
+     * @see
+     * asukastietojarjestelma.domain.JarjestelmanOhjaus#puhelinNronMuokkaus(asukastietojarjestelma.domain.Asukas)
+     * @see
+     * asukastietojarjestelma.domain.JarjestelmanOhjaus#emailinMuokkaus(asukastietojarjestelma.domain.Asukas)
+     * @see
+     * asukastietojarjestelma.domain.JarjestelmanOhjaus#vuokrasopimuksenPaattaminen(asukastietojarjestelma.domain.Vuokrasopimus)
+     * @see
+     * asukastietojarjestelma.domain.JarjestelmanOhjaus#uudenOsoitteenAsettaminenPoisMuuttaessa(asukastietojarjestelma.domain.Asukas)
+     *
+     */
     public void asukkaanTietojenMuokkaaminen(Asukas a) {
-        //virheellisten syötteiden käsittely!
         System.out.println("");
-        while(true) {
-            System.out.println("Mitä muokataan?\n a. Nimi\n b. puhelinnumero\n c. e-mail\n d. vuokrasopimuksen päättäminen\n x. poistu");
+        while (true) {
+            muokkausValikonTulostus();
+
             String muutetaan = this.lukija.nextLine();
 
             if (muutetaan.equals("a")) {
-                System.out.print("Etunimi: ");
-                String enimi = this.lukija.nextLine();
-                System.out.print("Sukunimi: ");
-                String snimi = this.lukija.nextLine();
-                a.setNimi(enimi, snimi);
+                nimenMuokkaus(a);
             } else if (muutetaan.equals("b")) {
-                System.out.print("Uusi puhelinnumero: ");
-                String puh = this.lukija.nextLine();
-                a.setPuhelinnumero(puh);
+                puhelinNronMuokkaus(a);
             } else if (muutetaan.equals("c")) {
-                System.out.print("Uusi e-mail: ");
-                String email = this.lukija.nextLine();
-                a.setEmail(email);
+                emailinMuokkaus(a);
             } else if (muutetaan.equals("d")) {
                 vuokrasopimuksenPaattaminen(a.getNykyinenVuokrasopimus());
-                System.out.print("Haluatko syöttää uuden osoitteen (y/n): ");
-                String vastaus = this.lukija.nextLine();
-                if (vastaus.equals("y")) {
-                    System.out.print("Uusi osoite: ");
-                    String osoite = this.lukija.nextLine();
-                    a.setOsoite(osoite);
-                }
+                uudenOsoitteenAsettaminenPoisMuuttaessa(a);
             } else if (muutetaan.equals("x")) {
                 break;
             }
         }
     }
-    
+
+    /**
+     * Metodi jonka avulla asukkaan tietoihin asennetaan uusi osoite, jos hän
+     * muuttaa pois Säätiön asunnoista
+     *
+     * @param a Asukas, jonka tietoja muokataan
+     *
+     *
+     */
+    private void uudenOsoitteenAsettaminenPoisMuuttaessa(Asukas a) {
+        String vastaus = kysymystenEsittaja("Haluatko syöttää uuden osoitteen (y/n): ");
+        if (vastaus.equals("y")) {
+            String osoite = kysymystenEsittaja("Uusi osoite: ");
+            a.setOsoite(osoite);
+        }
+    }
+
+    /**
+     * Metodi jonka avulla asetataan asukkaalle uusi sähköpostiosoite
+     *
+     * @param a Asukas, jonka tietoja muokataan
+     *
+     */
+    private void emailinMuokkaus(Asukas a) {
+        String email = kysymystenEsittaja("Uusi e-mail: ");
+        a.setEmail(email);
+    }
+
+    /**
+     * Metodi jonka avulla asetataan asukkaalle uusi puhelinnumero
+     *
+     * @param a Asukas, jonka tietoja muokataan
+     *
+     */
+    private void puhelinNronMuokkaus(Asukas a) {
+        String puh = kysymystenEsittaja("Uusi puhelinnumero: ");
+        a.setPuhelinnumero(puh);
+    }
+
+    /**
+     * Metodi jonka avulla asetataan asukkaalle uusi nimi
+     *
+     * @param a Asukas, jonka tietoja muokataan
+     *
+     */
+    private void nimenMuokkaus(Asukas a) {
+        String enimi = kysymystenEsittaja("Etunimi: ");
+        String snimi = kysymystenEsittaja("Sukunimi: ");
+        a.setNimi(enimi, snimi);
+    }
+
+    /**
+     * Metodi jolla tulostetaan asukkaantietojen muokkaamiseen liittyvät
+     * komennot
+     *
+     */
+    private void muokkausValikonTulostus() {
+        System.out.println("Mitä muokataan?\n"
+                + "a. Nimi\n b. puhelinnumero\n"
+                + "c. e-mail\n d. vuokrasopimuksen päättäminen\n"
+                + "x. poistu");
+    }
+
     public void poistaAsukas() {
         //siirtää arkistoon?
+        //pitäisikö tämä olla siinä vaiheessa kun ohjelma suljetaan? Tsekkaa onko asukkaita joilla ei vuokrasopimusta?
     }
-    
+
     //ASUNNON TIEDOT
-    public void asunnonTiedot() {
-        //virheellisten syötteiden käsittely!
+    /**
+     * Metodi yksittäisen asunnon tietojen hakemiseen
+     *
+     * @see
+     * asukastietojarjestelma.domain.JarjestelmanOhjaus#asunnonTietojenTulostaminen(java.lang.String)
+     *
+     */
+    public void asunnonTietojenHakeminen() {
         System.out.println("");
-        System.out.print("Syötä talon katuosoite: ");
-        String talo = this.lukija.nextLine();
-        
+        String talo = kysymystenEsittaja("Syötä talon katuosoite: ");
+        if(onkoTaloJarjestelmassa(talo)) {
+            asunnonTietojenTulostaminen(talo);
+        }
+    }
+
+    private boolean onkoTaloJarjestelmassa(String talo) {
         if (this.asunnot.containsKey(talo)) {
-            System.out.print("Syötä asunnon rappu ja numero: ");
-            String asunnonNumero = this.lukija.nextLine();
-            for (Asunto a : this.asunnot.get(talo)) {
-                if (a.getAsuntonro().equals(asunnonNumero)){
-                    System.out.println(a);
-                    break;
-                }
-            }
-            System.out.println("talossa ei ole vastaavaa asuntoa.");
+            return true;
         } else {
             System.out.println("Järjestelmässä ei ole haettua taloa.");
+            return false;
         }
     }
-    
-    //asunnon aiemmat sopimukset
-    
+
+    /**
+     * Metodi yksittäisen asunnon tietojen tulostamiseen
+     *
+     * @param talo Talo, josta asuntoa etsitään. Käyttäjän syöte.
+     *
+     */
+    private void asunnonTietojenTulostaminen(String talo) {
+        String asunnonNumero = kysymystenEsittaja("Syötä asunnon rappu ja numero (erottele välilyönnillä): ");
+        int i = 0;
+        for (Asunto a : this.asunnot.get(talo)) {
+            i++;
+            if (a.getAsuntonro().equals(asunnonNumero)) {
+                System.out.println(a);
+                break;
+            } else if (i == this.asunnot.get(talo).size()) {
+                System.out.println("talossa ei ole vastaavaa asuntoa.");
+            }
+        }
+    }
+
     //VUOKRASOPIMUKSEN SOLMIMISEEN LIITTYVÄT
+    /**
+     * Metodi, joka uuden asukkaan lisäämiseen järjestelmään.
+     *
+     */
     public void lisaaAsukas() {
         System.out.println("");
-        System.out.print("Syötä henkilötunnus: ");
-        String hloTunnus = this.lukija.nextLine();
-        
+        String hloTunnus = kysymystenEsittaja("Syötä henkilötunnus: ");
+
         if (this.asukkaat.containsKey(hloTunnus)) {
             System.out.println("Asukas on jo järjestelmässä");
-            
+
         } else {
-            System.out.print("Syötä etunimi: ");
-            String etunimi = this.lukija.nextLine();
-            System.out.print("Syötä sukunimi: ");
-            String sukunimi = this.lukija.nextLine();
-            System.out.print("Syötä puhelinnumero: ");
-            String puh = this.lukija.nextLine();
-            System.out.print("Syötä email: ");
-            String email = this.lukija.nextLine();
-        
-            Asukas asukas = new Asukas(sukunimi, etunimi, hloTunnus, puh, email);
+            Asukas asukas = asukkaanLuominen(hloTunnus);
             this.asukkaat.put(hloTunnus, asukas);
-            //uusiVuokrasopimus();
+            uusiVuokrasopimus(asukas);
         }
-        
+
     }
-    
+
+    /**
+     * Metodi uuden Asukas-olion järjestelmään
+     *
+     * @param hloTunnus Asukkaan henkilötunnus. Käyttäjän syöte.
+     *
+     * @return palauttaa uuden Asukas-olion
+     */
+    private Asukas asukkaanLuominen(String hloTunnus) {
+        String etunimi = kysymystenEsittaja("Syötä etunimi: ");
+        String sukunimi = kysymystenEsittaja("Syötä sukunimi: ");
+        String puh = kysymystenEsittaja("Syötä puhelinnumero: ");
+        String email = kysymystenEsittaja("Syötä email: ");
+        Asukas asukas = new Asukas(sukunimi, etunimi, hloTunnus, puh, email);
+        return asukas;
+    }
+
+    public void uusiVuokrasopimus(Asukas asukas) {
+
+    }
+
     public void uusiVuokrasopimus() {
+        String talo = kysymystenEsittaja("Mikä talo: ");
+        String asunto = kysymystenEsittaja("Mikä asunto: ");
         
+        if (onkoTaloJarjestelmassa(talo)){
+            
+        }
     }
-    
-    public void vuokrasopimuksenPaattaminen(Vuokrasopimus sopimus){
+
+    /**
+     * Metodi päättää vuokrasopimuksen
+     *
+     * @param sopimus Päätettävä vuokrasopimus
+     *
+     */
+    public void vuokrasopimuksenPaattaminen(Vuokrasopimus sopimus) {
         System.out.println("");
-        System.out.print("Syötä paattymispäivä (dd.mm.yyyy): ");
-        String paattymispvm = this.lukija.nextLine();
-        // vertaile ettei ole ennen alkamispäivämäärää!
+        String paattymispvm = kysymystenEsittaja("Syötä paattymispäivä (dd.mm.yyyy): ");
         sopimus.setPaattymispvm(paattymispvm);
-        
+
     }
-    
+
     // RAPORTIT
+    /**
+     * Metodi tulostaa kaikki järjestelmän asunnot tietoineen
+     *
+     */
     public void tulostaAsunnot() {
-        System.out.print(this.asunnot);
+        for (String avain : this.asunnot.keySet()) {
+            for (Asunto a : this.asunnot.get(avain)) {
+                System.out.println(a);
+                System.out.println("");
+            }
+            System.out.println("");
+            
+        }
     }
-    
+
+    /**
+     * Metodi tulostaa kaikki järjestelmän asukkaat tietoineen
+     *
+     */
     public void tulostaAsukkaat() {
-        System.out.print(this.asukkaat);
+        for (String avain : this.asukkaat.keySet()) {
+            System.out.println(this.asukkaat.get(avain));
+            System.out.println("");
+        }
     }
-    
+
+    /**
+     * Metodi tulostaa kaikki järjestelmän vuokrasopimukset tietoineen
+     *
+     */
     public void tulostaSopimukset() {
-        System.out.print(this.vuokrasopimukset);
+        for (Vuokrasopimus s : this.vuokrasopimukset) {
+            System.out.println(s);
+            System.out.println("");
+        }
     }
-    
+
+    /**
+     * Metodi tulostaa kaikki järjestelmässä olevat vapaat asunnot
+     *
+     */
     public void tulostaVapaatAsunnot() {
         for (String avain : this.asunnot.keySet()) {
             for (Asunto a : this.asunnot.get(avain)) {
@@ -216,11 +420,16 @@ public class JarjestelmanOhjaus {
             }
         }
     }
-    
+
     // tiettynä aikana vapautuvat asunnot!
-    
     //LOPETTAMINEN JA TALLENTAMINEN
-    public void tallennaTiedot() throws IOException{
+    /**
+     * Metodi tallentaa järjestelmän asuntojen, asukkaiden ja vuokrasopimusten
+     * tiedot tiedostoihin Sekä poistaa järjestelmästä asukkaat, joilla ei ole
+     * voimassa olevaa vuokrasopimusta
+     *
+     */
+    public void tallennaTiedot() throws IOException {
         this.tiedostonKirjoittaja.tallennaAsunnot(asuntoTiedosto, asunnot);
         this.tiedostonKirjoittaja.tallennaAsukkaat(asuntoTiedosto, asukkaat);
         this.tiedostonKirjoittaja.tallennaVuokrasopimukset(sopimusTiedosto, vuokrasopimukset);

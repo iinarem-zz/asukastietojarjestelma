@@ -4,8 +4,11 @@ package asukastietojarjestelma.domain;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-
+/**
+ * Luokka sisältää asuntojen tiedot ja metodeja niiden muokkaamiseen
+ */
 public class Asunto {
+    /* ... */
     private String talo;
     private String asuntonro;
     private int huonemaara;
@@ -92,12 +95,15 @@ public class Asunto {
     @Override
     public String toString() {
         if (this.onkoVuokrattu) {
-            return this.talo + " " + this.asuntonro + ": " + this.huonemaara + "h " + this.pA + "m2" +
-                   "\nvuokra: " + this.vuokra +" euroa" +
-                   "\n" + this.sopimus;
+            return this.talo + " " + this.asuntonro + 
+                   "\n pohjaratkaisu: "+ this.huonemaara + "h " + this.pA + "m2" +
+                   "\n vuokra: " + this.vuokra +" euroa" +
+                   "\n " + this.sopimus.tiedotIlmanAsuntoa();
         }
-        return this.talo + " " + this.asuntonro + ": " + this.huonemaara + "h " + this.pA + "m2, " +
-                "vuokra: " + this.vuokra +" euroa";
+        return this.talo + " " + this.asuntonro + 
+                   "\n pohjaratkaisu: "+ this.huonemaara + "h " + this.pA + "m2" +
+                   "\n vuokra: " + this.vuokra +" euroa" +
+                   "\n Asunto on vapaa";
     }
     
 }

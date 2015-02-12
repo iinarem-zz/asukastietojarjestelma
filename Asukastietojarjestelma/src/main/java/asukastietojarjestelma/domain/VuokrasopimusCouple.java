@@ -1,7 +1,10 @@
 
 package asukastietojarjestelma.domain;
-
+/**
+ * Luokka on Vuokrasopimusluokan alaluokka, joka sisältää osan kahden hengen vuokrasopimuksiin liittyviä toiminnallisuuksia
+ */
 public class VuokrasopimusCouple extends Vuokrasopimus{
+    /* ... */
     private Asukas asukas1;
     private Asukas asukas2;
     
@@ -23,20 +26,10 @@ public class VuokrasopimusCouple extends Vuokrasopimus{
     }
 
     //SETTERIT
-    public void lisaaAsukkaat(Asukas a, Asukas b) {
-        // lisää se ettei vuokrasopimusta voi tehdä jos on jo voimassaoleva vuokrasoppari.
-        this.asukas1 = a;
-        this.asukas2 = b;
-        this.asukas1.setVuokrasopimus(this);
-        
-        if (this.asukas2 != null) {
-            this.asukas2.setVuokrasopimus(this);
-        }
-        
-    }
     
     @Override
     public void setPaattymispvm(String paattymispvm) {
+        //vertailu ettei ennen alkupäivää
         this.paattymispvm = paattymispvm;
         this.asunto.paataVuokrasopimus();
         this.asukas1.paataVuokrasopimus();
@@ -44,26 +37,12 @@ public class VuokrasopimusCouple extends Vuokrasopimus{
     }
     
     //MUUT
-//    @Override
-//    public boolean equals(Object olio) {
-//        if (olio == null) {
-//            return false;
-//        }
-//
-//        if (getClass() != olio.getClass()) {
-//            return false;
-//        }
-//
-//        Vuokrasopimus verrattava = (Vuokrasopimus) olio;
-//
-//        if (this.asukas1 == null || ) {
-//            return false;
-//        }
-//
-//        return true;
-//    }
-    
-    
+    @Override
+    public String tiedotIlmanAsuntoa() {
+        return "Asukas: " + this.asukas1.getNimi() + " ja " +  this.asukas2.getNimi() +
+               "\nVuokrasopimuksen voimassaolo: " + super.alkupvm + " - " + super.paattymispvm;
+    }
+
     @Override
     public String toString() {
         

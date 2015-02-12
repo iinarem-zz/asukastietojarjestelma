@@ -26,7 +26,7 @@ public class AsuntoTest {
     @Test
     public void konstruktoriLuoAsunnonOikein() {
         String vastaus = this.testi.toString();
-        assertEquals("AKT 4 C 21: 2h 10.0m2, vuokra: 300 euroa", vastaus);
+        assertEquals("AKT 4 C 21\n pohjaratkaisu: 2h 10.0m2\n vuokra: 300 euroa\n Asunto on vapaa", vastaus);
     }
     
     @Test
@@ -67,7 +67,7 @@ public class AsuntoTest {
     @Test
     public void josAsuntoOnJoVuokrattuSitaEiVoiVuokrata() {
         Vuokrasopimus sopimus = null;
-        Asukas asukas1 = new Asukas("Meikäläinen", "Maija", "123456", "0000000", "poo@helsinki.fi");
+        Asukas asukas1 = new Asukas("Meikäläinen", "Maija", "123456", "0000000", "maija.meikalainen@helsinki.fi");
         sopimus = new VuokrasopimusSingle(this.testi, "01.01.2014", "31.12.2016", asukas1);
         this.testi.vuokraa(sopimus);
         assertEquals(sopimus, this.testi.getVuokrasopimus());

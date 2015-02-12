@@ -4,8 +4,11 @@ package asukastietojarjestelma.domain;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-
+/**
+ * Luokka sisältää asukkaan ja metodeja niiden muokkaamiseen
+ */
 public class Asukas {
+    /* ... */
     private String sukunimi;
     private String etunimi;
     private String hloTunnus;
@@ -95,6 +98,10 @@ public class Asukas {
     }
     
     // MUUT TOIMINNALLISUUDET
+    /**
+    * Metodi päättää asukkaan vuokrasopimuksen
+    *
+    */
     public void paataVuokrasopimus() {
         this.sopimus = null;
         //Collections.sort(vuokrasopimukset);

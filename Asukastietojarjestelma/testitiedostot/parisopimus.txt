@@ -1,0 +1,7 @@
+huonemaara:1
+asunto:AKT 4:C 3
+alkupvm:01:01:2014
+loppupvm:31:12:2016
+asukas1:151085
+asukas2:110380
+##

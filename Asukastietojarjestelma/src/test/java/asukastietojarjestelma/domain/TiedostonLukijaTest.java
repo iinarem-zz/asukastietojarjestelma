@@ -114,6 +114,16 @@ public class TiedostonLukijaTest {
         assertEquals(2, this.lukija.lueVuokrasopimukset(luoMapJossaKaksiAsukasta(), luoMapJossaKaksiSamanTalonAsuntoa(), this.sopimuksiaKaksi).size());
     }
     
+    @Test
+    public void luoKahdenHengenSopimuksenKunAsukkaitaKaksi(){
+        
+    }
+    
+    @Test
+    public void luoYhdenHengenSopimuksenKunAsukkaitaYksi() {
+        
+    }
+    
     
     // apumetodeja
     public Map<String, Asukas> luoMapJossaNollaAsukasta() {

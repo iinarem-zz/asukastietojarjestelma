@@ -7,13 +7,22 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
+/**
+ * Luokka sisältää tietojen tiedostoon tallentamiseen liittyvät metodit
+ */
 public class TiedostonKirjoittaja {
+    /* ... */
     private FileWriter kirjoittaja;
     
     public TiedostonKirjoittaja() {
     }
-    
+    /**
+    * Metodi tallentaa mappiin talokohtaisesti tallennetut asunnot tekstitiedostomuotoon
+    *
+    * @param   tiedosto   Tiedosto johon kirjoitetaan
+    * @param   asunnot    HashMap, johon asunnot on tallennettu talokohtaisesti
+    * 
+    */
     public void tallennaAsunnot(String tiedosto, Map<String, ArrayList<Asunto>> asunnot) throws IOException {
         this.kirjoittaja = new FileWriter(tiedosto);
         if (asunnot.isEmpty()){
@@ -35,6 +44,13 @@ public class TiedostonKirjoittaja {
         
     }
     
+    /**
+    * Metodi tallentaa mappiin tallennetut asukkaat tekstitiedostomuotoon
+    *
+    * @param   tiedosto   Tiedosto, johon kirjoitetaan
+    * @param   asukkaat    HashMap, johon asukkaat on tallennettu henkilötunnustensa taakse
+    * 
+    */
     public void tallennaAsukkaat(String tiedosto, Map<String, Asukas> asukkaat) throws IOException {
         this.kirjoittaja = new FileWriter(tiedosto);
         if (asukkaat.isEmpty()) {
@@ -52,7 +68,14 @@ public class TiedostonKirjoittaja {
         }
         this.kirjoittaja.close();
     }
-    
+    /**
+    * Metodi tallentaa ArrayListiin tallennetut vuokrasopimukset tekstitiedostomuotoon
+    *
+    * @param   tiedosto   Tiedosto, johon kirjoitetaan
+    * @param   sopimukset    Lista sopimuksista
+    * 
+    * @see asukastietojarjestelma.domain.TiedostonKirjoittaja#korvaaPisteet(java.lang.String) 
+    */
     public void tallennaVuokrasopimukset(String tiedosto, List<Vuokrasopimus> sopimukset) throws IOException {
         this.kirjoittaja = new FileWriter(tiedosto);
         if (sopimukset.isEmpty()) {
@@ -80,7 +103,13 @@ public class TiedostonKirjoittaja {
         
         this.kirjoittaja.close();
     }
-    
+    /**
+    * Metodi korvaa siihen syötetyn päivämäärän pisteet kaksoispisteillä
+    *
+    * @param   pvm   Päivämäärä (asunnon tiedoista muodossa dd.mm.yyyy)
+    *
+    * @return päivämäärä muodossa dd:mm:yyyy
+    */
     public String korvaaPisteet(String pvm) {
         String[] luvut = pvm.split("\\.");
         String uusi = luvut[0] + ":" + luvut[1] + ":" + luvut[2];
