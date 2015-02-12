@@ -30,7 +30,6 @@ public class Asukas {
     }
     
     // GETTERIT
-    
     public String getNimi() {
         return this.etunimi + " " + this.sukunimi;
     }
@@ -66,7 +65,6 @@ public class Asukas {
     }
     
     // SETTERIT
-    
     public void setNimi(String enimi, String snimi) {
         //pitäiskö tallentaa tieto vanhasta nimestä jonnekin esim. lisätietoihin?
         this.etunimi = enimi;
@@ -104,36 +102,7 @@ public class Asukas {
     */
     public void paataVuokrasopimus() {
         this.sopimus = null;
-        //Collections.sort(vuokrasopimukset);
     }
-    
-   @Override
-    public int hashCode() {
-        if (this.hloTunnus == null) {
-            return 7;
-        }
-        return this.hloTunnus.hashCode();
-    }
-    
-    @Override
-    public boolean equals(Object olio) {
-        if (olio == null) {
-            return false;
-        }
-
-        if (getClass() != olio.getClass()) {
-            return false;
-        }
-
-        Asukas verrattava = (Asukas) olio;
-
-        if (this.hloTunnus == null || !this.hloTunnus.equals(verrattava.getHlotunnus())) {
-            return false;
-        }
-
-        return true;
-    }
-    
     
     @Override
     public String toString() {

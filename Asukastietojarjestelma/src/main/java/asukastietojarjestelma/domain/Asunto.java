@@ -72,7 +72,6 @@ public class Asunto {
             this.sopimus = sopimus;
             this.onkoVuokrattu = true;
             this.vuokrasopimukset.add(sopimus);
-            //Collections.sort(vuokrasopimukset);
             return "Vuokraus onnistui!";
         } else {
             return "Asunto on jo vuokrattu! Päätä edellinen vuokrasopimus.";
@@ -89,8 +88,6 @@ public class Asunto {
     }
     
     // MUUT
-    
-    //tähän metodi järjestäminen osoitteen mukaan aakkosissa
     
     @Override
     public String toString() {

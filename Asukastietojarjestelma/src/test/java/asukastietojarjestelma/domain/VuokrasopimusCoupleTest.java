@@ -27,13 +27,13 @@ public class VuokrasopimusCoupleTest {
     
     @Test
     public void konstruktoriLuoSopimuksenOikein() {
-    assertEquals("Vuokrasopimuksen tiedot:\nVuokrattu asunto: RLT 5 C 40\nAsukas: Maija Mehiläinen ja Kimmo Kimalainen\nVuokrasopimuksen voimassaolo: 1.1.2015 - 31.12.2016", soppari.toString());
+        assertEquals("Vuokrasopimuksen tiedot:\nVuokrattu asunto: RLT 5 C 40\nAsukas: Maija Mehiläinen ja Kimmo Kimalainen\nVuokrasopimuksen voimassaolo: 1.1.2015 - 31.12.2016", soppari.toString());
     }
     
     @Test
-    public void kunVuokrasopimustaVerrataanAiemminPaattyneeseenPalauttaaArvon() {}
-    
-    @Test
-    public void kunVuokrasopimustaVerrataanMyohemminPaattyvaanPalauttaaArvon() {}
+    public void tulostaaOikeinIlmanAsuntoa() {
+        assertEquals("Asukas: Maija Mehiläinen ja Kimmo Kimalainen\nVuokrasopimuksen voimassaolo: 1.1.2015 - 31.12.2016", soppari.tiedotIlmanAsuntoa());
+        
+    }
     
 }

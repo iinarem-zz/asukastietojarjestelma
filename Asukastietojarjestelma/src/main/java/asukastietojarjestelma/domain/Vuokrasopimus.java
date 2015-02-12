@@ -64,6 +64,5 @@ public abstract class Vuokrasopimus implements Comparable<Vuokrasopimus> {
     @Override
     public int compareTo(Vuokrasopimus sopimus) {
         return this.paattymispvm.compareTo(sopimus.paattymispvm); //korjattava!
-    }
-//    
+    }  
 }

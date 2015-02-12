@@ -30,6 +30,12 @@ public class VuokrasopimusSingleTest {
     }
     
     @Test
+    public void tulostaaOikeinIlmanAsuntoa() {
+        assertEquals("Asukas: Maija Mehiläinen\n Vuokrasopimuksen voimassaolo: 1.1.2015 - 31.12.2016", soppari.tiedotIlmanAsuntoa());
+        
+    }
+    
+    @Test
     public void kunVuokrasopimusPaatetaanAlkuaMyohempanaPaivanaSePaattyy() {
         
     }
@@ -38,12 +44,5 @@ public class VuokrasopimusSingleTest {
     public void kunVuokrasopimusPaatetaanAlkuaAiempanaPaivanaPaattymisaikaEiMuutu() {
         
     }
-    
-    @Test
-    public void kunVuokrasopimustaVerrataanAiemminPaattyneeseenPalauttaaArvon() {}
-    
-    
-    @Test
-    public void kunVuokrasopimustaVerrataanMyohemminPaattyvaanPalauttaaArvon() {}
     
 }

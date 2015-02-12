@@ -1,3 +1,9 @@
+talo:RLT 5
+asuntonro:A 1
+huonemaara:1
+pA:10.5
+vuokra:0
+##
 talo:AKT 4
 asuntonro:C 1
 huonemaara:1
