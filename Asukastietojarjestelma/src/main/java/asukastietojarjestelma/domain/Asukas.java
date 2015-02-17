@@ -104,6 +104,13 @@ public class Asukas {
         this.sopimus = null;
     }
     
+    public boolean onkoVuokrasopimusVoimassa() {
+        if (this.sopimus == null) {
+            return false;
+        }
+        return true;
+    }
+    
     @Override
     public String toString() {
         if (this.sopimus == null) {

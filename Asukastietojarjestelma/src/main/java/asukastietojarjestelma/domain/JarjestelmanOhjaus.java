@@ -71,7 +71,15 @@ public class JarjestelmanOhjaus {
      *
      */
     private void ohjelmanKomentojenTulostus() {
-        System.out.println("Komennot:\n 1 tulosta asunnot\n 2 tulosta asukkaat\n 3 tulosta sopimukset\n 4 näytä vapaat asunnot\n 5 näytä asukkaan tiedot\n\n x lopeta\n");
+        System.out.println("Komennot:"
+                + "\n 1 tulosta asunnot"
+                + "\n 2 tulosta asukkaat"
+                + "\n 3 tulosta sopimukset"
+                + "\n 4 näytä ja muokkaa asukkaan tietoja"
+                + "\n 5 näytä asunnon tiedot"
+                + "\n 6 näytä vapaat asunnot"
+                + "\n 7 uusi vuokrasopimus"
+                + "\n x lopeta\n");
     }
 
     /**
@@ -89,9 +97,13 @@ public class JarjestelmanOhjaus {
         } else if (komento.equals("3")) {
             this.tulostaSopimukset();
         } else if (komento.equals("4")) {
-            this.tulostaVapaatAsunnot();
-        } else if (komento.equals("5")) {
             this.asukkaanTiedot();
+        } else if (komento.equals("5")) {
+            this.asunnonTietojenHakeminen();
+        } else if (komento.equals("6")) {
+            this.tulostaVapaatAsunnot();   
+        } else if (komento.equals("7")) {
+            this.uusiVuokrasopimus();
         }
     }
 
@@ -193,6 +205,19 @@ public class JarjestelmanOhjaus {
             }
         }
     }
+    
+    /**
+     * Metodi jolla tulostetaan asukkaantietojen muokkaamiseen liittyvät
+     * komennot
+     *
+     */
+    private void muokkausValikonTulostus() {
+        System.out.println("Mitä muokataan?\n"
+                + "a. nimi\n b. puhelinnumero\n"
+                + "c. e-mail\n d. vuokrasopimuksen päättäminen\n"
+                + "e. poista asukkaan tiedot"
+                + "x. poistu");
+    }
 
     /**
      * Metodi jonka avulla asukkaan tietoihin asennetaan uusi osoite, jos hän
@@ -243,22 +268,28 @@ public class JarjestelmanOhjaus {
         String snimi = kysymystenEsittaja("Sukunimi: ");
         a.setNimi(enimi, snimi);
     }
-
+    
     /**
-     * Metodi jolla tulostetaan asukkaantietojen muokkaamiseen liittyvät
-     * komennot
+     * Metodi joka poistaa asukkaan tiedot järjestelmästä
+     *
+     * @param a Asukas, joka poistetaan
      *
      */
-    private void muokkausValikonTulostus() {
-        System.out.println("Mitä muokataan?\n"
-                + "a. Nimi\n b. puhelinnumero\n"
-                + "c. e-mail\n d. vuokrasopimuksen päättäminen\n"
-                + "x. poistu");
-    }
-
-    public void poistaAsukas() {
-        //siirtää arkistoon?
-        //pitäisikö tämä olla siinä vaiheessa kun ohjelma suljetaan? Tsekkaa onko asukkaita joilla ei vuokrasopimusta?
+    public void poistaAsukas(Asukas a) {
+        if (a.onkoVuokrasopimusVoimassa()) {
+            System.out.println("Asukkaalla on voimassa oleva vuokrasopimus, asukasta ei voida poistaa. Päätä ensin vuokrasopimus.");
+            this.vuokrasopimuksenPaattaminen(a.getNykyinenVuokrasopimus());
+        } else {
+            HashMap<String, Asukas> uusiAsukasLista = new HashMap<String, Asukas>();
+            for (String avain : this.asukkaat.keySet()){
+                if (avain.equals(a.getHlotunnus())) {
+                    continue;
+                }
+                uusiAsukasLista.put(avain, this.asukkaat.get(avain));
+            }
+            this.asukkaat = uusiAsukasLista;
+        }
+        
     }
 
     //ASUNNON TIEDOT
@@ -321,7 +352,6 @@ public class JarjestelmanOhjaus {
         } else {
             Asukas asukas = asukkaanLuominen(hloTunnus);
             this.asukkaat.put(hloTunnus, asukas);
-            uusiVuokrasopimus(asukas);
         }
 
     }
@@ -341,18 +371,26 @@ public class JarjestelmanOhjaus {
         Asukas asukas = new Asukas(sukunimi, etunimi, hloTunnus, puh, email);
         return asukas;
     }
-
-    public void uusiVuokrasopimus(Asukas asukas) {
-
-    }
-
+    /**
+     * Metodi luo uuden Vuokrasopimuksen järjestelmään
+     *
+     */
     public void uusiVuokrasopimus() {
         String talo = kysymystenEsittaja("Mikä talo: ");
         String asunto = kysymystenEsittaja("Mikä asunto: ");
         
         if (onkoTaloJarjestelmassa(talo)){
+            //onko asuntojärjestelmässä
+            //jos on 
+              //onko vapaa? 
+                //jos on, hae asunnon koko --> määrää vuokrasopimuksen muodon
+                //pyydä asukkaan tiedot (tai kahden tiedot)
+                    //jos ei järjestelmässä, tiedot pitää syöttää.
+                //luo vuokrasopimus
+            //jos ei, halutaanko edellinen vuokrasopimus päättää?
             
         }
+        System.out.println("Asuntoa ei ole järjestelmässä");
     }
 
     /**
@@ -427,11 +465,31 @@ public class JarjestelmanOhjaus {
      * Metodi tallentaa järjestelmän asuntojen, asukkaiden ja vuokrasopimusten
      * tiedot tiedostoihin Sekä poistaa järjestelmästä asukkaat, joilla ei ole
      * voimassa olevaa vuokrasopimusta
-     *
+     * 
+     * @see asukastietojarjestelma.domain.JarjestelmanOhjaus#poistaAsukkaatJoillaEiOleVuokrasopimusVoimassa() 
+     * 
      */
     public void tallennaTiedot() throws IOException {
+        this.poistaAsukkaatJoillaEiOleVuokrasopimusVoimassa();
         this.tiedostonKirjoittaja.tallennaAsunnot(asuntoTiedosto, asunnot);
         this.tiedostonKirjoittaja.tallennaAsukkaat(asuntoTiedosto, asukkaat);
         this.tiedostonKirjoittaja.tallennaVuokrasopimukset(sopimusTiedosto, vuokrasopimukset);
     }
+    
+    /**
+     * Metodi poistaa asukasmapistä kaikki ne asukkaat joiden vuokrasopimus ei ole voimassa.
+     * Metodi on tallennaTiedot()-metodin apumetodi.
+     * 
+     */
+    public void poistaAsukkaatJoillaEiOleVuokrasopimusVoimassa() {
+        HashMap<String, Asukas> uusiAsukasLista = new HashMap<String, Asukas>();
+        for (String avain : this.asukkaat.keySet()){
+            if (this.asukkaat.get(avain).onkoVuokrasopimusVoimassa() == false) {
+                continue;
+            }
+            uusiAsukasLista.put(avain, this.asukkaat.get(avain));
+        }
+            this.asukkaat = uusiAsukasLista;
+    }
+    
 }
